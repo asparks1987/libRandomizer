@@ -5,6 +5,7 @@
 *.a
 *.la
 *.lai
+*.pro
 *.so
 *.so.*
 *.dll
