@@ -1,7 +1,11 @@
 #include "random.h"
+#include <time.h>
+
+
 
 Random::Random()
 {
+    srand (time ( NULL));
 }
 
 double Random::getRandomDouble(){
@@ -20,10 +24,12 @@ void Random::reset(){
 }
 
 double Random::_doubleGen(){
-    return rand()% X+-Y;
+    double range = (Y - X);
+    double div = RAND_MAX / range;
+    return X + (rand() / div);
 }
 
 void Random::_resetDistrobution(){
-    X=-1;
+    X=0;
     Y=1;
 }
