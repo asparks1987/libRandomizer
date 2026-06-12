@@ -18,8 +18,10 @@
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#languages">Languages</a>
+        <a href="#capabilities">Capabilities</a>
         <a href="#contract">Contract</a>
         <a href="#examples">Examples</a>
+        <a href="#vision">Vision</a>
         <a href="#roadmap">Roadmap</a>
       </nav>
       <a class="nav-cta" href="https://github.com/asparks1987/libRandomizer#readme">Read docs</a>
@@ -54,6 +56,44 @@
         <code>int thisINT = randomInt();</code>
       </section>
 
+      <section class="section capability-deck" id="capabilities">
+        <div class="section-heading">
+          <p class="eyebrow">Current capabilities</p>
+          <h2>What the v1 alpha SDK can return today.</h2>
+          <p>
+            The first release is intentionally focused: it proves the shared
+            SDK contract, native package model, validation behavior, and
+            OS-backed randomness before expanding into richer random data.
+          </p>
+        </div>
+        <div class="capability-grid">
+          <article>
+            <span class="type-badge">int</span>
+            <h3>Random integers</h3>
+            <p>
+              Generate whole numbers with a default range of <code>0..99</code> or pass
+              explicit inclusive bounds such as <code>randomInt(10, 20)</code>.
+            </p>
+          </article>
+          <article>
+            <span class="type-badge">float</span>
+            <h3>Random floats</h3>
+            <p>
+              Generate floating-point values with a default range of <code>0.0..1.0</code>
+              or provide your own lower and upper bounds.
+            </p>
+          </article>
+          <article>
+            <span class="type-badge">char</span>
+            <h3>Random characters</h3>
+            <p>
+              Generate printable ASCII characters with a default range of
+              <code>"A".."Z"</code> or choose a bounded character range.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section class="section split" id="contract">
         <div>
           <p class="eyebrow">Why developers use it</p>
@@ -68,7 +108,7 @@
           <article>
             <span class="feature-icon">01</span>
             <h3>Simple surface</h3>
-            <p>Call `randomInt()`, `randomFloat()`, or `randomChar()` and move on.</p>
+            <p>Call <code>randomInt()</code>, <code>randomFloat()</code>, or <code>randomChar()</code> and move on.</p>
           </article>
           <article>
             <span class="feature-icon">02</span>
@@ -84,6 +124,41 @@
             <span class="feature-icon">04</span>
             <h3>Ready to grow</h3>
             <p>Future versions can add strings, colors, names, places, and more.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section architecture">
+        <div class="section-heading">
+          <p class="eyebrow">Language agnostic by design</p>
+          <h2>The API should feel native everywhere.</h2>
+          <p>
+            libRandomizer is not trying to make every language call a Python
+            script. The repo defines one shared behavior contract, then gives
+            each language its own package and idiomatic import path.
+          </p>
+        </div>
+        <div class="architecture-grid">
+          <article>
+            <h3>Shared contract</h3>
+            <p>
+              Defaults, inclusive ranges, printable ASCII rules, equal-boundary
+              behavior, and clear failures are documented once in <code>spec/v1</code>.
+            </p>
+          </article>
+          <article>
+            <h3>Native implementations</h3>
+            <p>
+              Each SDK uses that platform's secure random facilities instead of
+              depending on a hosted service or language bridge for normal use.
+            </p>
+          </article>
+          <article>
+            <h3>Consistent developer experience</h3>
+            <p>
+              The goal is a tiny call surface: import the package, call
+              <code>randomInt()</code>, <code>randomFloat()</code>, or <code>randomChar()</code>, and keep moving.
+            </p>
           </article>
         </div>
       </section>
@@ -139,21 +214,58 @@ value = random_int()</code></pre>
         <div>
           <p class="eyebrow">What alpha v1 includes</p>
           <h2>Small enough to trust, useful enough to ship.</h2>
+          <p>
+            v1 alpha is the foundation for a much larger randomization SDK. It
+            already covers native packages, the Python reference API, a JSON CLI
+            fallback, shared validation rules, and the MIT license.
+          </p>
         </div>
         <ul class="proof-list">
-          <li>Default integer range: `0..99`</li>
-          <li>Default float range: `0.0..1.0`</li>
-          <li>Default character range: `"A".."Z"`</li>
+          <li>Default integer range: <code>0..99</code></li>
+          <li>Default float range: <code>0.0..1.0</code></li>
+          <li>Default character range: <code>"A".."Z"</code></li>
           <li>Bounded calls for all v1 types</li>
           <li>Printable ASCII validation for characters</li>
           <li>JSON CLI fallback for bridge scenarios</li>
         </ul>
       </section>
 
+      <section class="section vision" id="vision">
+        <div>
+          <p class="eyebrow">Long-term goal</p>
+          <h2>A language-agnostic SDK for random data of almost any kind.</h2>
+          <p>
+            The north star is simple but ambitious: no matter what language a
+            developer is using, they should be able to ask libRandomizer for a
+            random value that matches the type they need.
+          </p>
+          <p>
+            Today that means ints, floats, and chars. Future versions should add
+            common random domains like strings, symbols, colors, words, names,
+            places, dates, choices, weighted values, and structured random
+            objects while preserving the same low-friction API style.
+          </p>
+        </div>
+        <div class="vision-panel">
+          <h3>Future call shape</h3>
+          <pre><code>randomColor()
+randomName()
+randomPlace()
+randomDate()
+randomFrom(list)
+randomWeighted(options)</code></pre>
+        </div>
+      </section>
+
       <section class="section roadmap" id="roadmap">
         <div class="section-heading">
           <p class="eyebrow">Where it goes next</p>
           <h2>Random anything, one type at a time.</h2>
+          <p>
+            The roadmap expands the type catalog without changing the core
+            promise: one predictable contract and native packages that feel
+            natural in each language.
+          </p>
         </div>
         <div class="roadmap-track">
           <article>
