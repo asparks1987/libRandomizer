@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="libRandomizer is a multi-language SDK for simple OS-backed random integers, floats, and characters."
+    />
+    <title>libRandomizer - One call random values for 15 languages</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="libRandomizer home">
+        <span class="brand-mark">lr</span>
+        <span>libRandomizer</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#languages">Languages</a>
+        <a href="#contract">Contract</a>
+        <a href="#examples">Examples</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+      <a class="nav-cta" href="https://github.com/asparks1987/libRandomizer#readme">Read docs</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Alpha v1 SDK family</p>
+          <h1>Random values should be one function call.</h1>
+          <p class="hero-lede">
+            libRandomizer gives developers native, OS-backed random integers,
+            floats, and characters across 15 popular languages.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#examples">Try the API</a>
+            <a class="button secondary" href="https://github.com/asparks1987/libRandomizer/tree/main/spec/v1">View v1 contract</a>
+          </div>
+          <div class="metric-row" aria-label="Project highlights">
+            <span><strong>15</strong> SDK targets</span>
+            <span><strong>3</strong> v1 data types</span>
+            <span><strong>MIT</strong> licensed</span>
+          </div>
+        </div>
+        <figure class="hero-art">
+          <img src="assets/entropy-field.svg" alt="Random value cards across a signal grid" />
+        </figure>
+      </section>
+
+      <section class="code-strip" aria-label="Quick API preview">
+        <p>From idea to value:</p>
+        <code>int thisINT = randomInt();</code>
+      </section>
+
+      <section class="section split" id="contract">
+        <div>
+          <p class="eyebrow">Why developers use it</p>
+          <h2>One contract, native packages.</h2>
+          <p>
+            The SDKs follow a shared v1 contract, but each package uses the
+            language's own secure random facilities. Your users get an API that
+            feels local, without a service call or CLI bridge in the happy path.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-icon">01</span>
+            <h3>Simple surface</h3>
+            <p>Call `randomInt()`, `randomFloat()`, or `randomChar()` and move on.</p>
+          </article>
+          <article>
+            <span class="feature-icon">02</span>
+            <h3>OS-backed entropy</h3>
+            <p>Implementations use platform cryptographic random sources.</p>
+          </article>
+          <article>
+            <span class="feature-icon">03</span>
+            <h3>Consistent behavior</h3>
+            <p>Defaults, bounds, printable characters, and errors are defined once.</p>
+          </article>
+          <article>
+            <span class="feature-icon">04</span>
+            <h3>Ready to grow</h3>
+            <p>Future versions can add strings, colors, names, places, and more.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="languages">
+        <div class="section-heading">
+          <p class="eyebrow">Language coverage</p>
+          <h2>Built where developers already work.</h2>
+        </div>
+        <div class="language-grid" aria-label="Supported SDK language targets">
+          <span>Python</span>
+          <span>JavaScript</span>
+          <span>TypeScript</span>
+          <span>Java</span>
+          <span>C#</span>
+          <span>C</span>
+          <span>C++</span>
+          <span>PHP</span>
+          <span>Go</span>
+          <span>Rust</span>
+          <span>Kotlin</span>
+          <span>Swift</span>
+          <span>Ruby</span>
+          <span>Dart</span>
+          <span>R</span>
+        </div>
+      </section>
+
+      <section class="section examples" id="examples">
+        <div class="section-heading">
+          <p class="eyebrow">Copy-paste shape</p>
+          <h2>The API stays small on purpose.</h2>
+        </div>
+
+        <div class="example-shell">
+          <div class="tabs" role="tablist" aria-label="Code examples">
+            <button class="tab active" type="button" data-language="python">Python</button>
+            <button class="tab" type="button" data-language="javascript">JavaScript</button>
+            <button class="tab" type="button" data-language="go">Go</button>
+            <button class="tab" type="button" data-language="rust">Rust</button>
+            <button class="tab" type="button" data-language="swift">Swift</button>
+          </div>
+          <div class="code-card">
+            <button class="copy-button" type="button">Copy</button>
+            <pre><code id="example-code">from librandomizer import random_int
+
+value = random_int()</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section proof">
+        <div>
+          <p class="eyebrow">What alpha v1 includes</p>
+          <h2>Small enough to trust, useful enough to ship.</h2>
+        </div>
+        <ul class="proof-list">
+          <li>Default integer range: `0..99`</li>
+          <li>Default float range: `0.0..1.0`</li>
+          <li>Default character range: `"A".."Z"`</li>
+          <li>Bounded calls for all v1 types</li>
+          <li>Printable ASCII validation for characters</li>
+          <li>JSON CLI fallback for bridge scenarios</li>
+        </ul>
+      </section>
+
+      <section class="section roadmap" id="roadmap">
+        <div class="section-heading">
+          <p class="eyebrow">Where it goes next</p>
+          <h2>Random anything, one type at a time.</h2>
+        </div>
+        <div class="roadmap-track">
+          <article>
+            <h3>v1 alpha</h3>
+            <p>Integers, floats, and characters across native SDK packages.</p>
+          </article>
+          <article>
+            <h3>Next data types</h3>
+            <p>Strings, symbols, colors, words, names, and places.</p>
+          </article>
+          <article>
+            <h3>Structured randoms</h3>
+            <p>Lists, weighted choices, dates, and reusable random object profiles.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>libRandomizer is MIT licensed and built for developers who want less ceremony around randomness.</p>
+      <a href="https://github.com/asparks1987/libRandomizer/blob/main/LICENSE">License</a>
+    </footer>
+
+    <script src="site.js"></script>
+  </body>
+</html>

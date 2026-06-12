@@ -1,0 +1,10 @@
+Package: librandomizer
+Type: Package
+Title: Native R SDK for libRandomizer
+Version: 0.1.0.9001
+Authors@R: person("Aryn", "Sparks", role = c("aut", "cre"), email = "Aryn.sparks1987@gmail.com")
+Description: OS-backed random values for the libRandomizer v1 contract.
+License: MIT
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

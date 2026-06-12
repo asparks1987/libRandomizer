@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0a1",
+  "randomness": "os-csprng",
+  "functions": {
+    "randomInt": {
+      "defaultMin": 0,
+      "defaultMax": 99,
+      "range": "inclusive"
+    },
+    "randomFloat": {
+      "defaultMin": 0.0,
+      "defaultMax": 1.0,
+      "range": "bounded"
+    },
+    "randomChar": {
+      "defaultMin": "A",
+      "defaultMax": "Z",
+      "range": "inclusive-printable-ascii"
+    }
+  },
+  "requiredCases": [
+    "default calls return the documented type",
+    "bounded calls stay within range",
+    "equal integer boundaries return the boundary",
+    "equal float boundaries return the boundary",
+    "equal character boundaries return the boundary",
+    "invalid ranges fail clearly",
+    "invalid character bounds fail clearly"
+  ]
+}

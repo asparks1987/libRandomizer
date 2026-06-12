@@ -1,0 +1,9 @@
+[package]
+name = "librandomizer"
+version = "0.1.0-alpha.1"
+edition = "2021"
+license = "MIT"
+description = "Native Rust SDK for libRandomizer v1."
+
+[dependencies]
+rand = "0.8"

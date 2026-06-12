@@ -1,61 +1,149 @@
-# LibRandom
+# libRandomizer
 
-LibRandom is a simple Python library that provides functions for generating random values of different types within specified ranges. It uses the `random` module and the current time down to the microsecond as a seed for the random number generator.
+`libRandomizer` is a native SDK family for getting OS-backed random values with
+the smallest practical API in each language.
 
-## Table of Contents
+The goal is simple:
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Functions](#functions)
-- [Contributing](#contributing)
-- [License](#license)
+```c
+int thisINT = randomInt();
+```
 
-## Features
+Every supported language should feel that direct: import the package, call a
+function, get a random value.
 
-- Generate random double, integer, float, character, unsigned integer, unsigned long, and unsigned long long values.
-- Specify custom ranges for each type of random value.
-- High-resolution seeding based on the current time.
+## Alpha v1 Scope
 
-### Installation
+Alpha v1 supports:
 
-Clone the repository:
+- `randomInt()` with default range `0..99`
+- `randomFloat()` with default range `0.0..1.0`
+- `randomChar()` with default range `"A".."Z"`
+
+All functions also support explicit bounds where the language allows it:
+
+- `randomInt(min, max)`
+- `randomFloat(min, max)`
+- `randomChar(min, max)`
+
+## Supported SDK Targets
+
+The v1 monorepo is organized around 15 SDK-friendly languages:
+
+- Python
+- JavaScript
+- TypeScript
+- Java
+- C#
+- C
+- C++
+- PHP
+- Go
+- Rust
+- Kotlin
+- Swift
+- Ruby
+- Dart
+- R
+
+See `packages/` for language-specific implementations and examples.
+
+## Randomness Model
+
+Alpha v1 uses each platform's operating system cryptographic random number
+generator. It does not seed from time and it does not use deterministic
+pseudo-random generators for SDK values.
+
+For v1, "true random" means OS-backed cryptographic randomness that is practical
+for local and server-side software. It does not require a hardware true random
+number generator or an external network randomness service.
+
+## Python Reference SDK
+
+The Python SDK is the reference implementation and remains installable from the
+repository root.
 
 ```bash
-git clone https://github.com/your-username/LibRandom.git
-Change into the project directory:
-cd LibRandom
+python -m pip install .
+```
 
-# Import the LibRandom class and create an instance:
-from LibRandom import LibRandom
+```python
+from librandomizer import random_int, random_float, random_char
 
-# Create an instance of LibRandom
-lib_random = LibRandom()
-Use the available functions to generate random values:
+value = random_int()
+ratio = random_float(0.0, 1.0)
+letter = random_char("A", "Z")
+```
 
-# Example: Generate a random double between 0.0 and 1.0
-random_double = lib_random.get_random_double()
+Camel-case aliases are also available:
 
-# Example: Generate a random integer between 10 and 20
-random_int = lib_random.get_random_int(10, 20)
+```python
+from librandomizer import randomInt
 
+value = randomInt()
+```
 
-seed_generator(): Seeds the generator with the current time down to the microsecond.
-get_random_double(low=0.0, high=1.0): Generates a random double between the specified range [low, high].
-get_random_int(low=0, high=99): Generates a random integer between the specified range [low, high].
-get_random_float(low=0.0, high=1.0): Generates a random float between the specified range [low, high].
-get_random_char(low=65, high=90): Generates a random character from the ASCII range specified.
-get_random_unsigned_int(low=0, high=2**32 - 1): Generates a random unsigned integer between the specified range [low, high].
-get_random_unsigned_long(low=0, high=2**64 - 1): Generates a random unsigned long integer between the specified range [low, high].
-get_random_unsigned_long_long(low=0, high=2**128 - 1): Generates a random unsigned long long integer between the specified range [low, high].
-Contributing
-Contributions are welcome! Feel free to open issues or submit pull requests.
+The older class-first import is still supported:
 
-License
-This project is licensed under the MIT License.
+```python
+from libRandom import LibRandom
 
+value = LibRandom().random_int()
+```
 
+## CLI Fallback
 
+The CLI remains available for environments that do not yet have a native
+package.
 
+```bash
+librandom int --min 0 --max 99
+librandom float --min 0.0 --max 1.0
+librandom char --min A --max Z
+```
 
+Example output:
 
+```json
+{"type":"int","value":42}
+```
+
+## Shared Contract
+
+The shared SDK behavior is defined in `spec/v1`.
+
+Core rules:
+
+- integer and character ranges are inclusive
+- `min` must be less than or equal to `max`
+- characters must be printable ASCII
+- equal boundaries return that boundary
+- invalid inputs fail clearly in the language's normal error style
+
+## Development
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pytest
+```
+
+Package-specific metadata and examples live under `packages/<language>`.
+
+## Roadmap
+
+Future versions should add richer random domains while keeping the API direct:
+
+- strings and symbols
+- colors
+- words
+- names
+- places
+- lists and selections
+- weighted choices
+- dates and times
+- structured random objects
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE` for the
+authoritative license text.

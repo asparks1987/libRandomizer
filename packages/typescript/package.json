@@ -1,0 +1,22 @@
+{
+  "name": "@librandomizer/typescript",
+  "version": "0.1.0-alpha.1",
+  "description": "Native TypeScript SDK for libRandomizer v1.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ]
+}

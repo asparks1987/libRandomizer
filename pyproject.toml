@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "libRandomizer"
+version = "0.1.0a1"
+description = "Alpha v1 language-neutral randomization toolkit backed by OS cryptographic randomness."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "Aryn M. Sparks", email = "Aryn.sparks1987@gmail.com" }
+]
+keywords = ["random", "csprng", "cli", "sdk", "json"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Utilities"
+]
+
+[project.optional-dependencies]
+dev = [
+  "build",
+  "pytest"
+]
+
+[project.scripts]
+librandom = "librandomizer.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+py-modules = ["libRandom"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]

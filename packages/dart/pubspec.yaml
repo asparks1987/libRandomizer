@@ -1,0 +1,7 @@
+name: librandomizer
+version: 0.1.0-alpha.1
+description: Native Dart SDK for libRandomizer v1.
+repository: https://github.com/asparks1987/libRandomizer
+environment:
+  sdk: ^3.0.0
+license: MIT

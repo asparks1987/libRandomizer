@@ -19,6 +19,7 @@
 # Fortran module files
 *.mod
 *.smod
+!go.mod
 
 # Compiled Static libraries
 *.lai
@@ -30,3 +31,30 @@
 *.exe
 *.out
 *.app
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# JavaScript / TypeScript
+node_modules/
+packages/**/dist/
+
+# JVM / .NET
+.gradle/
+target/
+bin/
+obj/
+
+# Rust
+packages/rust/target/
+Cargo.lock
+
+# Swift / Dart / R
+.build/
+.dart_tool/
+.Rproj.user/
