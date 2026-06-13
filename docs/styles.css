@@ -34,6 +34,7 @@ body {
     radial-gradient(circle at 14% 14%, rgba(47, 129, 247, 0.22), transparent 30rem),
     radial-gradient(circle at 86% 10%, rgba(63, 185, 80, 0.18), transparent 26rem),
     linear-gradient(135deg, var(--canvas) 0%, #0b1524 46%, var(--canvas-inset) 100%);
+  overflow-x: hidden;
 }
 
 a {
@@ -265,8 +266,14 @@ li code {
 }
 
 .code-strip code {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
   color: var(--code);
   font-size: clamp(1rem, 2vw, 1.35rem);
+  overflow-wrap: anywhere;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .section {
@@ -290,6 +297,7 @@ li code {
 .capability-grid article,
 .architecture-grid article,
 .roadmap-track article,
+.usage-grid article,
 .code-card,
 .vision-panel {
   border: 1px solid var(--border);
@@ -319,8 +327,34 @@ li code {
 
 .capability-grid article,
 .architecture-grid article,
+.usage-grid article,
 .vision-panel {
   padding: 24px;
+}
+
+.usage {
+  background: rgba(13, 17, 23, 0.58);
+  border-top: 1px solid var(--border-muted);
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.usage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.usage-grid article {
+  background: rgba(1, 4, 9, 0.62);
+}
+
+.usage-grid pre {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  background: var(--canvas-inset);
+  overflow: auto;
 }
 
 .type-badge {
@@ -843,6 +877,7 @@ pre code {
   .feature-grid,
   .capability-grid,
   .architecture-grid,
+  .usage-grid,
   .language-grid,
   .proof-list,
   .roadmap-track,

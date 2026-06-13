@@ -1,7 +1,7 @@
 # libRandomizer Beta Output Catalog
 
 The beta documentation cements the output-type vocabulary that libRandomizer
-should grow toward after the v1 alpha SDK foundation.
+should grow toward after the v1 SDK foundation.
 
 The product goal is language agnostic: a developer should be able to import the
 SDK in their language of choice and ask for a random value by type. The API
@@ -9,7 +9,7 @@ should remain small and predictable even as the type catalog grows.
 
 ## Current v1 Types
 
-These output types already exist in the v1 alpha contract:
+These output types already exist in the v1 contract:
 
 - `randomInt()`
 - `randomFloat()`

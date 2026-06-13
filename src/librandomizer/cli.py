@@ -36,7 +36,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 def _build_parser() -> argparse.ArgumentParser:
     parser = JsonArgumentParser(
         prog="librandom",
-        description="Generate Alpha v1 random values as JSON.",
+        description="Generate v1 random values as JSON.",
     )
     subparsers = parser.add_subparsers(
         dest="random_type",

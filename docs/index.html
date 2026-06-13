@@ -19,6 +19,7 @@
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#languages">Languages</a>
         <a href="#capabilities">Capabilities</a>
+        <a href="#usage">Usage</a>
         <a href="#contract">Contract</a>
         <a href="#examples">Examples</a>
         <a href="#vision">Vision</a>
@@ -31,7 +32,7 @@
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Alpha v1 SDK family</p>
+          <p class="eyebrow">Beta-ready v1 SDK foundation</p>
           <h1>Random values should be one function call.</h1>
           <p class="hero-lede">
             libRandomizer gives developers native, OS-backed random integers,
@@ -61,7 +62,7 @@
       <section class="section capability-deck" id="capabilities">
         <div class="section-heading">
           <p class="eyebrow">Current capabilities</p>
-          <h2>What the v1 alpha SDK can return today.</h2>
+          <h2>What the v1 SDK can return today.</h2>
           <p>
             The first release is intentionally focused: it proves the shared
             SDK contract, native package model, validation behavior, and
@@ -92,6 +93,42 @@
               Generate printable ASCII characters with a default range of
               <code>"A".."Z"</code> or choose a bounded character range.
             </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section usage" id="usage">
+        <div class="section-heading">
+          <p class="eyebrow">How to use it</p>
+          <h2>Install, import, call.</h2>
+          <p>
+            The Python package is the reference implementation today. The CLI is
+            available for scripts and bridge scenarios, and the package folders
+            show the native call shape for each language target.
+          </p>
+        </div>
+        <div class="usage-grid">
+          <article>
+            <h3>Install Python</h3>
+            <pre><code>python -m pip install .</code></pre>
+          </article>
+          <article>
+            <h3>Call the SDK</h3>
+            <pre><code>from librandomizer import random_int
+
+value = random_int()
+bounded = random_int(10, 20)</code></pre>
+          </article>
+          <article>
+            <h3>Use the CLI</h3>
+            <pre><code>librandom int --min 0 --max 99
+librandom float --min 0.0 --max 1.0
+librandom char --min A --max Z</code></pre>
+          </article>
+          <article>
+            <h3>Expect JSON</h3>
+            <pre><code>{"type":"int","value":42}
+{"error":"Invalid range: min must be less than or equal to max"}</code></pre>
           </article>
         </div>
       </section>
@@ -214,10 +251,10 @@ value = random_int()</code></pre>
 
       <section class="section proof">
         <div>
-          <p class="eyebrow">What alpha v1 includes</p>
+          <p class="eyebrow">What v1 includes</p>
           <h2>Small enough to trust, useful enough to ship.</h2>
           <p>
-            v1 alpha is the foundation for a much larger randomization SDK. It
+            v1 is the foundation for a much larger randomization SDK. It
             already covers native packages, the Python reference API, a JSON CLI
             fallback, shared validation rules, and the MIT license.
           </p>
@@ -312,7 +349,7 @@ randomWeighted(options)</code></pre>
         </div>
         <div class="roadmap-track">
           <article>
-            <h3>v1 alpha</h3>
+            <h3>v1 foundation</h3>
             <p>Integers, floats, and characters across native SDK packages.</p>
           </article>
           <article>

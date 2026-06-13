@@ -3,7 +3,7 @@
   "minimumCatalogSize": 100,
   "purpose": "Define the beta output-type vocabulary for libRandomizer's language-agnostic random data roadmap.",
   "statusLegend": {
-    "available-v1": "Implemented in the v1 alpha SDK contract.",
+    "available-v1": "Implemented in the v1 SDK contract.",
     "planned-beta": "Cemented in beta documentation as a target output type."
   },
   "types": [

@@ -1,4 +1,4 @@
-"""OS-backed random value generation for Alpha v1."""
+"""OS-backed random value generation for the v1 SDK foundation."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import secrets
 
 
 class LibRandom:
-    """Generate Alpha v1 random values using the operating system CSPRNG."""
+    """Generate v1 random values using the operating system CSPRNG."""
 
     _PRINTABLE_ASCII_MIN = 32
     _PRINTABLE_ASCII_MAX = 126
@@ -44,7 +44,7 @@ class LibRandom:
     def get_random_char(self, low: str | int = "A", high: str | int = "Z") -> str:
         """Backward-compatible alias for random_char.
 
-        Older versions accepted printable ASCII code points. Alpha v1 prefers
+        Older versions accepted printable ASCII code points. v1 prefers
         single-character strings, but code points are still accepted here.
         """
         return self.random_char(min=self._coerce_char(low), max=self._coerce_char(high))
