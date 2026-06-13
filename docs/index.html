@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="libRandomizer is a multi-language SDK for simple OS-backed random integers, floats, and characters."
+      content="libRandomizer is a language-agnostic randomization SDK with v1 random primitives and a beta catalog of 100+ planned output data types."
     />
     <title>libRandomizer - One call random values for 15 languages</title>
     <link rel="stylesheet" href="styles.css" />
@@ -22,6 +22,7 @@
         <a href="#contract">Contract</a>
         <a href="#examples">Examples</a>
         <a href="#vision">Vision</a>
+        <a href="#beta-catalog">Beta catalog</a>
         <a href="#roadmap">Roadmap</a>
       </nav>
       <a class="nav-cta" href="https://github.com/asparks1987/libRandomizer#readme">Read docs</a>
@@ -43,6 +44,7 @@
           <div class="metric-row" aria-label="Project highlights">
             <span><strong>15</strong> SDK targets</span>
             <span><strong>3</strong> v1 data types</span>
+            <span><strong>138</strong> beta output types</span>
             <span><strong>MIT</strong> licensed</span>
           </div>
         </div>
@@ -255,6 +257,47 @@ randomDate()
 randomFrom(list)
 randomWeighted(options)</code></pre>
         </div>
+      </section>
+
+      <section class="section beta-catalog" id="beta-catalog">
+        <div class="section-heading">
+          <p class="eyebrow">Beta documentation</p>
+          <h2>138 cemented output types for the random-anything roadmap.</h2>
+          <p>
+            Beta docs define the vocabulary before the code tries to implement
+            everything. The catalog separates what exists in v1 from what is
+            planned next, giving every language package the same target list.
+          </p>
+        </div>
+        <div class="catalog-summary" data-catalog-summary>
+          <span><strong data-catalog-visible>138</strong> visible output types</span>
+          <span><strong data-catalog-visible-categories>14</strong> categories shown</span>
+          <span><strong data-catalog-total>138</strong> total output types</span>
+          <span><strong data-catalog-total-categories>14</strong> categories defined</span>
+        </div>
+        <div class="catalog-controls">
+          <label class="catalog-search" for="catalog-search">
+            <span>Filter the catalog</span>
+            <input
+              id="catalog-search"
+              name="catalog-search"
+              type="search"
+              placeholder="Search names, APIs, categories, or descriptions"
+              autocomplete="off"
+              spellcheck="false"
+              data-catalog-search
+            />
+          </label>
+          <p class="catalog-note">
+            The live list is rendered from a published catalog snapshot in
+            <code>docs/assets/beta-output-types.json</code>, which stays in sync
+            with the source spec.
+          </p>
+        </div>
+        <div class="catalog-list" data-beta-catalog aria-live="polite">
+          <p class="catalog-loading">Loading beta catalog...</p>
+        </div>
+        <a class="button secondary catalog-link" href="https://github.com/asparks1987/libRandomizer/tree/main/spec/beta">View beta spec</a>
       </section>
 
       <section class="section roadmap" id="roadmap">

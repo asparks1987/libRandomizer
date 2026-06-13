@@ -39,3 +39,28 @@ def test_top_15_sdk_package_directories_exist():
     actual = {path.name for path in (ROOT / "packages").iterdir() if path.is_dir()}
 
     assert expected <= actual
+
+
+def test_beta_output_catalog_cements_at_least_100_unique_types():
+    catalog = json.loads((ROOT / "spec" / "beta" / "output-types.json").read_text())
+    types = catalog["types"]
+    ids = [entry["id"] for entry in types]
+    statuses = {entry["status"] for entry in types}
+
+    assert len(types) >= catalog["minimumCatalogSize"] >= 100
+    assert len(ids) == len(set(ids))
+    assert {"available-v1", "planned-beta"} >= statuses
+
+    for entry in types:
+        assert entry["id"]
+        assert entry["name"]
+        assert entry["category"]
+        assert entry["api"].startswith("random")
+        assert entry["description"]
+
+
+def test_docs_beta_catalog_snapshot_matches_the_source_spec():
+    source = json.loads((ROOT / "spec" / "beta" / "output-types.json").read_text())
+    published = json.loads((ROOT / "docs" / "assets" / "beta-output-types.json").read_text())
+
+    assert published == source

@@ -120,6 +120,17 @@ Core rules:
 - equal boundaries return that boundary
 - invalid inputs fail clearly in the language's normal error style
 
+## Beta Output Catalog
+
+The beta documentation in `spec/beta` cements the next output-type vocabulary
+for the language-agnostic SDK roadmap. The catalog currently defines 138 output
+types across primitives, identifiers, numbers, text, people, internet, colors,
+locations, date/time values, commerce data, games, collections, developer data,
+and science/math values.
+
+The beta catalog is documentation-first: it names the shared target API surface
+before every type is implemented in every language package.
+
 ## Development
 
 ```bash
