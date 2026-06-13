@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import sys
 from typing import Any, Sequence
 
-from .core import LibRandom
+from .core import LibRandom, _CATALOG, _api_name, _snake_name
 
 
 class CliUsageError(ValueError):
@@ -25,18 +26,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         args = parser.parse_args(argv)
         generator = LibRandom()
         value = _generate_value(generator, args)
-    except (CliUsageError, ValueError) as exc:
+    except (CliUsageError, ValueError, TypeError) as exc:
         _write_json({"error": str(exc)}, stream=sys.stderr)
         return 1
 
-    _write_json({"type": args.random_type, "value": value})
+    _write_json({"type": args.random_type, "value": _json_safe(value)})
     return 0
 
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = JsonArgumentParser(
         prog="librandom",
-        description="Generate v1 random values as JSON.",
+        description="Generate v1 public beta random values as JSON.",
     )
     subparsers = parser.add_subparsers(
         dest="random_type",
@@ -44,30 +45,58 @@ def _build_parser() -> argparse.ArgumentParser:
         required=True,
     )
 
-    int_parser = subparsers.add_parser("int", help="Generate a random integer.")
-    int_parser.add_argument("--min", type=int, default=0)
-    int_parser.add_argument("--max", type=int, default=99)
-
-    float_parser = subparsers.add_parser("float", help="Generate a random float.")
-    float_parser.add_argument("--min", type=float, default=0.0)
-    float_parser.add_argument("--max", type=float, default=1.0)
-
-    char_parser = subparsers.add_parser("char", help="Generate a random character.")
-    char_parser.add_argument("--min", default="A")
-    char_parser.add_argument("--max", default="Z")
+    for entry in _CATALOG.get("types", []):
+        subparser = subparsers.add_parser(entry["id"], help=entry["description"])
+        for param in entry.get("parameters", []):
+            arg_type = _arg_type(param["type"])
+            default = param.get("default")
+            subparser.add_argument(
+                f"--{param['name']}",
+                type=arg_type,
+                default=default,
+                required=bool(param.get("required") and default is None),
+            )
 
     return parser
 
 
-def _generate_value(generator: LibRandom, args: argparse.Namespace) -> int | float | str:
-    if args.random_type == "int":
-        return generator.random_int(min=args.min, max=args.max)
-    if args.random_type == "float":
-        return generator.random_float(min=args.min, max=args.max)
-    if args.random_type == "char":
-        return generator.random_char(min=args.min, max=args.max)
+def _arg_type(type_name: str) -> Any:
+    if type_name in {"integer"}:
+        return int
+    if type_name in {"float", "number", "decimal"}:
+        return float
+    if type_name == "boolean":
+        return _bool_arg
+    if type_name == "array":
+        return json.loads
+    return str
 
-    raise ValueError(f"Unsupported random type: {args.random_type}")
+
+def _bool_arg(value: str) -> bool:
+    lowered = value.lower()
+    if lowered in {"1", "true", "yes", "on"}:
+        return True
+    if lowered in {"0", "false", "no", "off"}:
+        return False
+    raise CliUsageError(f"invalid boolean value: {value!r}")
+
+
+def _generate_value(generator: LibRandom, args: argparse.Namespace) -> Any:
+    entry = next((item for item in _CATALOG.get("types", []) if item["id"] == args.random_type), None)
+    if entry is None:
+        raise ValueError(f"Unsupported random type: {args.random_type}")
+    options = {
+        param["name"]: getattr(args, param["name"])
+        for param in entry.get("parameters", [])
+        if hasattr(args, param["name"])
+    }
+    return getattr(generator, _snake_name(_api_name(entry)))(**options)
+
+
+def _json_safe(value: Any) -> Any:
+    if isinstance(value, bytes):
+        return base64.urlsafe_b64encode(value).decode("ascii").rstrip("=")
+    return value
 
 
 def _write_json(payload: dict[str, Any], stream: Any = sys.stdout) -> None:

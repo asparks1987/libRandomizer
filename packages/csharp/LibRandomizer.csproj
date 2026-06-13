@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>LibRandomizer</PackageId>
-    <Version>0.1.0-alpha.1</Version>
+    <Version>0.1.0-beta.1</Version>
     <Authors>Aryn M. Sparks</Authors>
     <Description>Native C# SDK for libRandomizer v1.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "libRandomizer"
-version = "0.1.0a1"
-description = "Alpha v1 language-neutral randomization toolkit backed by OS cryptographic randomness."
+version = "0.1.0b1"
+description = "V1 public beta language-neutral randomization SDK backed by OS cryptographic randomness."
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
@@ -15,7 +15,7 @@ authors = [
 ]
 keywords = ["random", "csprng", "cli", "sdk", "json"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
@@ -35,9 +35,13 @@ librandom = "librandomizer.cli:main"
 [tool.setuptools]
 package-dir = { "" = "src" }
 py-modules = ["libRandom"]
+include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+librandomizer = ["data/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

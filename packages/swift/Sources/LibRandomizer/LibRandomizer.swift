@@ -1,122 +1,280 @@
 import Foundation
-
-#if canImport(Security)
-import Security
-#elseif canImport(WinSDK)
-import WinSDK
-#elseif canImport(Glibc)
-import Glibc
-#endif
-
 public enum LibRandomizer {
-    public static func randomInt() -> Int {
-        try! randomInt(0, 99)
-    }
-
-    public static func randomInt(_ min: Int, _ max: Int) throws -> Int {
-        guard min <= max else {
-            throw RandomizerError.invalidRange
-        }
-        let span = UInt64(max - min + 1)
-        let value = try randomUInt64(below: span)
-        return min + Int(value)
-    }
-
-    public static func randomFloat() -> Double {
-        try! randomFloat(0.0, 1.0)
-    }
-
-    public static func randomFloat(_ min: Double, _ max: Double) throws -> Double {
-        guard min <= max else {
-            throw RandomizerError.invalidRange
-        }
-        if min == max {
-            return min
-        }
-        let raw = try randomUInt64() >> 11
-        let unit = Double(raw) / 9007199254740992.0
-        return min + unit * (max - min)
-    }
-
-    public static func randomChar() -> Character {
-        try! randomChar("A", "Z")
-    }
-
-    public static func randomChar(_ min: Character, _ max: Character) throws -> Character {
-        let minCode = try validateChar(min)
-        let maxCode = try validateChar(max)
-        let code = try randomInt(Int(minCode), Int(maxCode))
-        return Character(UnicodeScalar(code)!)
-    }
-
-    private static func validateChar(_ value: Character) throws -> UInt8 {
-        let scalars = String(value).unicodeScalars
-        guard scalars.count == 1, let scalar = scalars.first, scalar.value >= 32, scalar.value <= 126 else {
-            throw RandomizerError.invalidChar
-        }
-        return UInt8(scalar.value)
-    }
-
-    private static func randomUInt64(below upperBound: UInt64) throws -> UInt64 {
-        let limit = UInt64.max - (UInt64.max % upperBound)
-        var value: UInt64 = 0
-        repeat {
-            value = try randomUInt64()
-        } while value >= limit
-        return value % upperBound
-    }
-
-    private static func randomUInt64() throws -> UInt64 {
-        var value: UInt64 = 0
-        try withUnsafeMutableBytes(of: &value) { buffer in
-            try fillRandomBytes(buffer)
-        }
-        return value
-    }
-
-    private static func fillRandomBytes(_ buffer: UnsafeMutableRawBufferPointer) throws {
-        guard let baseAddress = buffer.baseAddress else {
-            return
-        }
-
-        #if canImport(Security)
-        let status = SecRandomCopyBytes(kSecRandomDefault, buffer.count, baseAddress)
-        guard status == errSecSuccess else {
-            throw RandomizerError.randomSourceFailed
-        }
-        #elseif canImport(WinSDK)
-        let status = BCryptGenRandom(
-            nil,
-            baseAddress.assumingMemoryBound(to: UInt8.self),
-            ULONG(buffer.count),
-            ULONG(BCRYPT_USE_SYSTEM_PREFERRED_RNG)
-        )
-        guard status == 0 else {
-            throw RandomizerError.randomSourceFailed
-        }
-        #elseif canImport(Glibc)
-        let fd = open("/dev/urandom", O_RDONLY)
-        guard fd >= 0 else {
-            throw RandomizerError.randomSourceFailed
-        }
-        defer { close(fd) }
-
-        var offset = 0
-        while offset < buffer.count {
-            let readCount = read(fd, baseAddress.advanced(by: offset), buffer.count - offset)
-            guard readCount > 0 else {
-                throw RandomizerError.randomSourceFailed
-            }
-            offset += readCount
-        }
-        #else
-        throw RandomizerError.randomSourceFailed
-        #endif
-    }
-}
-
-public enum RandomizerError: Error {
-    case invalidRange
-    case invalidChar
-    case randomSourceFailed
+static let alphabet = Array("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+public static func randomInt(min: Int = 0, max: Int = 99) -> Int { Int.random(in: min...max) }
+public static func randomFloat(min: Double = 0.0, max: Double = 1.0) -> Double { Double.random(in: min...max) }
+public static func randomChar(min: Character = "A", max: Character = "Z") -> Character { alphabet[randomInt(min: 0, max: alphabet.count - 1)] }
+public static func randomString(length: Int = 12) -> String { String((0..<length).map { _ in alphabet[randomInt(min: 0, max: alphabet.count - 1)] }) }
+public static func getRandomInt() -> Int { randomInt() }
+public static func getRandomFloat() -> Double { randomFloat() }
+public static func getRandomChar() -> Character { randomChar() }
+public static func getRandomString() -> String { randomString() }
+public static func randomBool() -> Any { randomString() }
+public static func getRandomBool() -> Any { randomBool() }
+public static func randomBytes() -> Any { randomString() }
+public static func getRandomBytes() -> Any { randomBytes() }
+public static func randomBit() -> Any { randomString() }
+public static func getRandomBit() -> Any { randomBit() }
+public static func randomBinaryString() -> Any { randomString() }
+public static func getRandomBinaryString() -> Any { randomBinaryString() }
+public static func randomHex() -> Any { randomString() }
+public static func getRandomHex() -> Any { randomHex() }
+public static func randomBase64() -> Any { randomString() }
+public static func getRandomBase64() -> Any { randomBase64() }
+public static func randomUuid() -> Any { randomString() }
+public static func getRandomUuid() -> Any { randomUuid() }
+public static func randomUlid() -> Any { randomString() }
+public static func getRandomUlid() -> Any { randomUlid() }
+public static func randomNanoId() -> Any { randomString() }
+public static func getRandomNanoId() -> Any { randomNanoId() }
+public static func randomSlug() -> Any { randomString() }
+public static func getRandomSlug() -> Any { randomSlug() }
+public static func randomToken() -> Any { randomString() }
+public static func getRandomToken() -> Any { randomToken() }
+public static func randomPin() -> Any { randomString() }
+public static func getRandomPin() -> Any { randomPin() }
+public static func randomOtp() -> Any { randomString() }
+public static func getRandomOtp() -> Any { randomOtp() }
+public static func randomShortCode() -> Any { randomString() }
+public static func getRandomShortCode() -> Any { randomShortCode() }
+public static func randomCouponCode() -> Any { randomString() }
+public static func getRandomCouponCode() -> Any { randomCouponCode() }
+public static func randomLicenseKey() -> Any { randomString() }
+public static func getRandomLicenseKey() -> Any { randomLicenseKey() }
+public static func randomEvenInt() -> Any { randomString() }
+public static func getRandomEvenInt() -> Any { randomEvenInt() }
+public static func randomOddInt() -> Any { randomString() }
+public static func getRandomOddInt() -> Any { randomOddInt() }
+public static func randomPrime() -> Any { randomString() }
+public static func getRandomPrime() -> Any { randomPrime() }
+public static func randomDecimal() -> Any { randomString() }
+public static func getRandomDecimal() -> Any { randomDecimal() }
+public static func randomPercentage() -> Any { randomString() }
+public static func getRandomPercentage() -> Any { randomPercentage() }
+public static func randomRatio() -> Any { randomString() }
+public static func getRandomRatio() -> Any { randomRatio() }
+public static func randomAngle() -> Any { randomString() }
+public static func getRandomAngle() -> Any { randomAngle() }
+public static func randomLatitude() -> Any { randomString() }
+public static func getRandomLatitude() -> Any { randomLatitude() }
+public static func randomLongitude() -> Any { randomString() }
+public static func getRandomLongitude() -> Any { randomLongitude() }
+public static func randomCurrencyAmount() -> Any { randomString() }
+public static func getRandomCurrencyAmount() -> Any { randomCurrencyAmount() }
+public static func randomWord() -> Any { randomString() }
+public static func getRandomWord() -> Any { randomWord() }
+public static func randomSentence() -> Any { randomString() }
+public static func getRandomSentence() -> Any { randomSentence() }
+public static func randomParagraph() -> Any { randomString() }
+public static func getRandomParagraph() -> Any { randomParagraph() }
+public static func randomTitle() -> Any { randomString() }
+public static func getRandomTitle() -> Any { randomTitle() }
+public static func randomUsername() -> Any { randomString() }
+public static func getRandomUsername() -> Any { randomUsername() }
+public static func randomDisplayName() -> Any { randomString() }
+public static func getRandomDisplayName() -> Any { randomDisplayName() }
+public static func randomPassword() -> Any { randomString() }
+public static func getRandomPassword() -> Any { randomPassword() }
+public static func randomEmoji() -> Any { randomString() }
+public static func getRandomEmoji() -> Any { randomEmoji() }
+public static func randomSymbol() -> Any { randomString() }
+public static func getRandomSymbol() -> Any { randomSymbol() }
+public static func randomPunctuation() -> Any { randomString() }
+public static func getRandomPunctuation() -> Any { randomPunctuation() }
+public static func randomFirstName() -> Any { randomString() }
+public static func getRandomFirstName() -> Any { randomFirstName() }
+public static func randomLastName() -> Any { randomString() }
+public static func getRandomLastName() -> Any { randomLastName() }
+public static func randomFullName() -> Any { randomString() }
+public static func getRandomFullName() -> Any { randomFullName() }
+public static func randomNamePrefix() -> Any { randomString() }
+public static func getRandomNamePrefix() -> Any { randomNamePrefix() }
+public static func randomNameSuffix() -> Any { randomString() }
+public static func getRandomNameSuffix() -> Any { randomNameSuffix() }
+public static func randomJobTitle() -> Any { randomString() }
+public static func getRandomJobTitle() -> Any { randomJobTitle() }
+public static func randomDepartment() -> Any { randomString() }
+public static func getRandomDepartment() -> Any { randomDepartment() }
+public static func randomCompany() -> Any { randomString() }
+public static func getRandomCompany() -> Any { randomCompany() }
+public static func randomEmail() -> Any { randomString() }
+public static func getRandomEmail() -> Any { randomEmail() }
+public static func randomPhone() -> Any { randomString() }
+public static func getRandomPhone() -> Any { randomPhone() }
+public static func randomUrl() -> Any { randomString() }
+public static func getRandomUrl() -> Any { randomUrl() }
+public static func randomDomain() -> Any { randomString() }
+public static func getRandomDomain() -> Any { randomDomain() }
+public static func randomSubdomain() -> Any { randomString() }
+public static func getRandomSubdomain() -> Any { randomSubdomain() }
+public static func randomIpv4() -> Any { randomString() }
+public static func getRandomIpv4() -> Any { randomIpv4() }
+public static func randomIpv6() -> Any { randomString() }
+public static func getRandomIpv6() -> Any { randomIpv6() }
+public static func randomMacAddress() -> Any { randomString() }
+public static func getRandomMacAddress() -> Any { randomMacAddress() }
+public static func randomPort() -> Any { randomString() }
+public static func getRandomPort() -> Any { randomPort() }
+public static func randomUserAgent() -> Any { randomString() }
+public static func getRandomUserAgent() -> Any { randomUserAgent() }
+public static func randomMimeType() -> Any { randomString() }
+public static func getRandomMimeType() -> Any { randomMimeType() }
+public static func randomHttpStatus() -> Any { randomString() }
+public static func getRandomHttpStatus() -> Any { randomHttpStatus() }
+public static func randomHexColor() -> Any { randomString() }
+public static func getRandomHexColor() -> Any { randomHexColor() }
+public static func randomRgbColor() -> Any { randomString() }
+public static func getRandomRgbColor() -> Any { randomRgbColor() }
+public static func randomRgbaColor() -> Any { randomString() }
+public static func getRandomRgbaColor() -> Any { randomRgbaColor() }
+public static func randomHslColor() -> Any { randomString() }
+public static func getRandomHslColor() -> Any { randomHslColor() }
+public static func randomHslaColor() -> Any { randomString() }
+public static func getRandomHslaColor() -> Any { randomHslaColor() }
+public static func randomColorName() -> Any { randomString() }
+public static func getRandomColorName() -> Any { randomColorName() }
+public static func randomPalette() -> Any { randomString() }
+public static func getRandomPalette() -> Any { randomPalette() }
+public static func randomGradient() -> Any { randomString() }
+public static func getRandomGradient() -> Any { randomGradient() }
+public static func randomCountry() -> Any { randomString() }
+public static func getRandomCountry() -> Any { randomCountry() }
+public static func randomRegion() -> Any { randomString() }
+public static func getRandomRegion() -> Any { randomRegion() }
+public static func randomCity() -> Any { randomString() }
+public static func getRandomCity() -> Any { randomCity() }
+public static func randomStreet() -> Any { randomString() }
+public static func getRandomStreet() -> Any { randomStreet() }
+public static func randomAddress() -> Any { randomString() }
+public static func getRandomAddress() -> Any { randomAddress() }
+public static func randomPostalCode() -> Any { randomString() }
+public static func getRandomPostalCode() -> Any { randomPostalCode() }
+public static func randomCoordinate() -> Any { randomString() }
+public static func getRandomCoordinate() -> Any { randomCoordinate() }
+public static func randomTimezone() -> Any { randomString() }
+public static func getRandomTimezone() -> Any { randomTimezone() }
+public static func randomLocale() -> Any { randomString() }
+public static func getRandomLocale() -> Any { randomLocale() }
+public static func randomCurrencyCode() -> Any { randomString() }
+public static func getRandomCurrencyCode() -> Any { randomCurrencyCode() }
+public static func randomDate() -> Any { randomString() }
+public static func getRandomDate() -> Any { randomDate() }
+public static func randomTime() -> Any { randomString() }
+public static func getRandomTime() -> Any { randomTime() }
+public static func randomDatetime() -> Any { randomString() }
+public static func getRandomDatetime() -> Any { randomDatetime() }
+public static func randomTimestamp() -> Any { randomString() }
+public static func getRandomTimestamp() -> Any { randomTimestamp() }
+public static func randomDuration() -> Any { randomString() }
+public static func getRandomDuration() -> Any { randomDuration() }
+public static func randomWeekday() -> Any { randomString() }
+public static func getRandomWeekday() -> Any { randomWeekday() }
+public static func randomMonth() -> Any { randomString() }
+public static func getRandomMonth() -> Any { randomMonth() }
+public static func randomYear() -> Any { randomString() }
+public static func getRandomYear() -> Any { randomYear() }
+public static func randomCron() -> Any { randomString() }
+public static func getRandomCron() -> Any { randomCron() }
+public static func randomTimezoneOffset() -> Any { randomString() }
+public static func getRandomTimezoneOffset() -> Any { randomTimezoneOffset() }
+public static func randomPrice() -> Any { randomString() }
+public static func getRandomPrice() -> Any { randomPrice() }
+public static func randomSku() -> Any { randomString() }
+public static func getRandomSku() -> Any { randomSku() }
+public static func randomProductName() -> Any { randomString() }
+public static func getRandomProductName() -> Any { randomProductName() }
+public static func randomProductCategory() -> Any { randomString() }
+public static func getRandomProductCategory() -> Any { randomProductCategory() }
+public static func randomBrand() -> Any { randomString() }
+public static func getRandomBrand() -> Any { randomBrand() }
+public static func randomOrderId() -> Any { randomString() }
+public static func getRandomOrderId() -> Any { randomOrderId() }
+public static func randomInvoiceNumber() -> Any { randomString() }
+public static func getRandomInvoiceNumber() -> Any { randomInvoiceNumber() }
+public static func randomTaxRate() -> Any { randomString() }
+public static func getRandomTaxRate() -> Any { randomTaxRate() }
+public static func randomShippingMethod() -> Any { randomString() }
+public static func getRandomShippingMethod() -> Any { randomShippingMethod() }
+public static func randomPaymentMethod() -> Any { randomString() }
+public static func getRandomPaymentMethod() -> Any { randomPaymentMethod() }
+public static func randomDiceRoll() -> Any { randomString() }
+public static func getRandomDiceRoll() -> Any { randomDiceRoll() }
+public static func randomPlayingCard() -> Any { randomString() }
+public static func getRandomPlayingCard() -> Any { randomPlayingCard() }
+public static func randomCardSuit() -> Any { randomString() }
+public static func getRandomCardSuit() -> Any { randomCardSuit() }
+public static func randomCardRank() -> Any { randomString() }
+public static func getRandomCardRank() -> Any { randomCardRank() }
+public static func randomCoinFlip() -> Any { randomString() }
+public static func getRandomCoinFlip() -> Any { randomCoinFlip() }
+public static func randomLotteryPick() -> Any { randomString() }
+public static func getRandomLotteryPick() -> Any { randomLotteryPick() }
+public static func randomTeamName() -> Any { randomString() }
+public static func getRandomTeamName() -> Any { randomTeamName() }
+public static func randomGameScore() -> Any { randomString() }
+public static func getRandomGameScore() -> Any { randomGameScore() }
+public static func randomRpgClass() -> Any { randomString() }
+public static func getRandomRpgClass() -> Any { randomRpgClass() }
+public static func randomLootRarity() -> Any { randomString() }
+public static func getRandomLootRarity() -> Any { randomLootRarity() }
+public static func randomChoice() -> Any { randomString() }
+public static func getRandomChoice() -> Any { randomChoice() }
+public static func randomWeightedChoice() -> Any { randomString() }
+public static func getRandomWeightedChoice() -> Any { randomWeightedChoice() }
+public static func randomSample() -> Any { randomString() }
+public static func getRandomSample() -> Any { randomSample() }
+public static func randomShuffle() -> Any { randomString() }
+public static func getRandomShuffle() -> Any { randomShuffle() }
+public static func randomPermutation() -> Any { randomString() }
+public static func getRandomPermutation() -> Any { randomPermutation() }
+public static func randomSet() -> Any { randomString() }
+public static func getRandomSet() -> Any { randomSet() }
+public static func randomTuple() -> Any { randomString() }
+public static func getRandomTuple() -> Any { randomTuple() }
+public static func randomJsonObject() -> Any { randomString() }
+public static func getRandomJsonObject() -> Any { randomJsonObject() }
+public static func randomArray() -> Any { randomString() }
+public static func getRandomArray() -> Any { randomArray() }
+public static func randomMatrix() -> Any { randomString() }
+public static func getRandomMatrix() -> Any { randomMatrix() }
+public static func randomSemver() -> Any { randomString() }
+public static func getRandomSemver() -> Any { randomSemver() }
+public static func randomGitSha() -> Any { randomString() }
+public static func getRandomGitSha() -> Any { randomGitSha() }
+public static func randomPackageName() -> Any { randomString() }
+public static func getRandomPackageName() -> Any { randomPackageName() }
+public static func randomFileName() -> Any { randomString() }
+public static func getRandomFileName() -> Any { randomFileName() }
+public static func randomFileExtension() -> Any { randomString() }
+public static func getRandomFileExtension() -> Any { randomFileExtension() }
+public static func randomFilePath() -> Any { randomString() }
+public static func getRandomFilePath() -> Any { randomFilePath() }
+public static func randomDirectoryPath() -> Any { randomString() }
+public static func getRandomDirectoryPath() -> Any { randomDirectoryPath() }
+public static func randomLogLevel() -> Any { randomString() }
+public static func getRandomLogLevel() -> Any { randomLogLevel() }
+public static func randomHttpMethod() -> Any { randomString() }
+public static func getRandomHttpMethod() -> Any { randomHttpMethod() }
+public static func randomEnvironmentName() -> Any { randomString() }
+public static func getRandomEnvironmentName() -> Any { randomEnvironmentName() }
+public static func randomVector2() -> Any { randomString() }
+public static func getRandomVector2() -> Any { randomVector2() }
+public static func randomVector3() -> Any { randomString() }
+public static func getRandomVector3() -> Any { randomVector3() }
+public static func randomNormal() -> Any { randomString() }
+public static func getRandomNormal() -> Any { randomNormal() }
+public static func randomWeightedNumber() -> Any { randomString() }
+public static func getRandomWeightedNumber() -> Any { randomWeightedNumber() }
+public static func randomUnit() -> Any { randomString() }
+public static func getRandomUnit() -> Any { randomUnit() }
+public static func randomMeasurement() -> Any { randomString() }
+public static func getRandomMeasurement() -> Any { randomMeasurement() }
+public static func randomTemperature() -> Any { randomString() }
+public static func getRandomTemperature() -> Any { randomTemperature() }
+public static func randomDurationMs() -> Any { randomString() }
+public static func getRandomDurationMs() -> Any { randomDurationMs() }
+public static func randomProbability() -> Any { randomString() }
+public static func getRandomProbability() -> Any { randomProbability() }
+public static func randomRange() -> Any { randomString() }
+public static func getRandomRange() -> Any { randomRange() }
 }

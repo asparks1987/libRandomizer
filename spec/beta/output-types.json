@@ -3,147 +3,5586 @@
   "minimumCatalogSize": 100,
   "purpose": "Define the beta output-type vocabulary for libRandomizer's language-agnostic random data roadmap.",
   "statusLegend": {
-    "available-v1": "Implemented in the v1 SDK contract.",
-    "planned-beta": "Cemented in beta documentation as a target output type."
+    "planned-beta": "Cemented in beta documentation as a target output type.",
+    "in-progress": "Implementation is underway but not release-gated.",
+    "implemented-python": "Python SDK and CLI pass shared conformance for this type.",
+    "implemented-all": "All 15 target SDKs pass shared conformance for this type.",
+    "deprecated": "Retained only for compatibility and not recommended.",
+    "available-v1": "Compatibility status from early v1 docs; new entries should use implemented-python or implemented-all."
   },
   "types": [
-    { "id": "int", "name": "Integer", "category": "Core primitives", "api": "randomInt()", "status": "available-v1", "description": "Whole number with optional inclusive bounds." },
-    { "id": "float", "name": "Float", "category": "Core primitives", "api": "randomFloat()", "status": "available-v1", "description": "Floating-point number with optional bounds." },
-    { "id": "char", "name": "Character", "category": "Core primitives", "api": "randomChar()", "status": "available-v1", "description": "Printable ASCII character with optional bounds." },
-    { "id": "bool", "name": "Boolean", "category": "Core primitives", "api": "randomBool()", "status": "planned-beta", "description": "True or false value." },
-    { "id": "string", "name": "String", "category": "Core primitives", "api": "randomString()", "status": "planned-beta", "description": "String with configurable length and character set." },
-    { "id": "bytes", "name": "Bytes", "category": "Core primitives", "api": "randomBytes()", "status": "planned-beta", "description": "Raw random byte sequence." },
-    { "id": "bit", "name": "Bit", "category": "Core primitives", "api": "randomBit()", "status": "planned-beta", "description": "Single binary 0 or 1 value." },
-    { "id": "binary-string", "name": "Binary String", "category": "Core primitives", "api": "randomBinaryString()", "status": "planned-beta", "description": "String of random 0 and 1 characters." },
-    { "id": "hex-string", "name": "Hex String", "category": "Core primitives", "api": "randomHex()", "status": "planned-beta", "description": "Hexadecimal random string." },
-    { "id": "base64-string", "name": "Base64 String", "category": "Core primitives", "api": "randomBase64()", "status": "planned-beta", "description": "Base64-encoded random bytes." },
-    { "id": "uuid", "name": "UUID", "category": "Identifiers", "api": "randomUuid()", "status": "planned-beta", "description": "UUID value." },
-    { "id": "ulid", "name": "ULID", "category": "Identifiers", "api": "randomUlid()", "status": "planned-beta", "description": "Sortable unique identifier." },
-    { "id": "nanoid", "name": "Nano ID", "category": "Identifiers", "api": "randomNanoId()", "status": "planned-beta", "description": "Compact URL-safe identifier." },
-    { "id": "slug", "name": "Slug", "category": "Identifiers", "api": "randomSlug()", "status": "planned-beta", "description": "URL-friendly text identifier." },
-    { "id": "token", "name": "Token", "category": "Identifiers", "api": "randomToken()", "status": "planned-beta", "description": "Random token string for non-auth demo data." },
-    { "id": "pin", "name": "PIN", "category": "Identifiers", "api": "randomPin()", "status": "planned-beta", "description": "Numeric personal identification style code." },
-    { "id": "otp", "name": "OTP", "category": "Identifiers", "api": "randomOtp()", "status": "planned-beta", "description": "One-time-code style numeric value for testing." },
-    { "id": "short-code", "name": "Short Code", "category": "Identifiers", "api": "randomShortCode()", "status": "planned-beta", "description": "Short human-readable code." },
-    { "id": "coupon-code", "name": "Coupon Code", "category": "Identifiers", "api": "randomCouponCode()", "status": "planned-beta", "description": "Promotion-style alphanumeric code." },
-    { "id": "license-key", "name": "License Key", "category": "Identifiers", "api": "randomLicenseKey()", "status": "planned-beta", "description": "Segmented product-key style test value." },
-    { "id": "even-int", "name": "Even Integer", "category": "Numbers", "api": "randomEvenInt()", "status": "planned-beta", "description": "Even whole number within bounds." },
-    { "id": "odd-int", "name": "Odd Integer", "category": "Numbers", "api": "randomOddInt()", "status": "planned-beta", "description": "Odd whole number within bounds." },
-    { "id": "prime", "name": "Prime Number", "category": "Numbers", "api": "randomPrime()", "status": "planned-beta", "description": "Prime number within supported bounds." },
-    { "id": "decimal", "name": "Decimal", "category": "Numbers", "api": "randomDecimal()", "status": "planned-beta", "description": "Fixed-precision decimal value." },
-    { "id": "percentage", "name": "Percentage", "category": "Numbers", "api": "randomPercentage()", "status": "planned-beta", "description": "Percentage value." },
-    { "id": "ratio", "name": "Ratio", "category": "Numbers", "api": "randomRatio()", "status": "planned-beta", "description": "Ratio or normalized numeric value." },
-    { "id": "angle", "name": "Angle", "category": "Numbers", "api": "randomAngle()", "status": "planned-beta", "description": "Angle in degrees or radians." },
-    { "id": "latitude", "name": "Latitude", "category": "Numbers", "api": "randomLatitude()", "status": "planned-beta", "description": "Latitude coordinate." },
-    { "id": "longitude", "name": "Longitude", "category": "Numbers", "api": "randomLongitude()", "status": "planned-beta", "description": "Longitude coordinate." },
-    { "id": "currency-amount", "name": "Currency Amount", "category": "Numbers", "api": "randomCurrencyAmount()", "status": "planned-beta", "description": "Money-like decimal amount." },
-    { "id": "word", "name": "Word", "category": "Text", "api": "randomWord()", "status": "planned-beta", "description": "Single word from a configured or built-in corpus." },
-    { "id": "sentence", "name": "Sentence", "category": "Text", "api": "randomSentence()", "status": "planned-beta", "description": "Generated sentence." },
-    { "id": "paragraph", "name": "Paragraph", "category": "Text", "api": "randomParagraph()", "status": "planned-beta", "description": "Generated paragraph." },
-    { "id": "title", "name": "Title", "category": "Text", "api": "randomTitle()", "status": "planned-beta", "description": "Title-style phrase." },
-    { "id": "username", "name": "Username", "category": "Text", "api": "randomUsername()", "status": "planned-beta", "description": "Username-like handle." },
-    { "id": "display-name", "name": "Display Name", "category": "Text", "api": "randomDisplayName()", "status": "planned-beta", "description": "Human-friendly display name." },
-    { "id": "password", "name": "Password", "category": "Text", "api": "randomPassword()", "status": "planned-beta", "description": "Configurable password-like random string." },
-    { "id": "emoji", "name": "Emoji", "category": "Text", "api": "randomEmoji()", "status": "planned-beta", "description": "Emoji character or sequence." },
-    { "id": "symbol", "name": "Symbol", "category": "Text", "api": "randomSymbol()", "status": "planned-beta", "description": "Symbol character." },
-    { "id": "punctuation", "name": "Punctuation", "category": "Text", "api": "randomPunctuation()", "status": "planned-beta", "description": "Punctuation character." },
-    { "id": "first-name", "name": "First Name", "category": "People", "api": "randomFirstName()", "status": "planned-beta", "description": "Given name." },
-    { "id": "last-name", "name": "Last Name", "category": "People", "api": "randomLastName()", "status": "planned-beta", "description": "Family name." },
-    { "id": "full-name", "name": "Full Name", "category": "People", "api": "randomFullName()", "status": "planned-beta", "description": "Complete person name." },
-    { "id": "name-prefix", "name": "Name Prefix", "category": "People", "api": "randomNamePrefix()", "status": "planned-beta", "description": "Name prefix such as Dr. or Ms." },
-    { "id": "name-suffix", "name": "Name Suffix", "category": "People", "api": "randomNameSuffix()", "status": "planned-beta", "description": "Name suffix such as Jr. or III." },
-    { "id": "job-title", "name": "Job Title", "category": "People", "api": "randomJobTitle()", "status": "planned-beta", "description": "Professional role title." },
-    { "id": "department", "name": "Department", "category": "People", "api": "randomDepartment()", "status": "planned-beta", "description": "Company department name." },
-    { "id": "company", "name": "Company", "category": "People", "api": "randomCompany()", "status": "planned-beta", "description": "Company or organization name." },
-    { "id": "email", "name": "Email", "category": "People", "api": "randomEmail()", "status": "planned-beta", "description": "Email-address shaped value." },
-    { "id": "phone", "name": "Phone", "category": "People", "api": "randomPhone()", "status": "planned-beta", "description": "Phone-number shaped value." },
-    { "id": "url", "name": "URL", "category": "Internet", "api": "randomUrl()", "status": "planned-beta", "description": "Web URL." },
-    { "id": "domain", "name": "Domain", "category": "Internet", "api": "randomDomain()", "status": "planned-beta", "description": "Domain name." },
-    { "id": "subdomain", "name": "Subdomain", "category": "Internet", "api": "randomSubdomain()", "status": "planned-beta", "description": "Subdomain label." },
-    { "id": "ipv4", "name": "IPv4 Address", "category": "Internet", "api": "randomIpv4()", "status": "planned-beta", "description": "IPv4 address." },
-    { "id": "ipv6", "name": "IPv6 Address", "category": "Internet", "api": "randomIpv6()", "status": "planned-beta", "description": "IPv6 address." },
-    { "id": "mac-address", "name": "MAC Address", "category": "Internet", "api": "randomMacAddress()", "status": "planned-beta", "description": "Network MAC address." },
-    { "id": "port", "name": "Port", "category": "Internet", "api": "randomPort()", "status": "planned-beta", "description": "Network port number." },
-    { "id": "user-agent", "name": "User Agent", "category": "Internet", "api": "randomUserAgent()", "status": "planned-beta", "description": "Browser or client user-agent string." },
-    { "id": "mime-type", "name": "MIME Type", "category": "Internet", "api": "randomMimeType()", "status": "planned-beta", "description": "MIME media type." },
-    { "id": "http-status", "name": "HTTP Status", "category": "Internet", "api": "randomHttpStatus()", "status": "planned-beta", "description": "HTTP response status code." },
-    { "id": "hex-color", "name": "Hex Color", "category": "Color", "api": "randomHexColor()", "status": "planned-beta", "description": "CSS hex color." },
-    { "id": "rgb-color", "name": "RGB Color", "category": "Color", "api": "randomRgbColor()", "status": "planned-beta", "description": "RGB color tuple." },
-    { "id": "rgba-color", "name": "RGBA Color", "category": "Color", "api": "randomRgbaColor()", "status": "planned-beta", "description": "RGBA color tuple." },
-    { "id": "hsl-color", "name": "HSL Color", "category": "Color", "api": "randomHslColor()", "status": "planned-beta", "description": "HSL color tuple." },
-    { "id": "hsla-color", "name": "HSLA Color", "category": "Color", "api": "randomHslaColor()", "status": "planned-beta", "description": "HSLA color tuple." },
-    { "id": "color-name", "name": "Color Name", "category": "Color", "api": "randomColorName()", "status": "planned-beta", "description": "Human-readable color name." },
-    { "id": "palette", "name": "Palette", "category": "Color", "api": "randomPalette()", "status": "planned-beta", "description": "Set of compatible colors." },
-    { "id": "gradient", "name": "Gradient", "category": "Color", "api": "randomGradient()", "status": "planned-beta", "description": "CSS-style gradient definition." },
-    { "id": "country", "name": "Country", "category": "Location", "api": "randomCountry()", "status": "planned-beta", "description": "Country name or code." },
-    { "id": "region", "name": "Region", "category": "Location", "api": "randomRegion()", "status": "planned-beta", "description": "State, province, or region." },
-    { "id": "city", "name": "City", "category": "Location", "api": "randomCity()", "status": "planned-beta", "description": "City name." },
-    { "id": "street", "name": "Street", "category": "Location", "api": "randomStreet()", "status": "planned-beta", "description": "Street name." },
-    { "id": "address", "name": "Address", "category": "Location", "api": "randomAddress()", "status": "planned-beta", "description": "Full mailing-address shaped value." },
-    { "id": "postal-code", "name": "Postal Code", "category": "Location", "api": "randomPostalCode()", "status": "planned-beta", "description": "ZIP or postal code." },
-    { "id": "coordinate", "name": "Coordinate", "category": "Location", "api": "randomCoordinate()", "status": "planned-beta", "description": "Latitude and longitude pair." },
-    { "id": "timezone", "name": "Time Zone", "category": "Location", "api": "randomTimezone()", "status": "planned-beta", "description": "IANA-style time zone." },
-    { "id": "locale", "name": "Locale", "category": "Location", "api": "randomLocale()", "status": "planned-beta", "description": "Locale identifier." },
-    { "id": "currency-code", "name": "Currency Code", "category": "Location", "api": "randomCurrencyCode()", "status": "planned-beta", "description": "ISO-style currency code." },
-    { "id": "date", "name": "Date", "category": "Date and time", "api": "randomDate()", "status": "planned-beta", "description": "Calendar date." },
-    { "id": "time", "name": "Time", "category": "Date and time", "api": "randomTime()", "status": "planned-beta", "description": "Clock time." },
-    { "id": "datetime", "name": "Datetime", "category": "Date and time", "api": "randomDatetime()", "status": "planned-beta", "description": "Date and time value." },
-    { "id": "timestamp", "name": "Timestamp", "category": "Date and time", "api": "randomTimestamp()", "status": "planned-beta", "description": "Unix-style timestamp." },
-    { "id": "duration", "name": "Duration", "category": "Date and time", "api": "randomDuration()", "status": "planned-beta", "description": "Time interval." },
-    { "id": "weekday", "name": "Weekday", "category": "Date and time", "api": "randomWeekday()", "status": "planned-beta", "description": "Day of week." },
-    { "id": "month", "name": "Month", "category": "Date and time", "api": "randomMonth()", "status": "planned-beta", "description": "Month name or number." },
-    { "id": "year", "name": "Year", "category": "Date and time", "api": "randomYear()", "status": "planned-beta", "description": "Year value." },
-    { "id": "cron", "name": "Cron Expression", "category": "Date and time", "api": "randomCron()", "status": "planned-beta", "description": "Cron-like schedule expression." },
-    { "id": "timezone-offset", "name": "Time Zone Offset", "category": "Date and time", "api": "randomTimezoneOffset()", "status": "planned-beta", "description": "UTC offset value." },
-    { "id": "price", "name": "Price", "category": "Commerce", "api": "randomPrice()", "status": "planned-beta", "description": "Price-like amount." },
-    { "id": "sku", "name": "SKU", "category": "Commerce", "api": "randomSku()", "status": "planned-beta", "description": "Stock keeping unit." },
-    { "id": "product-name", "name": "Product Name", "category": "Commerce", "api": "randomProductName()", "status": "planned-beta", "description": "Product name." },
-    { "id": "product-category", "name": "Product Category", "category": "Commerce", "api": "randomProductCategory()", "status": "planned-beta", "description": "Commerce category." },
-    { "id": "brand", "name": "Brand", "category": "Commerce", "api": "randomBrand()", "status": "planned-beta", "description": "Brand name." },
-    { "id": "order-id", "name": "Order ID", "category": "Commerce", "api": "randomOrderId()", "status": "planned-beta", "description": "Order identifier." },
-    { "id": "invoice-number", "name": "Invoice Number", "category": "Commerce", "api": "randomInvoiceNumber()", "status": "planned-beta", "description": "Invoice-like identifier." },
-    { "id": "tax-rate", "name": "Tax Rate", "category": "Commerce", "api": "randomTaxRate()", "status": "planned-beta", "description": "Tax percentage." },
-    { "id": "shipping-method", "name": "Shipping Method", "category": "Commerce", "api": "randomShippingMethod()", "status": "planned-beta", "description": "Shipping method label." },
-    { "id": "payment-method", "name": "Payment Method", "category": "Commerce", "api": "randomPaymentMethod()", "status": "planned-beta", "description": "Payment method label for test data." },
-    { "id": "dice-roll", "name": "Dice Roll", "category": "Games", "api": "randomDiceRoll()", "status": "planned-beta", "description": "Dice result with configurable sides." },
-    { "id": "playing-card", "name": "Playing Card", "category": "Games", "api": "randomPlayingCard()", "status": "planned-beta", "description": "Card rank and suit." },
-    { "id": "card-suit", "name": "Card Suit", "category": "Games", "api": "randomCardSuit()", "status": "planned-beta", "description": "Playing-card suit." },
-    { "id": "card-rank", "name": "Card Rank", "category": "Games", "api": "randomCardRank()", "status": "planned-beta", "description": "Playing-card rank." },
-    { "id": "coin-flip", "name": "Coin Flip", "category": "Games", "api": "randomCoinFlip()", "status": "planned-beta", "description": "Heads or tails." },
-    { "id": "lottery-pick", "name": "Lottery Pick", "category": "Games", "api": "randomLotteryPick()", "status": "planned-beta", "description": "Lottery-style number set." },
-    { "id": "team-name", "name": "Team Name", "category": "Games", "api": "randomTeamName()", "status": "planned-beta", "description": "Team-style name." },
-    { "id": "game-score", "name": "Game Score", "category": "Games", "api": "randomGameScore()", "status": "planned-beta", "description": "Score value or pair." },
-    { "id": "rpg-class", "name": "RPG Class", "category": "Games", "api": "randomRpgClass()", "status": "planned-beta", "description": "Role-playing class label." },
-    { "id": "loot-rarity", "name": "Loot Rarity", "category": "Games", "api": "randomLootRarity()", "status": "planned-beta", "description": "Item rarity tier." },
-    { "id": "choice", "name": "Choice", "category": "Collections", "api": "randomChoice()", "status": "planned-beta", "description": "One item selected from a list." },
-    { "id": "weighted-choice", "name": "Weighted Choice", "category": "Collections", "api": "randomWeightedChoice()", "status": "planned-beta", "description": "One item selected using weights." },
-    { "id": "sample", "name": "Sample", "category": "Collections", "api": "randomSample()", "status": "planned-beta", "description": "Subset selected from a list." },
-    { "id": "shuffle", "name": "Shuffle", "category": "Collections", "api": "randomShuffle()", "status": "planned-beta", "description": "Randomly ordered copy of a collection." },
-    { "id": "permutation", "name": "Permutation", "category": "Collections", "api": "randomPermutation()", "status": "planned-beta", "description": "Permutation of values." },
-    { "id": "set", "name": "Set", "category": "Collections", "api": "randomSet()", "status": "planned-beta", "description": "Unique random collection." },
-    { "id": "tuple", "name": "Tuple", "category": "Collections", "api": "randomTuple()", "status": "planned-beta", "description": "Fixed-length random grouped values." },
-    { "id": "json-object", "name": "JSON Object", "category": "Collections", "api": "randomJsonObject()", "status": "planned-beta", "description": "Generated JSON object from a schema or profile." },
-    { "id": "array", "name": "Array", "category": "Collections", "api": "randomArray()", "status": "planned-beta", "description": "Array of random values." },
-    { "id": "matrix", "name": "Matrix", "category": "Collections", "api": "randomMatrix()", "status": "planned-beta", "description": "Two-dimensional numeric or boolean matrix." },
-    { "id": "semver", "name": "Semantic Version", "category": "Developer data", "api": "randomSemver()", "status": "planned-beta", "description": "Semantic version string." },
-    { "id": "git-sha", "name": "Git SHA", "category": "Developer data", "api": "randomGitSha()", "status": "planned-beta", "description": "Git commit hash-like value." },
-    { "id": "package-name", "name": "Package Name", "category": "Developer data", "api": "randomPackageName()", "status": "planned-beta", "description": "Package or module name." },
-    { "id": "file-name", "name": "File Name", "category": "Developer data", "api": "randomFileName()", "status": "planned-beta", "description": "File name." },
-    { "id": "file-extension", "name": "File Extension", "category": "Developer data", "api": "randomFileExtension()", "status": "planned-beta", "description": "File extension." },
-    { "id": "file-path", "name": "File Path", "category": "Developer data", "api": "randomFilePath()", "status": "planned-beta", "description": "File path." },
-    { "id": "directory-path", "name": "Directory Path", "category": "Developer data", "api": "randomDirectoryPath()", "status": "planned-beta", "description": "Directory path." },
-    { "id": "log-level", "name": "Log Level", "category": "Developer data", "api": "randomLogLevel()", "status": "planned-beta", "description": "Logging severity." },
-    { "id": "http-method", "name": "HTTP Method", "category": "Developer data", "api": "randomHttpMethod()", "status": "planned-beta", "description": "HTTP verb." },
-    { "id": "environment-name", "name": "Environment Name", "category": "Developer data", "api": "randomEnvironmentName()", "status": "planned-beta", "description": "Environment label such as dev or prod." },
-    { "id": "vector2", "name": "2D Vector", "category": "Science and math", "api": "randomVector2()", "status": "planned-beta", "description": "Two-dimensional vector." },
-    { "id": "vector3", "name": "3D Vector", "category": "Science and math", "api": "randomVector3()", "status": "planned-beta", "description": "Three-dimensional vector." },
-    { "id": "normal-distribution", "name": "Normal Distribution Value", "category": "Science and math", "api": "randomNormal()", "status": "planned-beta", "description": "Value drawn from a normal distribution." },
-    { "id": "weighted-number", "name": "Weighted Number", "category": "Science and math", "api": "randomWeightedNumber()", "status": "planned-beta", "description": "Number selected from weighted ranges." },
-    { "id": "unit", "name": "Unit", "category": "Science and math", "api": "randomUnit()", "status": "planned-beta", "description": "Measurement unit label." },
-    { "id": "measurement", "name": "Measurement", "category": "Science and math", "api": "randomMeasurement()", "status": "planned-beta", "description": "Numeric value with unit." },
-    { "id": "temperature", "name": "Temperature", "category": "Science and math", "api": "randomTemperature()", "status": "planned-beta", "description": "Temperature value." },
-    { "id": "duration-ms", "name": "Duration Milliseconds", "category": "Science and math", "api": "randomDurationMs()", "status": "planned-beta", "description": "Duration represented in milliseconds." },
-    { "id": "probability", "name": "Probability", "category": "Science and math", "api": "randomProbability()", "status": "planned-beta", "description": "Probability from 0 to 1." },
-    { "id": "range", "name": "Range", "category": "Science and math", "api": "randomRange()", "status": "planned-beta", "description": "Range with lower and upper bounds." }
+    {
+      "id": "int",
+      "name": "Integer",
+      "category": "Core primitives",
+      "api": "randomInt()",
+      "status": "implemented-all",
+      "description": "Whole number with optional inclusive bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "integer",
+        "description": "Whole number with optional inclusive bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomInt(0, 99)",
+          "returns": "42"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomInt()"
+      ]
+    },
+    {
+      "id": "float",
+      "name": "Float",
+      "category": "Core primitives",
+      "api": "randomFloat()",
+      "status": "implemented-all",
+      "description": "Floating-point number with optional bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "float",
+          "default": 0.0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "float",
+          "default": 1.0,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Floating-point number with optional bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomFloat(0.0, 1.0)",
+          "returns": "0.7319"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomFloat()"
+      ]
+    },
+    {
+      "id": "char",
+      "name": "Character",
+      "category": "Core primitives",
+      "api": "randomChar()",
+      "status": "implemented-all",
+      "description": "Printable ASCII character with optional bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "character",
+          "default": "A",
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "character",
+          "default": "Z",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "character",
+        "description": "Printable ASCII character with optional bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid character range: bounds must be single printable ASCII characters"
+      ],
+      "examples": [
+        {
+          "call": "randomChar(\"A\", \"Z\")",
+          "returns": "\"Q\""
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomChar()"
+      ]
+    },
+    {
+      "id": "bool",
+      "name": "Boolean",
+      "category": "Core primitives",
+      "api": "randomBool()",
+      "status": "implemented-all",
+      "description": "True or false value.",
+      "parameters": [],
+      "returns": {
+        "type": "boolean",
+        "description": "True or false value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomBool()",
+          "returns": "<Boolean>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomBool()"
+      ]
+    },
+    {
+      "id": "string",
+      "name": "String",
+      "category": "Core primitives",
+      "api": "randomString()",
+      "status": "implemented-all",
+      "description": "String with configurable length and character set.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 12,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "String with configurable length and character set."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomString(5)",
+          "returns": "\"aZ91q\""
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomString()"
+      ]
+    },
+    {
+      "id": "bytes",
+      "name": "Bytes",
+      "category": "Core primitives",
+      "api": "randomBytes()",
+      "status": "implemented-all",
+      "description": "Raw random byte sequence.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "bytes",
+        "description": "Raw random byte sequence."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomBytes()",
+          "returns": "<Bytes>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomBytes()"
+      ]
+    },
+    {
+      "id": "bit",
+      "name": "Bit",
+      "category": "Core primitives",
+      "api": "randomBit()",
+      "status": "implemented-all",
+      "description": "Single binary 0 or 1 value.",
+      "parameters": [],
+      "returns": {
+        "type": "integer",
+        "description": "Single binary 0 or 1 value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomBit()",
+          "returns": "<Bit>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomBit()"
+      ]
+    },
+    {
+      "id": "binary-string",
+      "name": "Binary String",
+      "category": "Core primitives",
+      "api": "randomBinaryString()",
+      "status": "implemented-all",
+      "description": "String of random 0 and 1 characters.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "String of random 0 and 1 characters."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomBinaryString()",
+          "returns": "<Binary String>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomBinaryString()"
+      ]
+    },
+    {
+      "id": "hex-string",
+      "name": "Hex String",
+      "category": "Core primitives",
+      "api": "randomHex()",
+      "status": "implemented-all",
+      "description": "Hexadecimal random string.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Hexadecimal random string."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomHex()",
+          "returns": "<Hex String>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomHex()"
+      ]
+    },
+    {
+      "id": "base64-string",
+      "name": "Base64 String",
+      "category": "Core primitives",
+      "api": "randomBase64()",
+      "status": "implemented-all",
+      "description": "Base64-encoded random bytes.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Base64-encoded random bytes."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomBase64()",
+          "returns": "<Base64 String>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomBase64()"
+      ]
+    },
+    {
+      "id": "uuid",
+      "name": "UUID",
+      "category": "Identifiers",
+      "api": "randomUuid()",
+      "status": "implemented-all",
+      "description": "UUID value.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "UUID value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomUuid()",
+          "returns": "<UUID>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomUuid()"
+      ]
+    },
+    {
+      "id": "ulid",
+      "name": "ULID",
+      "category": "Identifiers",
+      "api": "randomUlid()",
+      "status": "implemented-all",
+      "description": "Sortable unique identifier.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Sortable unique identifier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomUlid()",
+          "returns": "<ULID>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomUlid()"
+      ]
+    },
+    {
+      "id": "nanoid",
+      "name": "Nano ID",
+      "category": "Identifiers",
+      "api": "randomNanoId()",
+      "status": "implemented-all",
+      "description": "Compact URL-safe identifier.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Compact URL-safe identifier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomNanoId()",
+          "returns": "<Nano ID>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomNanoId()"
+      ]
+    },
+    {
+      "id": "slug",
+      "name": "Slug",
+      "category": "Identifiers",
+      "api": "randomSlug()",
+      "status": "implemented-all",
+      "description": "URL-friendly text identifier.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "URL-friendly text identifier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomSlug()",
+          "returns": "<Slug>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomSlug()"
+      ]
+    },
+    {
+      "id": "token",
+      "name": "Token",
+      "category": "Identifiers",
+      "api": "randomToken()",
+      "status": "implemented-all",
+      "description": "Random token string for non-auth demo data.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Random token string for non-auth demo data."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomToken()",
+          "returns": "<Token>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomToken()"
+      ]
+    },
+    {
+      "id": "pin",
+      "name": "PIN",
+      "category": "Identifiers",
+      "api": "randomPin()",
+      "status": "implemented-all",
+      "description": "Numeric personal identification style code.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Numeric personal identification style code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomPin()",
+          "returns": "<PIN>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomPin()"
+      ]
+    },
+    {
+      "id": "otp",
+      "name": "OTP",
+      "category": "Identifiers",
+      "api": "randomOtp()",
+      "status": "implemented-all",
+      "description": "One-time-code style numeric value for testing.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "One-time-code style numeric value for testing."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomOtp()",
+          "returns": "<OTP>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomOtp()"
+      ]
+    },
+    {
+      "id": "short-code",
+      "name": "Short Code",
+      "category": "Identifiers",
+      "api": "randomShortCode()",
+      "status": "implemented-all",
+      "description": "Short human-readable code.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Short human-readable code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomShortCode()",
+          "returns": "<Short Code>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomShortCode()"
+      ]
+    },
+    {
+      "id": "coupon-code",
+      "name": "Coupon Code",
+      "category": "Identifiers",
+      "api": "randomCouponCode()",
+      "status": "implemented-all",
+      "description": "Promotion-style alphanumeric code.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Promotion-style alphanumeric code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomCouponCode()",
+          "returns": "<Coupon Code>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomCouponCode()"
+      ]
+    },
+    {
+      "id": "license-key",
+      "name": "License Key",
+      "category": "Identifiers",
+      "api": "randomLicenseKey()",
+      "status": "implemented-all",
+      "description": "Segmented product-key style test value.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Segmented product-key style test value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomLicenseKey()",
+          "returns": "<License Key>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomLicenseKey()"
+      ]
+    },
+    {
+      "id": "even-int",
+      "name": "Even Integer",
+      "category": "Numbers",
+      "api": "randomEvenInt()",
+      "status": "implemented-all",
+      "description": "Even whole number within bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "integer",
+        "description": "Even whole number within bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomEvenInt()",
+          "returns": "<Even Integer>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomEvenInt()"
+      ]
+    },
+    {
+      "id": "odd-int",
+      "name": "Odd Integer",
+      "category": "Numbers",
+      "api": "randomOddInt()",
+      "status": "implemented-all",
+      "description": "Odd whole number within bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "integer",
+        "description": "Odd whole number within bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomOddInt()",
+          "returns": "<Odd Integer>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomOddInt()"
+      ]
+    },
+    {
+      "id": "prime",
+      "name": "Prime Number",
+      "category": "Numbers",
+      "api": "randomPrime()",
+      "status": "implemented-all",
+      "description": "Prime number within supported bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "integer",
+        "description": "Prime number within supported bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPrime()",
+          "returns": "<Prime Number>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomPrime()"
+      ]
+    },
+    {
+      "id": "decimal",
+      "name": "Decimal",
+      "category": "Numbers",
+      "api": "randomDecimal()",
+      "status": "implemented-all",
+      "description": "Fixed-precision decimal value.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "decimal",
+        "description": "Fixed-precision decimal value."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDecimal()",
+          "returns": "<Decimal>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomDecimal()"
+      ]
+    },
+    {
+      "id": "percentage",
+      "name": "Percentage",
+      "category": "Numbers",
+      "api": "randomPercentage()",
+      "status": "implemented-all",
+      "description": "Percentage value.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Percentage value."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPercentage()",
+          "returns": "<Percentage>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomPercentage()"
+      ]
+    },
+    {
+      "id": "ratio",
+      "name": "Ratio",
+      "category": "Numbers",
+      "api": "randomRatio()",
+      "status": "implemented-all",
+      "description": "Ratio or normalized numeric value.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Ratio or normalized numeric value."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomRatio()",
+          "returns": "<Ratio>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomRatio()"
+      ]
+    },
+    {
+      "id": "angle",
+      "name": "Angle",
+      "category": "Numbers",
+      "api": "randomAngle()",
+      "status": "implemented-all",
+      "description": "Angle in degrees or radians.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Angle in degrees or radians."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomAngle()",
+          "returns": "<Angle>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomAngle()"
+      ]
+    },
+    {
+      "id": "latitude",
+      "name": "Latitude",
+      "category": "Numbers",
+      "api": "randomLatitude()",
+      "status": "implemented-all",
+      "description": "Latitude coordinate.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Latitude coordinate."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomLatitude()",
+          "returns": "<Latitude>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomLatitude()"
+      ]
+    },
+    {
+      "id": "longitude",
+      "name": "Longitude",
+      "category": "Numbers",
+      "api": "randomLongitude()",
+      "status": "implemented-all",
+      "description": "Longitude coordinate.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Longitude coordinate."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomLongitude()",
+          "returns": "<Longitude>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomLongitude()"
+      ]
+    },
+    {
+      "id": "currency-amount",
+      "name": "Currency Amount",
+      "category": "Numbers",
+      "api": "randomCurrencyAmount()",
+      "status": "implemented-all",
+      "description": "Money-like decimal amount.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "decimal",
+        "description": "Money-like decimal amount."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCurrencyAmount()",
+          "returns": "<Currency Amount>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomCurrencyAmount()"
+      ]
+    },
+    {
+      "id": "word",
+      "name": "Word",
+      "category": "Text",
+      "api": "randomWord()",
+      "status": "implemented-all",
+      "description": "Single word from a configured or built-in corpus.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Single word from a configured or built-in corpus."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomWord()",
+          "returns": "\"river\""
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomWord()"
+      ]
+    },
+    {
+      "id": "sentence",
+      "name": "Sentence",
+      "category": "Text",
+      "api": "randomSentence()",
+      "status": "implemented-all",
+      "description": "Generated sentence.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Generated sentence."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomSentence()",
+          "returns": "<Sentence>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomSentence()"
+      ]
+    },
+    {
+      "id": "paragraph",
+      "name": "Paragraph",
+      "category": "Text",
+      "api": "randomParagraph()",
+      "status": "implemented-all",
+      "description": "Generated paragraph.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Generated paragraph."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomParagraph(count=1)",
+          "returns": "\"A short generated paragraph.\""
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomParagraph()"
+      ]
+    },
+    {
+      "id": "title",
+      "name": "Title",
+      "category": "Text",
+      "api": "randomTitle()",
+      "status": "implemented-all",
+      "description": "Title-style phrase.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Title-style phrase."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTitle()",
+          "returns": "<Title>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomTitle()"
+      ]
+    },
+    {
+      "id": "username",
+      "name": "Username",
+      "category": "Text",
+      "api": "randomUsername()",
+      "status": "implemented-all",
+      "description": "Username-like handle.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Username-like handle."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomUsername()",
+          "returns": "<Username>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomUsername()"
+      ]
+    },
+    {
+      "id": "display-name",
+      "name": "Display Name",
+      "category": "Text",
+      "api": "randomDisplayName()",
+      "status": "implemented-all",
+      "description": "Human-friendly display name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Human-friendly display name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDisplayName()",
+          "returns": "<Display Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomDisplayName()"
+      ]
+    },
+    {
+      "id": "password",
+      "name": "Password",
+      "category": "Text",
+      "api": "randomPassword()",
+      "status": "implemented-all",
+      "description": "Configurable password-like random string.",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Configurable password-like random string."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomPassword()",
+          "returns": "<Password>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomPassword()"
+      ]
+    },
+    {
+      "id": "emoji",
+      "name": "Emoji",
+      "category": "Text",
+      "api": "randomEmoji()",
+      "status": "implemented-all",
+      "description": "Emoji character or sequence.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Emoji character or sequence."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomEmoji()",
+          "returns": "<Emoji>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomEmoji()"
+      ]
+    },
+    {
+      "id": "symbol",
+      "name": "Symbol",
+      "category": "Text",
+      "api": "randomSymbol()",
+      "status": "implemented-all",
+      "description": "Symbol character.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Symbol character."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomSymbol()",
+          "returns": "<Symbol>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomSymbol()"
+      ]
+    },
+    {
+      "id": "punctuation",
+      "name": "Punctuation",
+      "category": "Text",
+      "api": "randomPunctuation()",
+      "status": "implemented-all",
+      "description": "Punctuation character.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Punctuation character."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPunctuation()",
+          "returns": "<Punctuation>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default-adult-opt-in",
+      "aliases": [
+        "getRandomPunctuation()"
+      ]
+    },
+    {
+      "id": "first-name",
+      "name": "First Name",
+      "category": "People",
+      "api": "randomFirstName()",
+      "status": "implemented-all",
+      "description": "Given name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Given name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomFirstName()",
+          "returns": "<First Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomFirstName()"
+      ]
+    },
+    {
+      "id": "last-name",
+      "name": "Last Name",
+      "category": "People",
+      "api": "randomLastName()",
+      "status": "implemented-all",
+      "description": "Family name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Family name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomLastName()",
+          "returns": "<Last Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomLastName()"
+      ]
+    },
+    {
+      "id": "full-name",
+      "name": "Full Name",
+      "category": "People",
+      "api": "randomFullName()",
+      "status": "implemented-all",
+      "description": "Complete person name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Complete person name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomFullName()",
+          "returns": "<Full Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomFullName()"
+      ]
+    },
+    {
+      "id": "name-prefix",
+      "name": "Name Prefix",
+      "category": "People",
+      "api": "randomNamePrefix()",
+      "status": "implemented-all",
+      "description": "Name prefix such as Dr. or Ms.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Name prefix such as Dr. or Ms."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomNamePrefix()",
+          "returns": "<Name Prefix>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomNamePrefix()"
+      ]
+    },
+    {
+      "id": "name-suffix",
+      "name": "Name Suffix",
+      "category": "People",
+      "api": "randomNameSuffix()",
+      "status": "implemented-all",
+      "description": "Name suffix such as Jr. or III.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Name suffix such as Jr. or III."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomNameSuffix()",
+          "returns": "<Name Suffix>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomNameSuffix()"
+      ]
+    },
+    {
+      "id": "job-title",
+      "name": "Job Title",
+      "category": "People",
+      "api": "randomJobTitle()",
+      "status": "implemented-all",
+      "description": "Professional role title.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Professional role title."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomJobTitle()",
+          "returns": "<Job Title>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomJobTitle()"
+      ]
+    },
+    {
+      "id": "department",
+      "name": "Department",
+      "category": "People",
+      "api": "randomDepartment()",
+      "status": "implemented-all",
+      "description": "Company department name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Company department name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDepartment()",
+          "returns": "<Department>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomDepartment()"
+      ]
+    },
+    {
+      "id": "company",
+      "name": "Company",
+      "category": "People",
+      "api": "randomCompany()",
+      "status": "implemented-all",
+      "description": "Company or organization name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Company or organization name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCompany()",
+          "returns": "<Company>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCompany()"
+      ]
+    },
+    {
+      "id": "email",
+      "name": "Email",
+      "category": "People",
+      "api": "randomEmail()",
+      "status": "implemented-all",
+      "description": "Email-address shaped value.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Email-address shaped value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomEmail()",
+          "returns": "<Email>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomEmail()"
+      ]
+    },
+    {
+      "id": "phone",
+      "name": "Phone",
+      "category": "People",
+      "api": "randomPhone()",
+      "status": "implemented-all",
+      "description": "Phone-number shaped value.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Phone-number shaped value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPhone()",
+          "returns": "<Phone>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPhone()"
+      ]
+    },
+    {
+      "id": "url",
+      "name": "URL",
+      "category": "Internet",
+      "api": "randomUrl()",
+      "status": "implemented-all",
+      "description": "Web URL.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Web URL."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomUrl()",
+          "returns": "<URL>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomUrl()"
+      ]
+    },
+    {
+      "id": "domain",
+      "name": "Domain",
+      "category": "Internet",
+      "api": "randomDomain()",
+      "status": "implemented-all",
+      "description": "Domain name.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Domain name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDomain()",
+          "returns": "<Domain>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomDomain()"
+      ]
+    },
+    {
+      "id": "subdomain",
+      "name": "Subdomain",
+      "category": "Internet",
+      "api": "randomSubdomain()",
+      "status": "implemented-all",
+      "description": "Subdomain label.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Subdomain label."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomSubdomain()",
+          "returns": "<Subdomain>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomSubdomain()"
+      ]
+    },
+    {
+      "id": "ipv4",
+      "name": "IPv4 Address",
+      "category": "Internet",
+      "api": "randomIpv4()",
+      "status": "implemented-all",
+      "description": "IPv4 address.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "IPv4 address."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomIpv4()",
+          "returns": "<IPv4 Address>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomIpv4()"
+      ]
+    },
+    {
+      "id": "ipv6",
+      "name": "IPv6 Address",
+      "category": "Internet",
+      "api": "randomIpv6()",
+      "status": "implemented-all",
+      "description": "IPv6 address.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "IPv6 address."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomIpv6()",
+          "returns": "<IPv6 Address>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomIpv6()"
+      ]
+    },
+    {
+      "id": "mac-address",
+      "name": "MAC Address",
+      "category": "Internet",
+      "api": "randomMacAddress()",
+      "status": "implemented-all",
+      "description": "Network MAC address.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Network MAC address."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomMacAddress()",
+          "returns": "<MAC Address>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomMacAddress()"
+      ]
+    },
+    {
+      "id": "port",
+      "name": "Port",
+      "category": "Internet",
+      "api": "randomPort()",
+      "status": "implemented-all",
+      "description": "Network port number.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Network port number."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPort()",
+          "returns": "<Port>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPort()"
+      ]
+    },
+    {
+      "id": "user-agent",
+      "name": "User Agent",
+      "category": "Internet",
+      "api": "randomUserAgent()",
+      "status": "implemented-all",
+      "description": "Browser or client user-agent string.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Browser or client user-agent string."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomUserAgent()",
+          "returns": "<User Agent>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomUserAgent()"
+      ]
+    },
+    {
+      "id": "mime-type",
+      "name": "MIME Type",
+      "category": "Internet",
+      "api": "randomMimeType()",
+      "status": "implemented-all",
+      "description": "MIME media type.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "MIME media type."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomMimeType()",
+          "returns": "<MIME Type>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomMimeType()"
+      ]
+    },
+    {
+      "id": "http-status",
+      "name": "HTTP Status",
+      "category": "Internet",
+      "api": "randomHttpStatus()",
+      "status": "implemented-all",
+      "description": "HTTP response status code.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "HTTP response status code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomHttpStatus()",
+          "returns": "<HTTP Status>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomHttpStatus()"
+      ]
+    },
+    {
+      "id": "hex-color",
+      "name": "Hex Color",
+      "category": "Color",
+      "api": "randomHexColor()",
+      "status": "implemented-all",
+      "description": "CSS hex color.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "CSS hex color."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomHexColor()",
+          "returns": "<Hex Color>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomHexColor()"
+      ]
+    },
+    {
+      "id": "rgb-color",
+      "name": "RGB Color",
+      "category": "Color",
+      "api": "randomRgbColor()",
+      "status": "implemented-all",
+      "description": "RGB color tuple.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "RGB color tuple."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomRgbColor()",
+          "returns": "<RGB Color>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomRgbColor()"
+      ]
+    },
+    {
+      "id": "rgba-color",
+      "name": "RGBA Color",
+      "category": "Color",
+      "api": "randomRgbaColor()",
+      "status": "implemented-all",
+      "description": "RGBA color tuple.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "RGBA color tuple."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomRgbaColor()",
+          "returns": "<RGBA Color>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomRgbaColor()"
+      ]
+    },
+    {
+      "id": "hsl-color",
+      "name": "HSL Color",
+      "category": "Color",
+      "api": "randomHslColor()",
+      "status": "implemented-all",
+      "description": "HSL color tuple.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "HSL color tuple."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomHslColor()",
+          "returns": "<HSL Color>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomHslColor()"
+      ]
+    },
+    {
+      "id": "hsla-color",
+      "name": "HSLA Color",
+      "category": "Color",
+      "api": "randomHslaColor()",
+      "status": "implemented-all",
+      "description": "HSLA color tuple.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "HSLA color tuple."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomHslaColor()",
+          "returns": "<HSLA Color>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomHslaColor()"
+      ]
+    },
+    {
+      "id": "color-name",
+      "name": "Color Name",
+      "category": "Color",
+      "api": "randomColorName()",
+      "status": "implemented-all",
+      "description": "Human-readable color name.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Human-readable color name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomColorName()",
+          "returns": "<Color Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomColorName()"
+      ]
+    },
+    {
+      "id": "palette",
+      "name": "Palette",
+      "category": "Color",
+      "api": "randomPalette()",
+      "status": "implemented-all",
+      "description": "Set of compatible colors.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Set of compatible colors."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomPalette()",
+          "returns": "<Palette>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPalette()"
+      ]
+    },
+    {
+      "id": "gradient",
+      "name": "Gradient",
+      "category": "Color",
+      "api": "randomGradient()",
+      "status": "implemented-all",
+      "description": "CSS-style gradient definition.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "CSS-style gradient definition."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomGradient()",
+          "returns": "<Gradient>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomGradient()"
+      ]
+    },
+    {
+      "id": "country",
+      "name": "Country",
+      "category": "Location",
+      "api": "randomCountry()",
+      "status": "implemented-all",
+      "description": "Country name or code.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Country name or code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCountry()",
+          "returns": "<Country>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCountry()"
+      ]
+    },
+    {
+      "id": "region",
+      "name": "Region",
+      "category": "Location",
+      "api": "randomRegion()",
+      "status": "implemented-all",
+      "description": "State, province, or region.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "State, province, or region."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomRegion()",
+          "returns": "<Region>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomRegion()"
+      ]
+    },
+    {
+      "id": "city",
+      "name": "City",
+      "category": "Location",
+      "api": "randomCity()",
+      "status": "implemented-all",
+      "description": "City name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "City name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCity()",
+          "returns": "<City>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCity()"
+      ]
+    },
+    {
+      "id": "street",
+      "name": "Street",
+      "category": "Location",
+      "api": "randomStreet()",
+      "status": "implemented-all",
+      "description": "Street name.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Street name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomStreet()",
+          "returns": "<Street>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomStreet()"
+      ]
+    },
+    {
+      "id": "address",
+      "name": "Address",
+      "category": "Location",
+      "api": "randomAddress()",
+      "status": "implemented-all",
+      "description": "Full mailing-address shaped value.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Full mailing-address shaped value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomAddress()",
+          "returns": "<Address>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomAddress()"
+      ]
+    },
+    {
+      "id": "postal-code",
+      "name": "Postal Code",
+      "category": "Location",
+      "api": "randomPostalCode()",
+      "status": "implemented-all",
+      "description": "ZIP or postal code.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "ZIP or postal code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPostalCode()",
+          "returns": "<Postal Code>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPostalCode()"
+      ]
+    },
+    {
+      "id": "coordinate",
+      "name": "Coordinate",
+      "category": "Location",
+      "api": "randomCoordinate()",
+      "status": "implemented-all",
+      "description": "Latitude and longitude pair.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "description": "Latitude and longitude pair."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCoordinate()",
+          "returns": "<Coordinate>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCoordinate()"
+      ]
+    },
+    {
+      "id": "timezone",
+      "name": "Time Zone",
+      "category": "Location",
+      "api": "randomTimezone()",
+      "status": "implemented-all",
+      "description": "IANA-style time zone.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "IANA-style time zone."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTimezone()",
+          "returns": "<Time Zone>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomTimezone()"
+      ]
+    },
+    {
+      "id": "locale",
+      "name": "Locale",
+      "category": "Location",
+      "api": "randomLocale()",
+      "status": "implemented-all",
+      "description": "Locale identifier.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Locale identifier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomLocale()",
+          "returns": "<Locale>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomLocale()"
+      ]
+    },
+    {
+      "id": "currency-code",
+      "name": "Currency Code",
+      "category": "Location",
+      "api": "randomCurrencyCode()",
+      "status": "implemented-all",
+      "description": "ISO-style currency code.",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "ISO-style currency code."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCurrencyCode()",
+          "returns": "<Currency Code>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": "en-US"
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCurrencyCode()"
+      ]
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "category": "Date and time",
+      "api": "randomDate()",
+      "status": "implemented-all",
+      "description": "Calendar date.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Calendar date."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDate()",
+          "returns": "<Date>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomDate()"
+      ]
+    },
+    {
+      "id": "time",
+      "name": "Time",
+      "category": "Date and time",
+      "api": "randomTime()",
+      "status": "implemented-all",
+      "description": "Clock time.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Clock time."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTime()",
+          "returns": "<Time>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomTime()"
+      ]
+    },
+    {
+      "id": "datetime",
+      "name": "Datetime",
+      "category": "Date and time",
+      "api": "randomDatetime()",
+      "status": "implemented-all",
+      "description": "Date and time value.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "datetime",
+        "description": "Date and time value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDatetime()",
+          "returns": "<Datetime>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomDatetime()"
+      ]
+    },
+    {
+      "id": "timestamp",
+      "name": "Timestamp",
+      "category": "Date and time",
+      "api": "randomTimestamp()",
+      "status": "implemented-all",
+      "description": "Unix-style timestamp.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "integer",
+        "description": "Unix-style timestamp."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTimestamp()",
+          "returns": "<Timestamp>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomTimestamp()"
+      ]
+    },
+    {
+      "id": "duration",
+      "name": "Duration",
+      "category": "Date and time",
+      "api": "randomDuration()",
+      "status": "implemented-all",
+      "description": "Time interval.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "description": "Time interval."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDuration()",
+          "returns": "<Duration>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomDuration()"
+      ]
+    },
+    {
+      "id": "weekday",
+      "name": "Weekday",
+      "category": "Date and time",
+      "api": "randomWeekday()",
+      "status": "implemented-all",
+      "description": "Day of week.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Day of week."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomWeekday()",
+          "returns": "<Weekday>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomWeekday()"
+      ]
+    },
+    {
+      "id": "month",
+      "name": "Month",
+      "category": "Date and time",
+      "api": "randomMonth()",
+      "status": "implemented-all",
+      "description": "Month name or number.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Month name or number."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomMonth()",
+          "returns": "<Month>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomMonth()"
+      ]
+    },
+    {
+      "id": "year",
+      "name": "Year",
+      "category": "Date and time",
+      "api": "randomYear()",
+      "status": "implemented-all",
+      "description": "Year value.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Year value."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomYear()",
+          "returns": "<Year>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomYear()"
+      ]
+    },
+    {
+      "id": "cron",
+      "name": "Cron Expression",
+      "category": "Date and time",
+      "api": "randomCron()",
+      "status": "implemented-all",
+      "description": "Cron-like schedule expression.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Cron-like schedule expression."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCron()",
+          "returns": "<Cron Expression>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomCron()"
+      ]
+    },
+    {
+      "id": "timezone-offset",
+      "name": "Time Zone Offset",
+      "category": "Date and time",
+      "api": "randomTimezoneOffset()",
+      "status": "implemented-all",
+      "description": "UTC offset value.",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "UTC offset value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTimezoneOffset()",
+          "returns": "<Time Zone Offset>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomTimezoneOffset()"
+      ]
+    },
+    {
+      "id": "price",
+      "name": "Price",
+      "category": "Commerce",
+      "api": "randomPrice()",
+      "status": "implemented-all",
+      "description": "Price-like amount.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Price-like amount."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPrice()",
+          "returns": "<Price>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPrice()"
+      ]
+    },
+    {
+      "id": "sku",
+      "name": "SKU",
+      "category": "Commerce",
+      "api": "randomSku()",
+      "status": "implemented-all",
+      "description": "Stock keeping unit.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Stock keeping unit."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomSku()",
+          "returns": "<SKU>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomSku()"
+      ]
+    },
+    {
+      "id": "product-name",
+      "name": "Product Name",
+      "category": "Commerce",
+      "api": "randomProductName()",
+      "status": "implemented-all",
+      "description": "Product name.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Product name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomProductName()",
+          "returns": "<Product Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomProductName()"
+      ]
+    },
+    {
+      "id": "product-category",
+      "name": "Product Category",
+      "category": "Commerce",
+      "api": "randomProductCategory()",
+      "status": "implemented-all",
+      "description": "Commerce category.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Commerce category."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomProductCategory()",
+          "returns": "<Product Category>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomProductCategory()"
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "Brand",
+      "category": "Commerce",
+      "api": "randomBrand()",
+      "status": "implemented-all",
+      "description": "Brand name.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Brand name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomBrand()",
+          "returns": "<Brand>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomBrand()"
+      ]
+    },
+    {
+      "id": "order-id",
+      "name": "Order ID",
+      "category": "Commerce",
+      "api": "randomOrderId()",
+      "status": "implemented-all",
+      "description": "Order identifier.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Order identifier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomOrderId()",
+          "returns": "<Order ID>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomOrderId()"
+      ]
+    },
+    {
+      "id": "invoice-number",
+      "name": "Invoice Number",
+      "category": "Commerce",
+      "api": "randomInvoiceNumber()",
+      "status": "implemented-all",
+      "description": "Invoice-like identifier.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Invoice-like identifier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomInvoiceNumber()",
+          "returns": "<Invoice Number>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomInvoiceNumber()"
+      ]
+    },
+    {
+      "id": "tax-rate",
+      "name": "Tax Rate",
+      "category": "Commerce",
+      "api": "randomTaxRate()",
+      "status": "implemented-all",
+      "description": "Tax percentage.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Tax percentage."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTaxRate()",
+          "returns": "<Tax Rate>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomTaxRate()"
+      ]
+    },
+    {
+      "id": "shipping-method",
+      "name": "Shipping Method",
+      "category": "Commerce",
+      "api": "randomShippingMethod()",
+      "status": "implemented-all",
+      "description": "Shipping method label.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Shipping method label."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomShippingMethod()",
+          "returns": "<Shipping Method>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomShippingMethod()"
+      ]
+    },
+    {
+      "id": "payment-method",
+      "name": "Payment Method",
+      "category": "Commerce",
+      "api": "randomPaymentMethod()",
+      "status": "implemented-all",
+      "description": "Payment method label for test data.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Payment method label for test data."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPaymentMethod()",
+          "returns": "<Payment Method>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPaymentMethod()"
+      ]
+    },
+    {
+      "id": "dice-roll",
+      "name": "Dice Roll",
+      "category": "Games",
+      "api": "randomDiceRoll()",
+      "status": "implemented-all",
+      "description": "Dice result with configurable sides.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "integer",
+        "description": "Dice result with configurable sides."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDiceRoll()",
+          "returns": "<Dice Roll>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomDiceRoll()"
+      ]
+    },
+    {
+      "id": "playing-card",
+      "name": "Playing Card",
+      "category": "Games",
+      "api": "randomPlayingCard()",
+      "status": "implemented-all",
+      "description": "Card rank and suit.",
+      "parameters": [],
+      "returns": {
+        "type": "object",
+        "description": "Card rank and suit."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPlayingCard()",
+          "returns": "<Playing Card>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPlayingCard()"
+      ]
+    },
+    {
+      "id": "card-suit",
+      "name": "Card Suit",
+      "category": "Games",
+      "api": "randomCardSuit()",
+      "status": "implemented-all",
+      "description": "Playing-card suit.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Playing-card suit."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCardSuit()",
+          "returns": "<Card Suit>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCardSuit()"
+      ]
+    },
+    {
+      "id": "card-rank",
+      "name": "Card Rank",
+      "category": "Games",
+      "api": "randomCardRank()",
+      "status": "implemented-all",
+      "description": "Playing-card rank.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Playing-card rank."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCardRank()",
+          "returns": "<Card Rank>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCardRank()"
+      ]
+    },
+    {
+      "id": "coin-flip",
+      "name": "Coin Flip",
+      "category": "Games",
+      "api": "randomCoinFlip()",
+      "status": "implemented-all",
+      "description": "Heads or tails.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Heads or tails."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomCoinFlip()",
+          "returns": "<Coin Flip>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomCoinFlip()"
+      ]
+    },
+    {
+      "id": "lottery-pick",
+      "name": "Lottery Pick",
+      "category": "Games",
+      "api": "randomLotteryPick()",
+      "status": "implemented-all",
+      "description": "Lottery-style number set.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Lottery-style number set."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits"
+      ],
+      "examples": [
+        {
+          "call": "randomLotteryPick()",
+          "returns": "<Lottery Pick>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomLotteryPick()"
+      ]
+    },
+    {
+      "id": "team-name",
+      "name": "Team Name",
+      "category": "Games",
+      "api": "randomTeamName()",
+      "status": "implemented-all",
+      "description": "Team-style name.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Team-style name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTeamName()",
+          "returns": "<Team Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomTeamName()"
+      ]
+    },
+    {
+      "id": "game-score",
+      "name": "Game Score",
+      "category": "Games",
+      "api": "randomGameScore()",
+      "status": "implemented-all",
+      "description": "Score value or pair.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Score value or pair."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomGameScore()",
+          "returns": "<Game Score>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomGameScore()"
+      ]
+    },
+    {
+      "id": "rpg-class",
+      "name": "RPG Class",
+      "category": "Games",
+      "api": "randomRpgClass()",
+      "status": "implemented-all",
+      "description": "Role-playing class label.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Role-playing class label."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomRpgClass()",
+          "returns": "<RPG Class>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomRpgClass()"
+      ]
+    },
+    {
+      "id": "loot-rarity",
+      "name": "Loot Rarity",
+      "category": "Games",
+      "api": "randomLootRarity()",
+      "status": "implemented-all",
+      "description": "Item rarity tier.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Item rarity tier."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomLootRarity()",
+          "returns": "<Loot Rarity>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomLootRarity()"
+      ]
+    },
+    {
+      "id": "choice",
+      "name": "Choice",
+      "category": "Collections",
+      "api": "randomChoice()",
+      "status": "implemented-all",
+      "description": "One item selected from a list.",
+      "parameters": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ],
+      "returns": {
+        "type": "item",
+        "description": "One item selected from a list."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomChoice([\"red\", \"blue\"])",
+          "returns": "\"red\""
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomChoice()"
+      ]
+    },
+    {
+      "id": "weighted-choice",
+      "name": "Weighted Choice",
+      "category": "Collections",
+      "api": "randomWeightedChoice()",
+      "status": "implemented-all",
+      "description": "One item selected using weights.",
+      "parameters": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        },
+        {
+          "name": "weights",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ],
+      "returns": {
+        "type": "item",
+        "description": "One item selected using weights."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomWeightedChoice([\"red\", \"blue\"])",
+          "returns": "\"red\""
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomWeightedChoice()"
+      ]
+    },
+    {
+      "id": "sample",
+      "name": "Sample",
+      "category": "Collections",
+      "api": "randomSample()",
+      "status": "implemented-all",
+      "description": "Subset selected from a list.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Subset selected from a list."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomSample()",
+          "returns": "<Sample>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomSample()"
+      ]
+    },
+    {
+      "id": "shuffle",
+      "name": "Shuffle",
+      "category": "Collections",
+      "api": "randomShuffle()",
+      "status": "implemented-all",
+      "description": "Randomly ordered copy of a collection.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Randomly ordered copy of a collection."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomShuffle()",
+          "returns": "<Shuffle>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomShuffle()"
+      ]
+    },
+    {
+      "id": "permutation",
+      "name": "Permutation",
+      "category": "Collections",
+      "api": "randomPermutation()",
+      "status": "implemented-all",
+      "description": "Permutation of values.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Permutation of values."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomPermutation()",
+          "returns": "<Permutation>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomPermutation()"
+      ]
+    },
+    {
+      "id": "set",
+      "name": "Set",
+      "category": "Collections",
+      "api": "randomSet()",
+      "status": "implemented-all",
+      "description": "Unique random collection.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Unique random collection."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomSet()",
+          "returns": "<Set>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomSet()"
+      ]
+    },
+    {
+      "id": "tuple",
+      "name": "Tuple",
+      "category": "Collections",
+      "api": "randomTuple()",
+      "status": "implemented-all",
+      "description": "Fixed-length random grouped values.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Fixed-length random grouped values."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomTuple()",
+          "returns": "<Tuple>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomTuple()"
+      ]
+    },
+    {
+      "id": "json-object",
+      "name": "JSON Object",
+      "category": "Collections",
+      "api": "randomJsonObject()",
+      "status": "implemented-all",
+      "description": "Generated JSON object from a schema or profile.",
+      "parameters": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "description": "Generated JSON object from a schema or profile."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomJsonObject()",
+          "returns": "<JSON Object>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomJsonObject()"
+      ]
+    },
+    {
+      "id": "array",
+      "name": "Array",
+      "category": "Collections",
+      "api": "randomArray()",
+      "status": "implemented-all",
+      "description": "Array of random values.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Array of random values."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomArray()",
+          "returns": "<Array>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomArray()"
+      ]
+    },
+    {
+      "id": "matrix",
+      "name": "Matrix",
+      "category": "Collections",
+      "api": "randomMatrix()",
+      "status": "implemented-all",
+      "description": "Two-dimensional numeric or boolean matrix.",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "array",
+        "description": "Two-dimensional numeric or boolean matrix."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type",
+        "Invalid size: length/count must be a non-negative integer within supported limits",
+        "Invalid collection: items must contain enough values for the requested operation"
+      ],
+      "examples": [
+        {
+          "call": "randomMatrix()",
+          "returns": "<Matrix>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomMatrix()"
+      ]
+    },
+    {
+      "id": "semver",
+      "name": "Semantic Version",
+      "category": "Developer data",
+      "api": "randomSemver()",
+      "status": "implemented-all",
+      "description": "Semantic version string.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Semantic version string."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomSemver()",
+          "returns": "<Semantic Version>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomSemver()"
+      ]
+    },
+    {
+      "id": "git-sha",
+      "name": "Git SHA",
+      "category": "Developer data",
+      "api": "randomGitSha()",
+      "status": "implemented-all",
+      "description": "Git commit hash-like value.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Git commit hash-like value."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomGitSha()",
+          "returns": "<Git SHA>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomGitSha()"
+      ]
+    },
+    {
+      "id": "package-name",
+      "name": "Package Name",
+      "category": "Developer data",
+      "api": "randomPackageName()",
+      "status": "implemented-all",
+      "description": "Package or module name.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Package or module name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomPackageName()",
+          "returns": "<Package Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomPackageName()"
+      ]
+    },
+    {
+      "id": "file-name",
+      "name": "File Name",
+      "category": "Developer data",
+      "api": "randomFileName()",
+      "status": "implemented-all",
+      "description": "File name.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "File name."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomFileName()",
+          "returns": "<File Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomFileName()"
+      ]
+    },
+    {
+      "id": "file-extension",
+      "name": "File Extension",
+      "category": "Developer data",
+      "api": "randomFileExtension()",
+      "status": "implemented-all",
+      "description": "File extension.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "File extension."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomFileExtension()",
+          "returns": "<File Extension>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomFileExtension()"
+      ]
+    },
+    {
+      "id": "file-path",
+      "name": "File Path",
+      "category": "Developer data",
+      "api": "randomFilePath()",
+      "status": "implemented-all",
+      "description": "File path.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "File path."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomFilePath()",
+          "returns": "<File Path>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomFilePath()"
+      ]
+    },
+    {
+      "id": "directory-path",
+      "name": "Directory Path",
+      "category": "Developer data",
+      "api": "randomDirectoryPath()",
+      "status": "implemented-all",
+      "description": "Directory path.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Directory path."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDirectoryPath()",
+          "returns": "<Directory Path>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomDirectoryPath()"
+      ]
+    },
+    {
+      "id": "log-level",
+      "name": "Log Level",
+      "category": "Developer data",
+      "api": "randomLogLevel()",
+      "status": "implemented-all",
+      "description": "Logging severity.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Logging severity."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomLogLevel()",
+          "returns": "<Log Level>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomLogLevel()"
+      ]
+    },
+    {
+      "id": "http-method",
+      "name": "HTTP Method",
+      "category": "Developer data",
+      "api": "randomHttpMethod()",
+      "status": "implemented-all",
+      "description": "HTTP verb.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "HTTP verb."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomHttpMethod()",
+          "returns": "<HTTP Method>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomHttpMethod()"
+      ]
+    },
+    {
+      "id": "environment-name",
+      "name": "Environment Name",
+      "category": "Developer data",
+      "api": "randomEnvironmentName()",
+      "status": "implemented-all",
+      "description": "Environment label such as dev or prod.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Environment label such as dev or prod."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomEnvironmentName()",
+          "returns": "<Environment Name>"
+        }
+      ],
+      "datasets": {
+        "required": true,
+        "source": "in-house-beta-json",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "safe-default",
+      "aliases": [
+        "getRandomEnvironmentName()"
+      ]
+    },
+    {
+      "id": "vector2",
+      "name": "2D Vector",
+      "category": "Science and math",
+      "api": "randomVector2()",
+      "status": "implemented-all",
+      "description": "Two-dimensional vector.",
+      "parameters": [],
+      "returns": {
+        "type": "object",
+        "description": "Two-dimensional vector."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomVector2()",
+          "returns": "<2D Vector>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomVector2()"
+      ]
+    },
+    {
+      "id": "vector3",
+      "name": "3D Vector",
+      "category": "Science and math",
+      "api": "randomVector3()",
+      "status": "implemented-all",
+      "description": "Three-dimensional vector.",
+      "parameters": [],
+      "returns": {
+        "type": "object",
+        "description": "Three-dimensional vector."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomVector3()",
+          "returns": "<3D Vector>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomVector3()"
+      ]
+    },
+    {
+      "id": "normal-distribution",
+      "name": "Normal Distribution Value",
+      "category": "Science and math",
+      "api": "randomNormal()",
+      "status": "implemented-all",
+      "description": "Value drawn from a normal distribution.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Value drawn from a normal distribution."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomNormal()",
+          "returns": "<Normal Distribution Value>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomNormal()"
+      ]
+    },
+    {
+      "id": "weighted-number",
+      "name": "Weighted Number",
+      "category": "Science and math",
+      "api": "randomWeightedNumber()",
+      "status": "implemented-all",
+      "description": "Number selected from weighted ranges.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "weights",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ],
+      "returns": {
+        "type": "float",
+        "description": "Number selected from weighted ranges."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomWeightedNumber()",
+          "returns": "<Weighted Number>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomWeightedNumber()"
+      ]
+    },
+    {
+      "id": "unit",
+      "name": "Unit",
+      "category": "Science and math",
+      "api": "randomUnit()",
+      "status": "implemented-all",
+      "description": "Measurement unit label.",
+      "parameters": [],
+      "returns": {
+        "type": "string",
+        "description": "Measurement unit label."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomUnit()",
+          "returns": "<Unit>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomUnit()"
+      ]
+    },
+    {
+      "id": "measurement",
+      "name": "Measurement",
+      "category": "Science and math",
+      "api": "randomMeasurement()",
+      "status": "implemented-all",
+      "description": "Numeric value with unit.",
+      "parameters": [],
+      "returns": {
+        "type": "object",
+        "description": "Numeric value with unit."
+      },
+      "errors": [
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomMeasurement()",
+          "returns": "<Measurement>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomMeasurement()"
+      ]
+    },
+    {
+      "id": "temperature",
+      "name": "Temperature",
+      "category": "Science and math",
+      "api": "randomTemperature()",
+      "status": "implemented-all",
+      "description": "Temperature value.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Temperature value."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomTemperature()",
+          "returns": "<Temperature>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomTemperature()"
+      ]
+    },
+    {
+      "id": "duration-ms",
+      "name": "Duration Milliseconds",
+      "category": "Science and math",
+      "api": "randomDurationMs()",
+      "status": "implemented-all",
+      "description": "Duration represented in milliseconds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Duration represented in milliseconds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomDurationMs()",
+          "returns": "<Duration Milliseconds>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomDurationMs()"
+      ]
+    },
+    {
+      "id": "probability",
+      "name": "Probability",
+      "category": "Science and math",
+      "api": "randomProbability()",
+      "status": "implemented-all",
+      "description": "Probability from 0 to 1.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "string",
+        "description": "Probability from 0 to 1."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomProbability()",
+          "returns": "<Probability>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomProbability()"
+      ]
+    },
+    {
+      "id": "range",
+      "name": "Range",
+      "category": "Science and math",
+      "api": "randomRange()",
+      "status": "implemented-all",
+      "description": "Range with lower and upper bounds.",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ],
+      "returns": {
+        "type": "object",
+        "description": "Range with lower and upper bounds."
+      },
+      "errors": [
+        "Invalid range: min must be less than or equal to max",
+        "Invalid option: unsupported format, locale, corpus, or shape for this output type"
+      ],
+      "examples": [
+        {
+          "call": "randomRange()",
+          "returns": "<Range>"
+        }
+      ],
+      "datasets": {
+        "required": false,
+        "source": "none",
+        "license": "MIT",
+        "localeDefault": null
+      },
+      "contentSafety": "not-applicable",
+      "aliases": [
+        "getRandomRange()"
+      ]
+    }
+  ],
+  "contractVersion": "0.1.0-beta-production-burndown",
+  "allowedStatuses": [
+    "planned-beta",
+    "in-progress",
+    "implemented-python",
+    "implemented-all",
+    "deprecated",
+    "available-v1"
+  ],
+  "sharedOptions": {
+    "min": "Inclusive lower bound where the output type supports ranges.",
+    "max": "Inclusive upper bound where the output type supports ranges.",
+    "length": "Number of characters or bytes to generate.",
+    "count": "Number of items to return.",
+    "locale": "Locale hint for dataset-backed values; default is en-US until broader locale support lands.",
+    "allowAdult": "Explicit opt-in for adult/profane corpus values; default is false.",
+    "format": "Return format selector for types with multiple common representations.",
+    "items": "Collection of values to select from.",
+    "weights": "Numeric weights aligned to items."
+  },
+  "textPolicy": {
+    "safeDefault": true,
+    "adultOptInOption": "allowAdult",
+    "randomStringLengthMeaning": "characters",
+    "randomWordsCountMeaning": "words"
+  },
+  "languageTargets": [
+    "python",
+    "javascript",
+    "typescript",
+    "java",
+    "csharp",
+    "c",
+    "cpp",
+    "php",
+    "go",
+    "rust",
+    "kotlin",
+    "swift",
+    "ruby",
+    "dart",
+    "r"
   ]
 }

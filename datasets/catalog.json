@@ -1,0 +1,270 @@
+{
+  "safe_words": [
+    "anchor",
+    "atlas",
+    "beacon",
+    "canvas",
+    "cedar",
+    "comet",
+    "ember",
+    "field",
+    "harbor",
+    "lantern",
+    "maple",
+    "meadow",
+    "nova",
+    "orbit",
+    "pixel",
+    "river",
+    "signal",
+    "summit",
+    "violet",
+    "willow"
+  ],
+  "adult_words": [
+    "damn",
+    "hell",
+    "adult",
+    "mature"
+  ],
+  "first_names": [
+    "Alex",
+    "Avery",
+    "Casey",
+    "Jordan",
+    "Morgan",
+    "Riley",
+    "Taylor",
+    "Quinn"
+  ],
+  "last_names": [
+    "Stone",
+    "Rivera",
+    "Hayes",
+    "Chen",
+    "Patel",
+    "Brooks",
+    "Carter",
+    "Reed"
+  ],
+  "name_prefixes": [
+    "Dr.",
+    "Mx.",
+    "Ms.",
+    "Mr."
+  ],
+  "name_suffixes": [
+    "Jr.",
+    "Sr.",
+    "II",
+    "III"
+  ],
+  "job_titles": [
+    "Engineer",
+    "Designer",
+    "Product Manager",
+    "Data Analyst",
+    "QA Lead"
+  ],
+  "departments": [
+    "Engineering",
+    "Design",
+    "Operations",
+    "Support",
+    "Research"
+  ],
+  "companies": [
+    "Northstar Labs",
+    "Blue Cedar Studio",
+    "Signal Forge",
+    "Atlas Works"
+  ],
+  "countries": [
+    "United States",
+    "Canada",
+    "United Kingdom",
+    "Germany",
+    "Japan",
+    "Australia"
+  ],
+  "regions": [
+    "California",
+    "Ontario",
+    "Scotland",
+    "Bavaria",
+    "Kanto",
+    "Victoria"
+  ],
+  "cities": [
+    "Austin",
+    "Seattle",
+    "Toronto",
+    "Berlin",
+    "Tokyo",
+    "Melbourne"
+  ],
+  "streets": [
+    "Maple Street",
+    "Cedar Avenue",
+    "Harbor Road",
+    "Summit Lane"
+  ],
+  "timezones": [
+    "UTC",
+    "America/Chicago",
+    "America/New_York",
+    "Europe/London",
+    "Asia/Tokyo"
+  ],
+  "locales": [
+    "en-US",
+    "en-GB",
+    "fr-CA",
+    "de-DE",
+    "ja-JP"
+  ],
+  "currency_codes": [
+    "USD",
+    "CAD",
+    "GBP",
+    "EUR",
+    "JPY",
+    "AUD"
+  ],
+  "user_agents": [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/125 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 Safari/605.1.15",
+    "Mozilla/5.0 (X11; Linux x86_64) Firefox/126.0"
+  ],
+  "mime_types": [
+    "application/json",
+    "text/plain",
+    "text/html",
+    "image/png",
+    "application/pdf"
+  ],
+  "http_statuses": [
+    "200 OK",
+    "201 Created",
+    "204 No Content",
+    "301 Moved Permanently",
+    "400 Bad Request",
+    "404 Not Found",
+    "500 Internal Server Error"
+  ],
+  "http_methods": [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE"
+  ],
+  "color_names": [
+    "red",
+    "green",
+    "blue",
+    "cyan",
+    "magenta",
+    "yellow",
+    "black",
+    "white"
+  ],
+  "product_categories": [
+    "Books",
+    "Software",
+    "Office",
+    "Games",
+    "Hardware"
+  ],
+  "brands": [
+    "Northstar",
+    "Blue Cedar",
+    "Signal Forge",
+    "Atlas",
+    "Summit"
+  ],
+  "shipping_methods": [
+    "standard",
+    "express",
+    "overnight",
+    "pickup"
+  ],
+  "payment_methods": [
+    "card",
+    "bank transfer",
+    "cash",
+    "gift card"
+  ],
+  "card_suits": [
+    "clubs",
+    "diamonds",
+    "hearts",
+    "spades"
+  ],
+  "card_ranks": [
+    "A",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "J",
+    "Q",
+    "K"
+  ],
+  "team_terms": [
+    "Falcons",
+    "Comets",
+    "Rangers",
+    "Voyagers",
+    "Pioneers"
+  ],
+  "rpg_classes": [
+    "fighter",
+    "wizard",
+    "rogue",
+    "cleric",
+    "ranger"
+  ],
+  "loot_rarities": [
+    "common",
+    "uncommon",
+    "rare",
+    "epic",
+    "legendary"
+  ],
+  "file_extensions": [
+    ".txt",
+    ".json",
+    ".md",
+    ".py",
+    ".js",
+    ".csv"
+  ],
+  "log_levels": [
+    "trace",
+    "debug",
+    "info",
+    "warn",
+    "error",
+    "fatal"
+  ],
+  "environment_names": [
+    "development",
+    "test",
+    "staging",
+    "production"
+  ],
+  "units": [
+    "px",
+    "ms",
+    "kg",
+    "m",
+    "deg",
+    "bytes"
+  ]
+}

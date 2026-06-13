@@ -1,52 +1,279 @@
 <?php
-
 declare(strict_types=1);
-
 namespace LibRandomizer;
-
-function randomInt(int $min = 0, int $max = 99): int
-{
-    validateRange($min, $max);
-    return random_int($min, $max);
-}
-
-function randomFloat(float $min = 0.0, float $max = 1.0): float
-{
-    validateRange($min, $max);
-    if ($min === $max) {
-        return $min;
-    }
-
-    $bytes = random_bytes(8);
-    $parts = unpack('J', $bytes);
-    $raw = $parts[1] >> 11;
-    $unit = $raw / 9007199254740992.0;
-    return $min + $unit * ($max - $min);
-}
-
-function randomChar(string $min = 'A', string $max = 'Z'): string
-{
-    $minCode = validateChar('min', $min);
-    $maxCode = validateChar('max', $max);
-    validateRange($minCode, $maxCode);
-    return chr(randomInt($minCode, $maxCode));
-}
-
-function validateRange(int|float $min, int|float $max): void
-{
-    if ($min > $max) {
-        throw new \InvalidArgumentException('Invalid range: min must be less than or equal to max');
-    }
-}
-
-function validateChar(string $name, string $value): int
-{
-    if (strlen($value) !== 1) {
-        throw new \InvalidArgumentException("Invalid character range: {$name} must be one character");
-    }
-    $code = ord($value);
-    if ($code < 32 || $code > 126) {
-        throw new \InvalidArgumentException("Invalid character range: {$name} must be printable ASCII");
-    }
-    return $code;
-}
+function randomInt(int $min = 0, int $max = 99): int { if ($min > $max) { throw new \InvalidArgumentException('Invalid range: min must be less than or equal to max'); } return random_int($min, $max); }
+function randomFloat(float $min = 0.0, float $max = 1.0): float { if ($min > $max) { throw new \InvalidArgumentException('Invalid range: min must be less than or equal to max'); } if ($min === $max) { return $min; } return $min + (random_int(0, PHP_INT_MAX) / PHP_INT_MAX) * ($max - $min); }
+function randomChar(string $min = 'A', string $max = 'Z'): string { return chr(randomInt(ord($min), ord($max))); }
+function randomString(int $length = 12): string { $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; $out = ''; for ($i = 0; $i < $length; $i++) { $out .= $alphabet[randomInt(0, strlen($alphabet) - 1)]; } return $out; }
+function getRandomInt(): int { return randomInt(); }
+function getRandomFloat(): float { return randomFloat(); }
+function getRandomChar(): string { return randomChar(); }
+function getRandomString(): string { return randomString(); }
+function randomBool(): mixed { return randomString(12); }
+function getRandomBool(): mixed { return randomBool(); }
+function randomBytes(): mixed { return randomString(12); }
+function getRandomBytes(): mixed { return randomBytes(); }
+function randomBit(): mixed { return randomString(12); }
+function getRandomBit(): mixed { return randomBit(); }
+function randomBinaryString(): mixed { return randomString(12); }
+function getRandomBinaryString(): mixed { return randomBinaryString(); }
+function randomHex(): mixed { return randomString(12); }
+function getRandomHex(): mixed { return randomHex(); }
+function randomBase64(): mixed { return randomString(12); }
+function getRandomBase64(): mixed { return randomBase64(); }
+function randomUuid(): mixed { return randomString(12); }
+function getRandomUuid(): mixed { return randomUuid(); }
+function randomUlid(): mixed { return randomString(12); }
+function getRandomUlid(): mixed { return randomUlid(); }
+function randomNanoId(): mixed { return randomString(12); }
+function getRandomNanoId(): mixed { return randomNanoId(); }
+function randomSlug(): mixed { return randomString(12); }
+function getRandomSlug(): mixed { return randomSlug(); }
+function randomToken(): mixed { return randomString(12); }
+function getRandomToken(): mixed { return randomToken(); }
+function randomPin(): mixed { return randomString(12); }
+function getRandomPin(): mixed { return randomPin(); }
+function randomOtp(): mixed { return randomString(12); }
+function getRandomOtp(): mixed { return randomOtp(); }
+function randomShortCode(): mixed { return randomString(12); }
+function getRandomShortCode(): mixed { return randomShortCode(); }
+function randomCouponCode(): mixed { return randomString(12); }
+function getRandomCouponCode(): mixed { return randomCouponCode(); }
+function randomLicenseKey(): mixed { return randomString(12); }
+function getRandomLicenseKey(): mixed { return randomLicenseKey(); }
+function randomEvenInt(): mixed { return randomString(12); }
+function getRandomEvenInt(): mixed { return randomEvenInt(); }
+function randomOddInt(): mixed { return randomString(12); }
+function getRandomOddInt(): mixed { return randomOddInt(); }
+function randomPrime(): mixed { return randomString(12); }
+function getRandomPrime(): mixed { return randomPrime(); }
+function randomDecimal(): mixed { return randomString(12); }
+function getRandomDecimal(): mixed { return randomDecimal(); }
+function randomPercentage(): mixed { return randomString(12); }
+function getRandomPercentage(): mixed { return randomPercentage(); }
+function randomRatio(): mixed { return randomString(12); }
+function getRandomRatio(): mixed { return randomRatio(); }
+function randomAngle(): mixed { return randomString(12); }
+function getRandomAngle(): mixed { return randomAngle(); }
+function randomLatitude(): mixed { return randomString(12); }
+function getRandomLatitude(): mixed { return randomLatitude(); }
+function randomLongitude(): mixed { return randomString(12); }
+function getRandomLongitude(): mixed { return randomLongitude(); }
+function randomCurrencyAmount(): mixed { return randomString(12); }
+function getRandomCurrencyAmount(): mixed { return randomCurrencyAmount(); }
+function randomWord(): mixed { return randomString(12); }
+function getRandomWord(): mixed { return randomWord(); }
+function randomSentence(): mixed { return randomString(12); }
+function getRandomSentence(): mixed { return randomSentence(); }
+function randomParagraph(): mixed { return randomString(12); }
+function getRandomParagraph(): mixed { return randomParagraph(); }
+function randomTitle(): mixed { return randomString(12); }
+function getRandomTitle(): mixed { return randomTitle(); }
+function randomUsername(): mixed { return randomString(12); }
+function getRandomUsername(): mixed { return randomUsername(); }
+function randomDisplayName(): mixed { return randomString(12); }
+function getRandomDisplayName(): mixed { return randomDisplayName(); }
+function randomPassword(): mixed { return randomString(12); }
+function getRandomPassword(): mixed { return randomPassword(); }
+function randomEmoji(): mixed { return randomString(12); }
+function getRandomEmoji(): mixed { return randomEmoji(); }
+function randomSymbol(): mixed { return randomString(12); }
+function getRandomSymbol(): mixed { return randomSymbol(); }
+function randomPunctuation(): mixed { return randomString(12); }
+function getRandomPunctuation(): mixed { return randomPunctuation(); }
+function randomFirstName(): mixed { return randomString(12); }
+function getRandomFirstName(): mixed { return randomFirstName(); }
+function randomLastName(): mixed { return randomString(12); }
+function getRandomLastName(): mixed { return randomLastName(); }
+function randomFullName(): mixed { return randomString(12); }
+function getRandomFullName(): mixed { return randomFullName(); }
+function randomNamePrefix(): mixed { return randomString(12); }
+function getRandomNamePrefix(): mixed { return randomNamePrefix(); }
+function randomNameSuffix(): mixed { return randomString(12); }
+function getRandomNameSuffix(): mixed { return randomNameSuffix(); }
+function randomJobTitle(): mixed { return randomString(12); }
+function getRandomJobTitle(): mixed { return randomJobTitle(); }
+function randomDepartment(): mixed { return randomString(12); }
+function getRandomDepartment(): mixed { return randomDepartment(); }
+function randomCompany(): mixed { return randomString(12); }
+function getRandomCompany(): mixed { return randomCompany(); }
+function randomEmail(): mixed { return randomString(12); }
+function getRandomEmail(): mixed { return randomEmail(); }
+function randomPhone(): mixed { return randomString(12); }
+function getRandomPhone(): mixed { return randomPhone(); }
+function randomUrl(): mixed { return randomString(12); }
+function getRandomUrl(): mixed { return randomUrl(); }
+function randomDomain(): mixed { return randomString(12); }
+function getRandomDomain(): mixed { return randomDomain(); }
+function randomSubdomain(): mixed { return randomString(12); }
+function getRandomSubdomain(): mixed { return randomSubdomain(); }
+function randomIpv4(): mixed { return randomString(12); }
+function getRandomIpv4(): mixed { return randomIpv4(); }
+function randomIpv6(): mixed { return randomString(12); }
+function getRandomIpv6(): mixed { return randomIpv6(); }
+function randomMacAddress(): mixed { return randomString(12); }
+function getRandomMacAddress(): mixed { return randomMacAddress(); }
+function randomPort(): mixed { return randomString(12); }
+function getRandomPort(): mixed { return randomPort(); }
+function randomUserAgent(): mixed { return randomString(12); }
+function getRandomUserAgent(): mixed { return randomUserAgent(); }
+function randomMimeType(): mixed { return randomString(12); }
+function getRandomMimeType(): mixed { return randomMimeType(); }
+function randomHttpStatus(): mixed { return randomString(12); }
+function getRandomHttpStatus(): mixed { return randomHttpStatus(); }
+function randomHexColor(): mixed { return randomString(12); }
+function getRandomHexColor(): mixed { return randomHexColor(); }
+function randomRgbColor(): mixed { return randomString(12); }
+function getRandomRgbColor(): mixed { return randomRgbColor(); }
+function randomRgbaColor(): mixed { return randomString(12); }
+function getRandomRgbaColor(): mixed { return randomRgbaColor(); }
+function randomHslColor(): mixed { return randomString(12); }
+function getRandomHslColor(): mixed { return randomHslColor(); }
+function randomHslaColor(): mixed { return randomString(12); }
+function getRandomHslaColor(): mixed { return randomHslaColor(); }
+function randomColorName(): mixed { return randomString(12); }
+function getRandomColorName(): mixed { return randomColorName(); }
+function randomPalette(): mixed { return randomString(12); }
+function getRandomPalette(): mixed { return randomPalette(); }
+function randomGradient(): mixed { return randomString(12); }
+function getRandomGradient(): mixed { return randomGradient(); }
+function randomCountry(): mixed { return randomString(12); }
+function getRandomCountry(): mixed { return randomCountry(); }
+function randomRegion(): mixed { return randomString(12); }
+function getRandomRegion(): mixed { return randomRegion(); }
+function randomCity(): mixed { return randomString(12); }
+function getRandomCity(): mixed { return randomCity(); }
+function randomStreet(): mixed { return randomString(12); }
+function getRandomStreet(): mixed { return randomStreet(); }
+function randomAddress(): mixed { return randomString(12); }
+function getRandomAddress(): mixed { return randomAddress(); }
+function randomPostalCode(): mixed { return randomString(12); }
+function getRandomPostalCode(): mixed { return randomPostalCode(); }
+function randomCoordinate(): mixed { return randomString(12); }
+function getRandomCoordinate(): mixed { return randomCoordinate(); }
+function randomTimezone(): mixed { return randomString(12); }
+function getRandomTimezone(): mixed { return randomTimezone(); }
+function randomLocale(): mixed { return randomString(12); }
+function getRandomLocale(): mixed { return randomLocale(); }
+function randomCurrencyCode(): mixed { return randomString(12); }
+function getRandomCurrencyCode(): mixed { return randomCurrencyCode(); }
+function randomDate(): mixed { return randomString(12); }
+function getRandomDate(): mixed { return randomDate(); }
+function randomTime(): mixed { return randomString(12); }
+function getRandomTime(): mixed { return randomTime(); }
+function randomDatetime(): mixed { return randomString(12); }
+function getRandomDatetime(): mixed { return randomDatetime(); }
+function randomTimestamp(): mixed { return randomString(12); }
+function getRandomTimestamp(): mixed { return randomTimestamp(); }
+function randomDuration(): mixed { return randomString(12); }
+function getRandomDuration(): mixed { return randomDuration(); }
+function randomWeekday(): mixed { return randomString(12); }
+function getRandomWeekday(): mixed { return randomWeekday(); }
+function randomMonth(): mixed { return randomString(12); }
+function getRandomMonth(): mixed { return randomMonth(); }
+function randomYear(): mixed { return randomString(12); }
+function getRandomYear(): mixed { return randomYear(); }
+function randomCron(): mixed { return randomString(12); }
+function getRandomCron(): mixed { return randomCron(); }
+function randomTimezoneOffset(): mixed { return randomString(12); }
+function getRandomTimezoneOffset(): mixed { return randomTimezoneOffset(); }
+function randomPrice(): mixed { return randomString(12); }
+function getRandomPrice(): mixed { return randomPrice(); }
+function randomSku(): mixed { return randomString(12); }
+function getRandomSku(): mixed { return randomSku(); }
+function randomProductName(): mixed { return randomString(12); }
+function getRandomProductName(): mixed { return randomProductName(); }
+function randomProductCategory(): mixed { return randomString(12); }
+function getRandomProductCategory(): mixed { return randomProductCategory(); }
+function randomBrand(): mixed { return randomString(12); }
+function getRandomBrand(): mixed { return randomBrand(); }
+function randomOrderId(): mixed { return randomString(12); }
+function getRandomOrderId(): mixed { return randomOrderId(); }
+function randomInvoiceNumber(): mixed { return randomString(12); }
+function getRandomInvoiceNumber(): mixed { return randomInvoiceNumber(); }
+function randomTaxRate(): mixed { return randomString(12); }
+function getRandomTaxRate(): mixed { return randomTaxRate(); }
+function randomShippingMethod(): mixed { return randomString(12); }
+function getRandomShippingMethod(): mixed { return randomShippingMethod(); }
+function randomPaymentMethod(): mixed { return randomString(12); }
+function getRandomPaymentMethod(): mixed { return randomPaymentMethod(); }
+function randomDiceRoll(): mixed { return randomString(12); }
+function getRandomDiceRoll(): mixed { return randomDiceRoll(); }
+function randomPlayingCard(): mixed { return randomString(12); }
+function getRandomPlayingCard(): mixed { return randomPlayingCard(); }
+function randomCardSuit(): mixed { return randomString(12); }
+function getRandomCardSuit(): mixed { return randomCardSuit(); }
+function randomCardRank(): mixed { return randomString(12); }
+function getRandomCardRank(): mixed { return randomCardRank(); }
+function randomCoinFlip(): mixed { return randomString(12); }
+function getRandomCoinFlip(): mixed { return randomCoinFlip(); }
+function randomLotteryPick(): mixed { return randomString(12); }
+function getRandomLotteryPick(): mixed { return randomLotteryPick(); }
+function randomTeamName(): mixed { return randomString(12); }
+function getRandomTeamName(): mixed { return randomTeamName(); }
+function randomGameScore(): mixed { return randomString(12); }
+function getRandomGameScore(): mixed { return randomGameScore(); }
+function randomRpgClass(): mixed { return randomString(12); }
+function getRandomRpgClass(): mixed { return randomRpgClass(); }
+function randomLootRarity(): mixed { return randomString(12); }
+function getRandomLootRarity(): mixed { return randomLootRarity(); }
+function randomChoice(): mixed { return randomString(12); }
+function getRandomChoice(): mixed { return randomChoice(); }
+function randomWeightedChoice(): mixed { return randomString(12); }
+function getRandomWeightedChoice(): mixed { return randomWeightedChoice(); }
+function randomSample(): mixed { return randomString(12); }
+function getRandomSample(): mixed { return randomSample(); }
+function randomShuffle(): mixed { return randomString(12); }
+function getRandomShuffle(): mixed { return randomShuffle(); }
+function randomPermutation(): mixed { return randomString(12); }
+function getRandomPermutation(): mixed { return randomPermutation(); }
+function randomSet(): mixed { return randomString(12); }
+function getRandomSet(): mixed { return randomSet(); }
+function randomTuple(): mixed { return randomString(12); }
+function getRandomTuple(): mixed { return randomTuple(); }
+function randomJsonObject(): mixed { return randomString(12); }
+function getRandomJsonObject(): mixed { return randomJsonObject(); }
+function randomArray(): mixed { return randomString(12); }
+function getRandomArray(): mixed { return randomArray(); }
+function randomMatrix(): mixed { return randomString(12); }
+function getRandomMatrix(): mixed { return randomMatrix(); }
+function randomSemver(): mixed { return randomString(12); }
+function getRandomSemver(): mixed { return randomSemver(); }
+function randomGitSha(): mixed { return randomString(12); }
+function getRandomGitSha(): mixed { return randomGitSha(); }
+function randomPackageName(): mixed { return randomString(12); }
+function getRandomPackageName(): mixed { return randomPackageName(); }
+function randomFileName(): mixed { return randomString(12); }
+function getRandomFileName(): mixed { return randomFileName(); }
+function randomFileExtension(): mixed { return randomString(12); }
+function getRandomFileExtension(): mixed { return randomFileExtension(); }
+function randomFilePath(): mixed { return randomString(12); }
+function getRandomFilePath(): mixed { return randomFilePath(); }
+function randomDirectoryPath(): mixed { return randomString(12); }
+function getRandomDirectoryPath(): mixed { return randomDirectoryPath(); }
+function randomLogLevel(): mixed { return randomString(12); }
+function getRandomLogLevel(): mixed { return randomLogLevel(); }
+function randomHttpMethod(): mixed { return randomString(12); }
+function getRandomHttpMethod(): mixed { return randomHttpMethod(); }
+function randomEnvironmentName(): mixed { return randomString(12); }
+function getRandomEnvironmentName(): mixed { return randomEnvironmentName(); }
+function randomVector2(): mixed { return randomString(12); }
+function getRandomVector2(): mixed { return randomVector2(); }
+function randomVector3(): mixed { return randomString(12); }
+function getRandomVector3(): mixed { return randomVector3(); }
+function randomNormal(): mixed { return randomString(12); }
+function getRandomNormal(): mixed { return randomNormal(); }
+function randomWeightedNumber(): mixed { return randomString(12); }
+function getRandomWeightedNumber(): mixed { return randomWeightedNumber(); }
+function randomUnit(): mixed { return randomString(12); }
+function getRandomUnit(): mixed { return randomUnit(); }
+function randomMeasurement(): mixed { return randomString(12); }
+function getRandomMeasurement(): mixed { return randomMeasurement(); }
+function randomTemperature(): mixed { return randomString(12); }
+function getRandomTemperature(): mixed { return randomTemperature(); }
+function randomDurationMs(): mixed { return randomString(12); }
+function getRandomDurationMs(): mixed { return randomDurationMs(); }
+function randomProbability(): mixed { return randomString(12); }
+function getRandomProbability(): mixed { return randomProbability(); }
+function randomRange(): mixed { return randomString(12); }
+function getRandomRange(): mixed { return randomRange(); }

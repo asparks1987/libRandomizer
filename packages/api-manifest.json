@@ -1,0 +1,2042 @@
+{
+  "version": "0.2.0-beta-docs",
+  "targets": [
+    "python",
+    "javascript",
+    "typescript",
+    "java",
+    "csharp",
+    "c",
+    "cpp",
+    "php",
+    "go",
+    "rust",
+    "kotlin",
+    "swift",
+    "ruby",
+    "dart",
+    "r"
+  ],
+  "apiCount": 138,
+  "apis": [
+    {
+      "id": "int",
+      "randomApi": "randomInt",
+      "getRandomAlias": "getRandomInt",
+      "returnType": "integer",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "float",
+      "randomApi": "randomFloat",
+      "getRandomAlias": "getRandomFloat",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "float",
+          "default": 0.0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "float",
+          "default": 1.0,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "char",
+      "randomApi": "randomChar",
+      "getRandomAlias": "getRandomChar",
+      "returnType": "character",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "character",
+          "default": "A",
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "character",
+          "default": "Z",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "bool",
+      "randomApi": "randomBool",
+      "getRandomAlias": "getRandomBool",
+      "returnType": "boolean",
+      "parameters": []
+    },
+    {
+      "id": "string",
+      "randomApi": "randomString",
+      "getRandomAlias": "getRandomString",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 12,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "bytes",
+      "randomApi": "randomBytes",
+      "getRandomAlias": "getRandomBytes",
+      "returnType": "bytes",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "bit",
+      "randomApi": "randomBit",
+      "getRandomAlias": "getRandomBit",
+      "returnType": "integer",
+      "parameters": []
+    },
+    {
+      "id": "binary-string",
+      "randomApi": "randomBinaryString",
+      "getRandomAlias": "getRandomBinaryString",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "hex-string",
+      "randomApi": "randomHex",
+      "getRandomAlias": "getRandomHex",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "base64-string",
+      "randomApi": "randomBase64",
+      "getRandomAlias": "getRandomBase64",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "uuid",
+      "randomApi": "randomUuid",
+      "getRandomAlias": "getRandomUuid",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "ulid",
+      "randomApi": "randomUlid",
+      "getRandomAlias": "getRandomUlid",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "nanoid",
+      "randomApi": "randomNanoId",
+      "getRandomAlias": "getRandomNanoId",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "slug",
+      "randomApi": "randomSlug",
+      "getRandomAlias": "getRandomSlug",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "token",
+      "randomApi": "randomToken",
+      "getRandomAlias": "getRandomToken",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "pin",
+      "randomApi": "randomPin",
+      "getRandomAlias": "getRandomPin",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "otp",
+      "randomApi": "randomOtp",
+      "getRandomAlias": "getRandomOtp",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "short-code",
+      "randomApi": "randomShortCode",
+      "getRandomAlias": "getRandomShortCode",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "coupon-code",
+      "randomApi": "randomCouponCode",
+      "getRandomAlias": "getRandomCouponCode",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "license-key",
+      "randomApi": "randomLicenseKey",
+      "getRandomAlias": "getRandomLicenseKey",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "even-int",
+      "randomApi": "randomEvenInt",
+      "getRandomAlias": "getRandomEvenInt",
+      "returnType": "integer",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "odd-int",
+      "randomApi": "randomOddInt",
+      "getRandomAlias": "getRandomOddInt",
+      "returnType": "integer",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "prime",
+      "randomApi": "randomPrime",
+      "getRandomAlias": "getRandomPrime",
+      "returnType": "integer",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "default": 0,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "default": 99,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "decimal",
+      "randomApi": "randomDecimal",
+      "getRandomAlias": "getRandomDecimal",
+      "returnType": "decimal",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "percentage",
+      "randomApi": "randomPercentage",
+      "getRandomAlias": "getRandomPercentage",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "ratio",
+      "randomApi": "randomRatio",
+      "getRandomAlias": "getRandomRatio",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "angle",
+      "randomApi": "randomAngle",
+      "getRandomAlias": "getRandomAngle",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "latitude",
+      "randomApi": "randomLatitude",
+      "getRandomAlias": "getRandomLatitude",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "longitude",
+      "randomApi": "randomLongitude",
+      "getRandomAlias": "getRandomLongitude",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "currency-amount",
+      "randomApi": "randomCurrencyAmount",
+      "getRandomAlias": "getRandomCurrencyAmount",
+      "returnType": "decimal",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "word",
+      "randomApi": "randomWord",
+      "getRandomAlias": "getRandomWord",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "sentence",
+      "randomApi": "randomSentence",
+      "getRandomAlias": "getRandomSentence",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "paragraph",
+      "randomApi": "randomParagraph",
+      "getRandomAlias": "getRandomParagraph",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "title",
+      "randomApi": "randomTitle",
+      "getRandomAlias": "getRandomTitle",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "username",
+      "randomApi": "randomUsername",
+      "getRandomAlias": "getRandomUsername",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "display-name",
+      "randomApi": "randomDisplayName",
+      "getRandomAlias": "getRandomDisplayName",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "password",
+      "randomApi": "randomPassword",
+      "getRandomAlias": "getRandomPassword",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "integer",
+          "default": 16,
+          "required": false
+        },
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "emoji",
+      "randomApi": "randomEmoji",
+      "getRandomAlias": "getRandomEmoji",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "symbol",
+      "randomApi": "randomSymbol",
+      "getRandomAlias": "getRandomSymbol",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "punctuation",
+      "randomApi": "randomPunctuation",
+      "getRandomAlias": "getRandomPunctuation",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        },
+        {
+          "name": "allowAdult",
+          "type": "boolean",
+          "default": false,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "first-name",
+      "randomApi": "randomFirstName",
+      "getRandomAlias": "getRandomFirstName",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "last-name",
+      "randomApi": "randomLastName",
+      "getRandomAlias": "getRandomLastName",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "full-name",
+      "randomApi": "randomFullName",
+      "getRandomAlias": "getRandomFullName",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "name-prefix",
+      "randomApi": "randomNamePrefix",
+      "getRandomAlias": "getRandomNamePrefix",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "name-suffix",
+      "randomApi": "randomNameSuffix",
+      "getRandomAlias": "getRandomNameSuffix",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "job-title",
+      "randomApi": "randomJobTitle",
+      "getRandomAlias": "getRandomJobTitle",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "department",
+      "randomApi": "randomDepartment",
+      "getRandomAlias": "getRandomDepartment",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "company",
+      "randomApi": "randomCompany",
+      "getRandomAlias": "getRandomCompany",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "email",
+      "randomApi": "randomEmail",
+      "getRandomAlias": "getRandomEmail",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "phone",
+      "randomApi": "randomPhone",
+      "getRandomAlias": "getRandomPhone",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "url",
+      "randomApi": "randomUrl",
+      "getRandomAlias": "getRandomUrl",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "domain",
+      "randomApi": "randomDomain",
+      "getRandomAlias": "getRandomDomain",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "subdomain",
+      "randomApi": "randomSubdomain",
+      "getRandomAlias": "getRandomSubdomain",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "ipv4",
+      "randomApi": "randomIpv4",
+      "getRandomAlias": "getRandomIpv4",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "ipv6",
+      "randomApi": "randomIpv6",
+      "getRandomAlias": "getRandomIpv6",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "mac-address",
+      "randomApi": "randomMacAddress",
+      "getRandomAlias": "getRandomMacAddress",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "port",
+      "randomApi": "randomPort",
+      "getRandomAlias": "getRandomPort",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "user-agent",
+      "randomApi": "randomUserAgent",
+      "getRandomAlias": "getRandomUserAgent",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "mime-type",
+      "randomApi": "randomMimeType",
+      "getRandomAlias": "getRandomMimeType",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "http-status",
+      "randomApi": "randomHttpStatus",
+      "getRandomAlias": "getRandomHttpStatus",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "hex-color",
+      "randomApi": "randomHexColor",
+      "getRandomAlias": "getRandomHexColor",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "rgb-color",
+      "randomApi": "randomRgbColor",
+      "getRandomAlias": "getRandomRgbColor",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "rgba-color",
+      "randomApi": "randomRgbaColor",
+      "getRandomAlias": "getRandomRgbaColor",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "hsl-color",
+      "randomApi": "randomHslColor",
+      "getRandomAlias": "getRandomHslColor",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "hsla-color",
+      "randomApi": "randomHslaColor",
+      "getRandomAlias": "getRandomHslaColor",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "color-name",
+      "randomApi": "randomColorName",
+      "getRandomAlias": "getRandomColorName",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "palette",
+      "randomApi": "randomPalette",
+      "getRandomAlias": "getRandomPalette",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "gradient",
+      "randomApi": "randomGradient",
+      "getRandomAlias": "getRandomGradient",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "country",
+      "randomApi": "randomCountry",
+      "getRandomAlias": "getRandomCountry",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "region",
+      "randomApi": "randomRegion",
+      "getRandomAlias": "getRandomRegion",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "city",
+      "randomApi": "randomCity",
+      "getRandomAlias": "getRandomCity",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "street",
+      "randomApi": "randomStreet",
+      "getRandomAlias": "getRandomStreet",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "address",
+      "randomApi": "randomAddress",
+      "getRandomAlias": "getRandomAddress",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "postal-code",
+      "randomApi": "randomPostalCode",
+      "getRandomAlias": "getRandomPostalCode",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "coordinate",
+      "randomApi": "randomCoordinate",
+      "getRandomAlias": "getRandomCoordinate",
+      "returnType": "object",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "timezone",
+      "randomApi": "randomTimezone",
+      "getRandomAlias": "getRandomTimezone",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "locale",
+      "randomApi": "randomLocale",
+      "getRandomAlias": "getRandomLocale",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "currency-code",
+      "randomApi": "randomCurrencyCode",
+      "getRandomAlias": "getRandomCurrencyCode",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "locale",
+          "type": "string",
+          "default": "en-US",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "date",
+      "randomApi": "randomDate",
+      "getRandomAlias": "getRandomDate",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "randomApi": "randomTime",
+      "getRandomAlias": "getRandomTime",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "datetime",
+      "randomApi": "randomDatetime",
+      "getRandomAlias": "getRandomDatetime",
+      "returnType": "datetime",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "timestamp",
+      "randomApi": "randomTimestamp",
+      "getRandomAlias": "getRandomTimestamp",
+      "returnType": "integer",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "duration",
+      "randomApi": "randomDuration",
+      "getRandomAlias": "getRandomDuration",
+      "returnType": "object",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "weekday",
+      "randomApi": "randomWeekday",
+      "getRandomAlias": "getRandomWeekday",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "month",
+      "randomApi": "randomMonth",
+      "getRandomAlias": "getRandomMonth",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "year",
+      "randomApi": "randomYear",
+      "getRandomAlias": "getRandomYear",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "cron",
+      "randomApi": "randomCron",
+      "getRandomAlias": "getRandomCron",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "timezone-offset",
+      "randomApi": "randomTimezoneOffset",
+      "getRandomAlias": "getRandomTimezoneOffset",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "price",
+      "randomApi": "randomPrice",
+      "getRandomAlias": "getRandomPrice",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "sku",
+      "randomApi": "randomSku",
+      "getRandomAlias": "getRandomSku",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "product-name",
+      "randomApi": "randomProductName",
+      "getRandomAlias": "getRandomProductName",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "product-category",
+      "randomApi": "randomProductCategory",
+      "getRandomAlias": "getRandomProductCategory",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "brand",
+      "randomApi": "randomBrand",
+      "getRandomAlias": "getRandomBrand",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "order-id",
+      "randomApi": "randomOrderId",
+      "getRandomAlias": "getRandomOrderId",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "invoice-number",
+      "randomApi": "randomInvoiceNumber",
+      "getRandomAlias": "getRandomInvoiceNumber",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "tax-rate",
+      "randomApi": "randomTaxRate",
+      "getRandomAlias": "getRandomTaxRate",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "shipping-method",
+      "randomApi": "randomShippingMethod",
+      "getRandomAlias": "getRandomShippingMethod",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "payment-method",
+      "randomApi": "randomPaymentMethod",
+      "getRandomAlias": "getRandomPaymentMethod",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "dice-roll",
+      "randomApi": "randomDiceRoll",
+      "getRandomAlias": "getRandomDiceRoll",
+      "returnType": "integer",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "playing-card",
+      "randomApi": "randomPlayingCard",
+      "getRandomAlias": "getRandomPlayingCard",
+      "returnType": "object",
+      "parameters": []
+    },
+    {
+      "id": "card-suit",
+      "randomApi": "randomCardSuit",
+      "getRandomAlias": "getRandomCardSuit",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "card-rank",
+      "randomApi": "randomCardRank",
+      "getRandomAlias": "getRandomCardRank",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "coin-flip",
+      "randomApi": "randomCoinFlip",
+      "getRandomAlias": "getRandomCoinFlip",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "lottery-pick",
+      "randomApi": "randomLotteryPick",
+      "getRandomAlias": "getRandomLotteryPick",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "team-name",
+      "randomApi": "randomTeamName",
+      "getRandomAlias": "getRandomTeamName",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "game-score",
+      "randomApi": "randomGameScore",
+      "getRandomAlias": "getRandomGameScore",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "rpg-class",
+      "randomApi": "randomRpgClass",
+      "getRandomAlias": "getRandomRpgClass",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "loot-rarity",
+      "randomApi": "randomLootRarity",
+      "getRandomAlias": "getRandomLootRarity",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "choice",
+      "randomApi": "randomChoice",
+      "getRandomAlias": "getRandomChoice",
+      "returnType": "item",
+      "parameters": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "weighted-choice",
+      "randomApi": "randomWeightedChoice",
+      "getRandomAlias": "getRandomWeightedChoice",
+      "returnType": "item",
+      "parameters": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        },
+        {
+          "name": "weights",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "sample",
+      "randomApi": "randomSample",
+      "getRandomAlias": "getRandomSample",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "shuffle",
+      "randomApi": "randomShuffle",
+      "getRandomAlias": "getRandomShuffle",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "permutation",
+      "randomApi": "randomPermutation",
+      "getRandomAlias": "getRandomPermutation",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "set",
+      "randomApi": "randomSet",
+      "getRandomAlias": "getRandomSet",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "tuple",
+      "randomApi": "randomTuple",
+      "getRandomAlias": "getRandomTuple",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "json-object",
+      "randomApi": "randomJsonObject",
+      "getRandomAlias": "getRandomJsonObject",
+      "returnType": "object",
+      "parameters": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "array",
+      "randomApi": "randomArray",
+      "getRandomAlias": "getRandomArray",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "matrix",
+      "randomApi": "randomMatrix",
+      "getRandomAlias": "getRandomMatrix",
+      "returnType": "array",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 1,
+          "required": false
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "semver",
+      "randomApi": "randomSemver",
+      "getRandomAlias": "getRandomSemver",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "git-sha",
+      "randomApi": "randomGitSha",
+      "getRandomAlias": "getRandomGitSha",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "package-name",
+      "randomApi": "randomPackageName",
+      "getRandomAlias": "getRandomPackageName",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "file-name",
+      "randomApi": "randomFileName",
+      "getRandomAlias": "getRandomFileName",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "file-extension",
+      "randomApi": "randomFileExtension",
+      "getRandomAlias": "getRandomFileExtension",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "file-path",
+      "randomApi": "randomFilePath",
+      "getRandomAlias": "getRandomFilePath",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "directory-path",
+      "randomApi": "randomDirectoryPath",
+      "getRandomAlias": "getRandomDirectoryPath",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "log-level",
+      "randomApi": "randomLogLevel",
+      "getRandomAlias": "getRandomLogLevel",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "http-method",
+      "randomApi": "randomHttpMethod",
+      "getRandomAlias": "getRandomHttpMethod",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "environment-name",
+      "randomApi": "randomEnvironmentName",
+      "getRandomAlias": "getRandomEnvironmentName",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "vector2",
+      "randomApi": "randomVector2",
+      "getRandomAlias": "getRandomVector2",
+      "returnType": "object",
+      "parameters": []
+    },
+    {
+      "id": "vector3",
+      "randomApi": "randomVector3",
+      "getRandomAlias": "getRandomVector3",
+      "returnType": "object",
+      "parameters": []
+    },
+    {
+      "id": "normal-distribution",
+      "randomApi": "randomNormal",
+      "getRandomAlias": "getRandomNormal",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "weighted-number",
+      "randomApi": "randomWeightedNumber",
+      "getRandomAlias": "getRandomWeightedNumber",
+      "returnType": "float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "weights",
+          "type": "array",
+          "default": null,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "unit",
+      "randomApi": "randomUnit",
+      "getRandomAlias": "getRandomUnit",
+      "returnType": "string",
+      "parameters": []
+    },
+    {
+      "id": "measurement",
+      "randomApi": "randomMeasurement",
+      "getRandomAlias": "getRandomMeasurement",
+      "returnType": "object",
+      "parameters": []
+    },
+    {
+      "id": "temperature",
+      "randomApi": "randomTemperature",
+      "getRandomAlias": "getRandomTemperature",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "duration-ms",
+      "randomApi": "randomDurationMs",
+      "getRandomAlias": "getRandomDurationMs",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "probability",
+      "randomApi": "randomProbability",
+      "getRandomAlias": "getRandomProbability",
+      "returnType": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "range",
+      "randomApi": "randomRange",
+      "getRandomAlias": "getRandomRange",
+      "returnType": "object",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "default": null,
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "default": null,
+          "required": false
+        }
+      ]
+    }
+  ]
+}

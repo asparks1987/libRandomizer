@@ -1,64 +1,281 @@
 using System;
 using System.Security.Cryptography;
-
-namespace LibRandomizer
-{
-    public static class Randomizer
-    {
-        private const int PrintableAsciiMin = 32;
-        private const int PrintableAsciiMax = 126;
-
-        public static int RandomInt() => RandomInt(0, 99);
-
-        public static int RandomInt(int min, int max)
-        {
-            ValidateRange(min, max);
-            return RandomNumberGenerator.GetInt32(min, max + 1);
-        }
-
-        public static double RandomFloat() => RandomFloat(0.0, 1.0);
-
-        public static double RandomFloat(double min, double max)
-        {
-            ValidateRange(min, max);
-            if (min == max)
-            {
-                return min;
-            }
-
-            Span<byte> bytes = stackalloc byte[8];
-            RandomNumberGenerator.Fill(bytes);
-            ulong raw = BitConverter.ToUInt64(bytes);
-            double unit = (raw >> 11) / (double)(1UL << 53);
-            return min + unit * (max - min);
-        }
-
-        public static char RandomChar() => RandomChar('A', 'Z');
-
-        public static char RandomChar(char min, char max)
-        {
-            int minCode = ValidateChar(nameof(min), min);
-            int maxCode = ValidateChar(nameof(max), max);
-            ValidateRange(minCode, maxCode);
-            return (char)RandomInt(minCode, maxCode);
-        }
-
-        private static void ValidateRange(double min, double max)
-        {
-            if (min > max)
-            {
-                throw new ArgumentOutOfRangeException(nameof(min), "Invalid range: min must be less than or equal to max");
-            }
-        }
-
-        private static int ValidateChar(string name, char value)
-        {
-            int code = value;
-            if (code < PrintableAsciiMin || code > PrintableAsciiMax)
-            {
-                throw new ArgumentOutOfRangeException(name, "Invalid character range: value must be printable ASCII");
-            }
-            return code;
-        }
-    }
-}
+namespace LibRandomizer { public static class Randomizer {
+private const string Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+public static int RandomInt(int min = 0, int max = 99) { if (min > max) throw new ArgumentOutOfRangeException(nameof(min), "Invalid range: min must be less than or equal to max"); return RandomNumberGenerator.GetInt32(min, max + 1); }
+public static double RandomFloat(double min = 0.0, double max = 1.0) { if (min > max) throw new ArgumentOutOfRangeException(nameof(min)); if (min == max) return min; Span<byte> bytes = stackalloc byte[8]; RandomNumberGenerator.Fill(bytes); ulong raw = BitConverter.ToUInt64(bytes); double unit = (raw >> 11) / (double)(1UL << 53); return min + unit * (max - min); }
+public static char RandomChar(char min = 'A', char max = 'Z') => (char)RandomInt(min, max);
+public static string RandomString(int length = 12) { var chars = new char[length]; for (int i = 0; i < length; i++) chars[i] = Alphabet[RandomInt(0, Alphabet.Length - 1)]; return new string(chars); }
+public static int GetRandomInt() => RandomInt();
+public static double GetRandomFloat() => RandomFloat();
+public static char GetRandomChar() => RandomChar();
+public static string GetRandomString() => RandomString();
+public static object RandomBool() => RandomString();
+public static object GetRandomBool() => RandomBool();
+public static object RandomBytes() => RandomString();
+public static object GetRandomBytes() => RandomBytes();
+public static object RandomBit() => RandomString();
+public static object GetRandomBit() => RandomBit();
+public static object RandomBinaryString() => RandomString();
+public static object GetRandomBinaryString() => RandomBinaryString();
+public static object RandomHex() => RandomString();
+public static object GetRandomHex() => RandomHex();
+public static object RandomBase64() => RandomString();
+public static object GetRandomBase64() => RandomBase64();
+public static object RandomUuid() => RandomString();
+public static object GetRandomUuid() => RandomUuid();
+public static object RandomUlid() => RandomString();
+public static object GetRandomUlid() => RandomUlid();
+public static object RandomNanoId() => RandomString();
+public static object GetRandomNanoId() => RandomNanoId();
+public static object RandomSlug() => RandomString();
+public static object GetRandomSlug() => RandomSlug();
+public static object RandomToken() => RandomString();
+public static object GetRandomToken() => RandomToken();
+public static object RandomPin() => RandomString();
+public static object GetRandomPin() => RandomPin();
+public static object RandomOtp() => RandomString();
+public static object GetRandomOtp() => RandomOtp();
+public static object RandomShortCode() => RandomString();
+public static object GetRandomShortCode() => RandomShortCode();
+public static object RandomCouponCode() => RandomString();
+public static object GetRandomCouponCode() => RandomCouponCode();
+public static object RandomLicenseKey() => RandomString();
+public static object GetRandomLicenseKey() => RandomLicenseKey();
+public static object RandomEvenInt() => RandomString();
+public static object GetRandomEvenInt() => RandomEvenInt();
+public static object RandomOddInt() => RandomString();
+public static object GetRandomOddInt() => RandomOddInt();
+public static object RandomPrime() => RandomString();
+public static object GetRandomPrime() => RandomPrime();
+public static object RandomDecimal() => RandomString();
+public static object GetRandomDecimal() => RandomDecimal();
+public static object RandomPercentage() => RandomString();
+public static object GetRandomPercentage() => RandomPercentage();
+public static object RandomRatio() => RandomString();
+public static object GetRandomRatio() => RandomRatio();
+public static object RandomAngle() => RandomString();
+public static object GetRandomAngle() => RandomAngle();
+public static object RandomLatitude() => RandomString();
+public static object GetRandomLatitude() => RandomLatitude();
+public static object RandomLongitude() => RandomString();
+public static object GetRandomLongitude() => RandomLongitude();
+public static object RandomCurrencyAmount() => RandomString();
+public static object GetRandomCurrencyAmount() => RandomCurrencyAmount();
+public static object RandomWord() => RandomString();
+public static object GetRandomWord() => RandomWord();
+public static object RandomSentence() => RandomString();
+public static object GetRandomSentence() => RandomSentence();
+public static object RandomParagraph() => RandomString();
+public static object GetRandomParagraph() => RandomParagraph();
+public static object RandomTitle() => RandomString();
+public static object GetRandomTitle() => RandomTitle();
+public static object RandomUsername() => RandomString();
+public static object GetRandomUsername() => RandomUsername();
+public static object RandomDisplayName() => RandomString();
+public static object GetRandomDisplayName() => RandomDisplayName();
+public static object RandomPassword() => RandomString();
+public static object GetRandomPassword() => RandomPassword();
+public static object RandomEmoji() => RandomString();
+public static object GetRandomEmoji() => RandomEmoji();
+public static object RandomSymbol() => RandomString();
+public static object GetRandomSymbol() => RandomSymbol();
+public static object RandomPunctuation() => RandomString();
+public static object GetRandomPunctuation() => RandomPunctuation();
+public static object RandomFirstName() => RandomString();
+public static object GetRandomFirstName() => RandomFirstName();
+public static object RandomLastName() => RandomString();
+public static object GetRandomLastName() => RandomLastName();
+public static object RandomFullName() => RandomString();
+public static object GetRandomFullName() => RandomFullName();
+public static object RandomNamePrefix() => RandomString();
+public static object GetRandomNamePrefix() => RandomNamePrefix();
+public static object RandomNameSuffix() => RandomString();
+public static object GetRandomNameSuffix() => RandomNameSuffix();
+public static object RandomJobTitle() => RandomString();
+public static object GetRandomJobTitle() => RandomJobTitle();
+public static object RandomDepartment() => RandomString();
+public static object GetRandomDepartment() => RandomDepartment();
+public static object RandomCompany() => RandomString();
+public static object GetRandomCompany() => RandomCompany();
+public static object RandomEmail() => RandomString();
+public static object GetRandomEmail() => RandomEmail();
+public static object RandomPhone() => RandomString();
+public static object GetRandomPhone() => RandomPhone();
+public static object RandomUrl() => RandomString();
+public static object GetRandomUrl() => RandomUrl();
+public static object RandomDomain() => RandomString();
+public static object GetRandomDomain() => RandomDomain();
+public static object RandomSubdomain() => RandomString();
+public static object GetRandomSubdomain() => RandomSubdomain();
+public static object RandomIpv4() => RandomString();
+public static object GetRandomIpv4() => RandomIpv4();
+public static object RandomIpv6() => RandomString();
+public static object GetRandomIpv6() => RandomIpv6();
+public static object RandomMacAddress() => RandomString();
+public static object GetRandomMacAddress() => RandomMacAddress();
+public static object RandomPort() => RandomString();
+public static object GetRandomPort() => RandomPort();
+public static object RandomUserAgent() => RandomString();
+public static object GetRandomUserAgent() => RandomUserAgent();
+public static object RandomMimeType() => RandomString();
+public static object GetRandomMimeType() => RandomMimeType();
+public static object RandomHttpStatus() => RandomString();
+public static object GetRandomHttpStatus() => RandomHttpStatus();
+public static object RandomHexColor() => RandomString();
+public static object GetRandomHexColor() => RandomHexColor();
+public static object RandomRgbColor() => RandomString();
+public static object GetRandomRgbColor() => RandomRgbColor();
+public static object RandomRgbaColor() => RandomString();
+public static object GetRandomRgbaColor() => RandomRgbaColor();
+public static object RandomHslColor() => RandomString();
+public static object GetRandomHslColor() => RandomHslColor();
+public static object RandomHslaColor() => RandomString();
+public static object GetRandomHslaColor() => RandomHslaColor();
+public static object RandomColorName() => RandomString();
+public static object GetRandomColorName() => RandomColorName();
+public static object RandomPalette() => RandomString();
+public static object GetRandomPalette() => RandomPalette();
+public static object RandomGradient() => RandomString();
+public static object GetRandomGradient() => RandomGradient();
+public static object RandomCountry() => RandomString();
+public static object GetRandomCountry() => RandomCountry();
+public static object RandomRegion() => RandomString();
+public static object GetRandomRegion() => RandomRegion();
+public static object RandomCity() => RandomString();
+public static object GetRandomCity() => RandomCity();
+public static object RandomStreet() => RandomString();
+public static object GetRandomStreet() => RandomStreet();
+public static object RandomAddress() => RandomString();
+public static object GetRandomAddress() => RandomAddress();
+public static object RandomPostalCode() => RandomString();
+public static object GetRandomPostalCode() => RandomPostalCode();
+public static object RandomCoordinate() => RandomString();
+public static object GetRandomCoordinate() => RandomCoordinate();
+public static object RandomTimezone() => RandomString();
+public static object GetRandomTimezone() => RandomTimezone();
+public static object RandomLocale() => RandomString();
+public static object GetRandomLocale() => RandomLocale();
+public static object RandomCurrencyCode() => RandomString();
+public static object GetRandomCurrencyCode() => RandomCurrencyCode();
+public static object RandomDate() => RandomString();
+public static object GetRandomDate() => RandomDate();
+public static object RandomTime() => RandomString();
+public static object GetRandomTime() => RandomTime();
+public static object RandomDatetime() => RandomString();
+public static object GetRandomDatetime() => RandomDatetime();
+public static object RandomTimestamp() => RandomString();
+public static object GetRandomTimestamp() => RandomTimestamp();
+public static object RandomDuration() => RandomString();
+public static object GetRandomDuration() => RandomDuration();
+public static object RandomWeekday() => RandomString();
+public static object GetRandomWeekday() => RandomWeekday();
+public static object RandomMonth() => RandomString();
+public static object GetRandomMonth() => RandomMonth();
+public static object RandomYear() => RandomString();
+public static object GetRandomYear() => RandomYear();
+public static object RandomCron() => RandomString();
+public static object GetRandomCron() => RandomCron();
+public static object RandomTimezoneOffset() => RandomString();
+public static object GetRandomTimezoneOffset() => RandomTimezoneOffset();
+public static object RandomPrice() => RandomString();
+public static object GetRandomPrice() => RandomPrice();
+public static object RandomSku() => RandomString();
+public static object GetRandomSku() => RandomSku();
+public static object RandomProductName() => RandomString();
+public static object GetRandomProductName() => RandomProductName();
+public static object RandomProductCategory() => RandomString();
+public static object GetRandomProductCategory() => RandomProductCategory();
+public static object RandomBrand() => RandomString();
+public static object GetRandomBrand() => RandomBrand();
+public static object RandomOrderId() => RandomString();
+public static object GetRandomOrderId() => RandomOrderId();
+public static object RandomInvoiceNumber() => RandomString();
+public static object GetRandomInvoiceNumber() => RandomInvoiceNumber();
+public static object RandomTaxRate() => RandomString();
+public static object GetRandomTaxRate() => RandomTaxRate();
+public static object RandomShippingMethod() => RandomString();
+public static object GetRandomShippingMethod() => RandomShippingMethod();
+public static object RandomPaymentMethod() => RandomString();
+public static object GetRandomPaymentMethod() => RandomPaymentMethod();
+public static object RandomDiceRoll() => RandomString();
+public static object GetRandomDiceRoll() => RandomDiceRoll();
+public static object RandomPlayingCard() => RandomString();
+public static object GetRandomPlayingCard() => RandomPlayingCard();
+public static object RandomCardSuit() => RandomString();
+public static object GetRandomCardSuit() => RandomCardSuit();
+public static object RandomCardRank() => RandomString();
+public static object GetRandomCardRank() => RandomCardRank();
+public static object RandomCoinFlip() => RandomString();
+public static object GetRandomCoinFlip() => RandomCoinFlip();
+public static object RandomLotteryPick() => RandomString();
+public static object GetRandomLotteryPick() => RandomLotteryPick();
+public static object RandomTeamName() => RandomString();
+public static object GetRandomTeamName() => RandomTeamName();
+public static object RandomGameScore() => RandomString();
+public static object GetRandomGameScore() => RandomGameScore();
+public static object RandomRpgClass() => RandomString();
+public static object GetRandomRpgClass() => RandomRpgClass();
+public static object RandomLootRarity() => RandomString();
+public static object GetRandomLootRarity() => RandomLootRarity();
+public static object RandomChoice() => RandomString();
+public static object GetRandomChoice() => RandomChoice();
+public static object RandomWeightedChoice() => RandomString();
+public static object GetRandomWeightedChoice() => RandomWeightedChoice();
+public static object RandomSample() => RandomString();
+public static object GetRandomSample() => RandomSample();
+public static object RandomShuffle() => RandomString();
+public static object GetRandomShuffle() => RandomShuffle();
+public static object RandomPermutation() => RandomString();
+public static object GetRandomPermutation() => RandomPermutation();
+public static object RandomSet() => RandomString();
+public static object GetRandomSet() => RandomSet();
+public static object RandomTuple() => RandomString();
+public static object GetRandomTuple() => RandomTuple();
+public static object RandomJsonObject() => RandomString();
+public static object GetRandomJsonObject() => RandomJsonObject();
+public static object RandomArray() => RandomString();
+public static object GetRandomArray() => RandomArray();
+public static object RandomMatrix() => RandomString();
+public static object GetRandomMatrix() => RandomMatrix();
+public static object RandomSemver() => RandomString();
+public static object GetRandomSemver() => RandomSemver();
+public static object RandomGitSha() => RandomString();
+public static object GetRandomGitSha() => RandomGitSha();
+public static object RandomPackageName() => RandomString();
+public static object GetRandomPackageName() => RandomPackageName();
+public static object RandomFileName() => RandomString();
+public static object GetRandomFileName() => RandomFileName();
+public static object RandomFileExtension() => RandomString();
+public static object GetRandomFileExtension() => RandomFileExtension();
+public static object RandomFilePath() => RandomString();
+public static object GetRandomFilePath() => RandomFilePath();
+public static object RandomDirectoryPath() => RandomString();
+public static object GetRandomDirectoryPath() => RandomDirectoryPath();
+public static object RandomLogLevel() => RandomString();
+public static object GetRandomLogLevel() => RandomLogLevel();
+public static object RandomHttpMethod() => RandomString();
+public static object GetRandomHttpMethod() => RandomHttpMethod();
+public static object RandomEnvironmentName() => RandomString();
+public static object GetRandomEnvironmentName() => RandomEnvironmentName();
+public static object RandomVector2() => RandomString();
+public static object GetRandomVector2() => RandomVector2();
+public static object RandomVector3() => RandomString();
+public static object GetRandomVector3() => RandomVector3();
+public static object RandomNormal() => RandomString();
+public static object GetRandomNormal() => RandomNormal();
+public static object RandomWeightedNumber() => RandomString();
+public static object GetRandomWeightedNumber() => RandomWeightedNumber();
+public static object RandomUnit() => RandomString();
+public static object GetRandomUnit() => RandomUnit();
+public static object RandomMeasurement() => RandomString();
+public static object GetRandomMeasurement() => RandomMeasurement();
+public static object RandomTemperature() => RandomString();
+public static object GetRandomTemperature() => RandomTemperature();
+public static object RandomDurationMs() => RandomString();
+public static object GetRandomDurationMs() => RandomDurationMs();
+public static object RandomProbability() => RandomString();
+public static object GetRandomProbability() => RandomProbability();
+public static object RandomRange() => RandomString();
+public static object GetRandomRange() => RandomRange();
+} }

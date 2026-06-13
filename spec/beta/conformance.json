@@ -1,0 +1,1778 @@
+{
+  "version": "0.2.0-beta-docs",
+  "contractVersion": "0.1.0-beta-production-burndown",
+  "randomness": "os-csprng",
+  "caseCount": 138,
+  "cases": [
+    {
+      "id": "int",
+      "api": "randomInt",
+      "command": "int",
+      "returnType": "integer",
+      "defaultArgs": {
+        "min": 0,
+        "max": 99
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "float",
+      "api": "randomFloat",
+      "command": "float",
+      "returnType": "float",
+      "defaultArgs": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "char",
+      "api": "randomChar",
+      "command": "char",
+      "returnType": "character",
+      "defaultArgs": {
+        "min": "A",
+        "max": "Z"
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        },
+        {
+          "args": {
+            "min": "AB",
+            "max": "Z"
+          },
+          "errorContains": "one character"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "bool",
+      "api": "randomBool",
+      "command": "bool",
+      "returnType": "boolean",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "string",
+      "api": "randomString",
+      "command": "string",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 12
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "bytes",
+      "api": "randomBytes",
+      "command": "bytes",
+      "returnType": "bytes",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "bit",
+      "api": "randomBit",
+      "command": "bit",
+      "returnType": "integer",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "binary-string",
+      "api": "randomBinaryString",
+      "command": "binary-string",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "hex-string",
+      "api": "randomHex",
+      "command": "hex-string",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "base64-string",
+      "api": "randomBase64",
+      "command": "base64-string",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "uuid",
+      "api": "randomUuid",
+      "command": "uuid",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "ulid",
+      "api": "randomUlid",
+      "command": "ulid",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "nanoid",
+      "api": "randomNanoId",
+      "command": "nanoid",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "slug",
+      "api": "randomSlug",
+      "command": "slug",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "token",
+      "api": "randomToken",
+      "command": "token",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "pin",
+      "api": "randomPin",
+      "command": "pin",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "otp",
+      "api": "randomOtp",
+      "command": "otp",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "short-code",
+      "api": "randomShortCode",
+      "command": "short-code",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "coupon-code",
+      "api": "randomCouponCode",
+      "command": "coupon-code",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "license-key",
+      "api": "randomLicenseKey",
+      "command": "license-key",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "even-int",
+      "api": "randomEvenInt",
+      "command": "even-int",
+      "returnType": "integer",
+      "defaultArgs": {
+        "min": 0,
+        "max": 99
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "odd-int",
+      "api": "randomOddInt",
+      "command": "odd-int",
+      "returnType": "integer",
+      "defaultArgs": {
+        "min": 0,
+        "max": 99
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "prime",
+      "api": "randomPrime",
+      "command": "prime",
+      "returnType": "integer",
+      "defaultArgs": {
+        "min": 0,
+        "max": 99
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "decimal",
+      "api": "randomDecimal",
+      "command": "decimal",
+      "returnType": "decimal",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "percentage",
+      "api": "randomPercentage",
+      "command": "percentage",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "ratio",
+      "api": "randomRatio",
+      "command": "ratio",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "angle",
+      "api": "randomAngle",
+      "command": "angle",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "latitude",
+      "api": "randomLatitude",
+      "command": "latitude",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "longitude",
+      "api": "randomLongitude",
+      "command": "longitude",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "currency-amount",
+      "api": "randomCurrencyAmount",
+      "command": "currency-amount",
+      "returnType": "decimal",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "word",
+      "api": "randomWord",
+      "command": "word",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "sentence",
+      "api": "randomSentence",
+      "command": "sentence",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "paragraph",
+      "api": "randomParagraph",
+      "command": "paragraph",
+      "returnType": "string",
+      "defaultArgs": {
+        "count": 1,
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "title",
+      "api": "randomTitle",
+      "command": "title",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "username",
+      "api": "randomUsername",
+      "command": "username",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "display-name",
+      "api": "randomDisplayName",
+      "command": "display-name",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "password",
+      "api": "randomPassword",
+      "command": "password",
+      "returnType": "string",
+      "defaultArgs": {
+        "length": 16,
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "length": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "emoji",
+      "api": "randomEmoji",
+      "command": "emoji",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "symbol",
+      "api": "randomSymbol",
+      "command": "symbol",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "punctuation",
+      "api": "randomPunctuation",
+      "command": "punctuation",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US",
+        "allowAdult": false
+      },
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "first-name",
+      "api": "randomFirstName",
+      "command": "first-name",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "last-name",
+      "api": "randomLastName",
+      "command": "last-name",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "full-name",
+      "api": "randomFullName",
+      "command": "full-name",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "name-prefix",
+      "api": "randomNamePrefix",
+      "command": "name-prefix",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "name-suffix",
+      "api": "randomNameSuffix",
+      "command": "name-suffix",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "job-title",
+      "api": "randomJobTitle",
+      "command": "job-title",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "department",
+      "api": "randomDepartment",
+      "command": "department",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "company",
+      "api": "randomCompany",
+      "command": "company",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "email",
+      "api": "randomEmail",
+      "command": "email",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "phone",
+      "api": "randomPhone",
+      "command": "phone",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "url",
+      "api": "randomUrl",
+      "command": "url",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "domain",
+      "api": "randomDomain",
+      "command": "domain",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "subdomain",
+      "api": "randomSubdomain",
+      "command": "subdomain",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "ipv4",
+      "api": "randomIpv4",
+      "command": "ipv4",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "ipv6",
+      "api": "randomIpv6",
+      "command": "ipv6",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "mac-address",
+      "api": "randomMacAddress",
+      "command": "mac-address",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "port",
+      "api": "randomPort",
+      "command": "port",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "user-agent",
+      "api": "randomUserAgent",
+      "command": "user-agent",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "mime-type",
+      "api": "randomMimeType",
+      "command": "mime-type",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "http-status",
+      "api": "randomHttpStatus",
+      "command": "http-status",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "hex-color",
+      "api": "randomHexColor",
+      "command": "hex-color",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "rgb-color",
+      "api": "randomRgbColor",
+      "command": "rgb-color",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "rgba-color",
+      "api": "randomRgbaColor",
+      "command": "rgba-color",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "hsl-color",
+      "api": "randomHslColor",
+      "command": "hsl-color",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "hsla-color",
+      "api": "randomHslaColor",
+      "command": "hsla-color",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "color-name",
+      "api": "randomColorName",
+      "command": "color-name",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "palette",
+      "api": "randomPalette",
+      "command": "palette",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "gradient",
+      "api": "randomGradient",
+      "command": "gradient",
+      "returnType": "string",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "country",
+      "api": "randomCountry",
+      "command": "country",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "region",
+      "api": "randomRegion",
+      "command": "region",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "city",
+      "api": "randomCity",
+      "command": "city",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "street",
+      "api": "randomStreet",
+      "command": "street",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "address",
+      "api": "randomAddress",
+      "command": "address",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "postal-code",
+      "api": "randomPostalCode",
+      "command": "postal-code",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "coordinate",
+      "api": "randomCoordinate",
+      "command": "coordinate",
+      "returnType": "object",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "timezone",
+      "api": "randomTimezone",
+      "command": "timezone",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "locale",
+      "api": "randomLocale",
+      "command": "locale",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "currency-code",
+      "api": "randomCurrencyCode",
+      "command": "currency-code",
+      "returnType": "string",
+      "defaultArgs": {
+        "locale": "en-US"
+      },
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "date",
+      "api": "randomDate",
+      "command": "date",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "time",
+      "api": "randomTime",
+      "command": "time",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "datetime",
+      "api": "randomDatetime",
+      "command": "datetime",
+      "returnType": "datetime",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "timestamp",
+      "api": "randomTimestamp",
+      "command": "timestamp",
+      "returnType": "integer",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "duration",
+      "api": "randomDuration",
+      "command": "duration",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "weekday",
+      "api": "randomWeekday",
+      "command": "weekday",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "month",
+      "api": "randomMonth",
+      "command": "month",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "year",
+      "api": "randomYear",
+      "command": "year",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "cron",
+      "api": "randomCron",
+      "command": "cron",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "timezone-offset",
+      "api": "randomTimezoneOffset",
+      "command": "timezone-offset",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "price",
+      "api": "randomPrice",
+      "command": "price",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "sku",
+      "api": "randomSku",
+      "command": "sku",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "product-name",
+      "api": "randomProductName",
+      "command": "product-name",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "product-category",
+      "api": "randomProductCategory",
+      "command": "product-category",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "brand",
+      "api": "randomBrand",
+      "command": "brand",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "order-id",
+      "api": "randomOrderId",
+      "command": "order-id",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "invoice-number",
+      "api": "randomInvoiceNumber",
+      "command": "invoice-number",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "tax-rate",
+      "api": "randomTaxRate",
+      "command": "tax-rate",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "shipping-method",
+      "api": "randomShippingMethod",
+      "command": "shipping-method",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "payment-method",
+      "api": "randomPaymentMethod",
+      "command": "payment-method",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "dice-roll",
+      "api": "randomDiceRoll",
+      "command": "dice-roll",
+      "returnType": "integer",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "playing-card",
+      "api": "randomPlayingCard",
+      "command": "playing-card",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "card-suit",
+      "api": "randomCardSuit",
+      "command": "card-suit",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "card-rank",
+      "api": "randomCardRank",
+      "command": "card-rank",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "coin-flip",
+      "api": "randomCoinFlip",
+      "command": "coin-flip",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "lottery-pick",
+      "api": "randomLotteryPick",
+      "command": "lottery-pick",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "team-name",
+      "api": "randomTeamName",
+      "command": "team-name",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "game-score",
+      "api": "randomGameScore",
+      "command": "game-score",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": true
+    },
+    {
+      "id": "rpg-class",
+      "api": "randomRpgClass",
+      "command": "rpg-class",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "loot-rarity",
+      "api": "randomLootRarity",
+      "command": "loot-rarity",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "choice",
+      "api": "randomChoice",
+      "command": "choice",
+      "returnType": "item",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "weighted-choice",
+      "api": "randomWeightedChoice",
+      "command": "weighted-choice",
+      "returnType": "item",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "items": [
+              "a"
+            ],
+            "weights": []
+          },
+          "errorContains": "weights"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "sample",
+      "api": "randomSample",
+      "command": "sample",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "shuffle",
+      "api": "randomShuffle",
+      "command": "shuffle",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "permutation",
+      "api": "randomPermutation",
+      "command": "permutation",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "set",
+      "api": "randomSet",
+      "command": "set",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "tuple",
+      "api": "randomTuple",
+      "command": "tuple",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "json-object",
+      "api": "randomJsonObject",
+      "command": "json-object",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "array",
+      "api": "randomArray",
+      "command": "array",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "matrix",
+      "api": "randomMatrix",
+      "command": "matrix",
+      "returnType": "array",
+      "defaultArgs": {
+        "count": 1
+      },
+      "invalidCases": [
+        {
+          "args": {
+            "count": -1
+          },
+          "errorContains": "non-negative integer"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "semver",
+      "api": "randomSemver",
+      "command": "semver",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "git-sha",
+      "api": "randomGitSha",
+      "command": "git-sha",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "package-name",
+      "api": "randomPackageName",
+      "command": "package-name",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "file-name",
+      "api": "randomFileName",
+      "command": "file-name",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "file-extension",
+      "api": "randomFileExtension",
+      "command": "file-extension",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "file-path",
+      "api": "randomFilePath",
+      "command": "file-path",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "directory-path",
+      "api": "randomDirectoryPath",
+      "command": "directory-path",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "log-level",
+      "api": "randomLogLevel",
+      "command": "log-level",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "http-method",
+      "api": "randomHttpMethod",
+      "command": "http-method",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "environment-name",
+      "api": "randomEnvironmentName",
+      "command": "environment-name",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": true
+    },
+    {
+      "id": "vector2",
+      "api": "randomVector2",
+      "command": "vector2",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "vector3",
+      "api": "randomVector3",
+      "command": "vector3",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "normal-distribution",
+      "api": "randomNormal",
+      "command": "normal-distribution",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "weighted-number",
+      "api": "randomWeightedNumber",
+      "command": "weighted-number",
+      "returnType": "float",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "unit",
+      "api": "randomUnit",
+      "command": "unit",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "measurement",
+      "api": "randomMeasurement",
+      "command": "measurement",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [],
+      "safeTextDefault": false
+    },
+    {
+      "id": "temperature",
+      "api": "randomTemperature",
+      "command": "temperature",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "duration-ms",
+      "api": "randomDurationMs",
+      "command": "duration-ms",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "probability",
+      "api": "randomProbability",
+      "command": "probability",
+      "returnType": "string",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    },
+    {
+      "id": "range",
+      "api": "randomRange",
+      "command": "range",
+      "returnType": "object",
+      "defaultArgs": {},
+      "invalidCases": [
+        {
+          "args": {
+            "min": 10,
+            "max": 1
+          },
+          "errorContains": "min must be less than or equal to max"
+        }
+      ],
+      "safeTextDefault": false
+    }
+  ]
+}

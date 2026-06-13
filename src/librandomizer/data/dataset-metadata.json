@@ -1,0 +1,216 @@
+{
+  "license": "MIT",
+  "source": "In-house authored beta seed data.",
+  "updatePolicy": "Curate manually before each beta release; replace with larger documented corpora when needed.",
+  "localeCoverage": [
+    "en-US"
+  ],
+  "safeDefault": true,
+  "adultOptIn": true,
+  "datasets": {
+    "safe_words": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "adult_words": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": false,
+      "locale": "en-US"
+    },
+    "first_names": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "last_names": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "name_prefixes": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "name_suffixes": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "job_titles": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "departments": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "companies": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "countries": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "regions": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "cities": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "streets": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "timezones": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "locales": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "currency_codes": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "user_agents": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "mime_types": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "http_statuses": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "http_methods": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "color_names": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "product_categories": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "brands": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "shipping_methods": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "payment_methods": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "card_suits": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "card_ranks": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "team_terms": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "rpg_classes": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "loot_rarities": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "file_extensions": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "log_levels": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "environment_names": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    },
+    "units": {
+      "source": "In-house authored",
+      "license": "MIT",
+      "safeByDefault": true,
+      "locale": "en-US"
+    }
+  }
+}

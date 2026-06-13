@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "librandomizer"
-  spec.version = "0.1.0.alpha.1"
+  spec.version = "0.1.0.beta.1"
   spec.summary = "Native Ruby SDK for libRandomizer v1."
   spec.authors = ["Aryn M. Sparks"]
   spec.license = "MIT"

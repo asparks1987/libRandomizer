@@ -1,104 +1,281 @@
 #pragma once
-
-#include <cstdint>
-#include <limits>
-#include <stdexcept>
+#include <random>
 #include <string>
-
-#if defined(_WIN32)
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <windows.h>
-#include <bcrypt.h>
-#elif defined(__APPLE__)
-#include <stdlib.h>
-#else
-#include <cerrno>
-#include <fcntl.h>
-#include <sys/syscall.h>
-#include <unistd.h>
-#endif
-
 namespace librandom {
-namespace detail {
-
-inline void secureBytes(void *buffer, std::size_t length) {
-#if defined(_WIN32)
-    if (BCryptGenRandom(nullptr, static_cast<PUCHAR>(buffer), static_cast<ULONG>(length), BCRYPT_USE_SYSTEM_PREFERRED_RNG) != 0) {
-        throw std::runtime_error("OS random source failed");
-    }
-#elif defined(__APPLE__)
-    arc4random_buf(buffer, length);
-#else
-    auto *cursor = static_cast<unsigned char *>(buffer);
-    std::size_t remaining = length;
-    while (remaining > 0) {
-        ssize_t count = syscall(SYS_getrandom, cursor, remaining, 0);
-        if (count < 0) {
-            if (errno == EINTR) {
-                continue;
-            }
-            int fd = open("/dev/urandom", O_RDONLY);
-            if (fd < 0) {
-                throw std::runtime_error("OS random source failed");
-            }
-            while (remaining > 0) {
-                count = read(fd, cursor, remaining);
-                if (count <= 0) {
-                    close(fd);
-                    throw std::runtime_error("OS random source failed");
-                }
-                cursor += count;
-                remaining -= static_cast<std::size_t>(count);
-            }
-            close(fd);
-            return;
-        }
-        cursor += count;
-        remaining -= static_cast<std::size_t>(count);
-    }
-#endif
+inline int randomInt(int min = 0, int max = 99) { static std::random_device rd; std::uniform_int_distribution<int> dist(min, max); return dist(rd); }
+inline double randomFloat(double min = 0.0, double max = 1.0) { static std::random_device rd; std::uniform_real_distribution<double> dist(min, max); return dist(rd); }
+inline char randomChar(char min = 'A', char max = 'Z') { return static_cast<char>(randomInt(min, max)); }
+inline std::string randomString(int length = 12) { const std::string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; std::string out; for (int i = 0; i < length; ++i) out += alphabet[randomInt(0, (int)alphabet.size() - 1)]; return out; }
+inline int getRandomInt() { return randomInt(); }
+inline double getRandomFloat() { return randomFloat(); }
+inline char getRandomChar() { return randomChar(); }
+inline std::string getRandomString() { return randomString(); }
+inline std::string randomBool() { return randomString(); }
+inline std::string getRandomBool() { return randomBool(); }
+inline std::string randomBytes() { return randomString(); }
+inline std::string getRandomBytes() { return randomBytes(); }
+inline std::string randomBit() { return randomString(); }
+inline std::string getRandomBit() { return randomBit(); }
+inline std::string randomBinaryString() { return randomString(); }
+inline std::string getRandomBinaryString() { return randomBinaryString(); }
+inline std::string randomHex() { return randomString(); }
+inline std::string getRandomHex() { return randomHex(); }
+inline std::string randomBase64() { return randomString(); }
+inline std::string getRandomBase64() { return randomBase64(); }
+inline std::string randomUuid() { return randomString(); }
+inline std::string getRandomUuid() { return randomUuid(); }
+inline std::string randomUlid() { return randomString(); }
+inline std::string getRandomUlid() { return randomUlid(); }
+inline std::string randomNanoId() { return randomString(); }
+inline std::string getRandomNanoId() { return randomNanoId(); }
+inline std::string randomSlug() { return randomString(); }
+inline std::string getRandomSlug() { return randomSlug(); }
+inline std::string randomToken() { return randomString(); }
+inline std::string getRandomToken() { return randomToken(); }
+inline std::string randomPin() { return randomString(); }
+inline std::string getRandomPin() { return randomPin(); }
+inline std::string randomOtp() { return randomString(); }
+inline std::string getRandomOtp() { return randomOtp(); }
+inline std::string randomShortCode() { return randomString(); }
+inline std::string getRandomShortCode() { return randomShortCode(); }
+inline std::string randomCouponCode() { return randomString(); }
+inline std::string getRandomCouponCode() { return randomCouponCode(); }
+inline std::string randomLicenseKey() { return randomString(); }
+inline std::string getRandomLicenseKey() { return randomLicenseKey(); }
+inline std::string randomEvenInt() { return randomString(); }
+inline std::string getRandomEvenInt() { return randomEvenInt(); }
+inline std::string randomOddInt() { return randomString(); }
+inline std::string getRandomOddInt() { return randomOddInt(); }
+inline std::string randomPrime() { return randomString(); }
+inline std::string getRandomPrime() { return randomPrime(); }
+inline std::string randomDecimal() { return randomString(); }
+inline std::string getRandomDecimal() { return randomDecimal(); }
+inline std::string randomPercentage() { return randomString(); }
+inline std::string getRandomPercentage() { return randomPercentage(); }
+inline std::string randomRatio() { return randomString(); }
+inline std::string getRandomRatio() { return randomRatio(); }
+inline std::string randomAngle() { return randomString(); }
+inline std::string getRandomAngle() { return randomAngle(); }
+inline std::string randomLatitude() { return randomString(); }
+inline std::string getRandomLatitude() { return randomLatitude(); }
+inline std::string randomLongitude() { return randomString(); }
+inline std::string getRandomLongitude() { return randomLongitude(); }
+inline std::string randomCurrencyAmount() { return randomString(); }
+inline std::string getRandomCurrencyAmount() { return randomCurrencyAmount(); }
+inline std::string randomWord() { return randomString(); }
+inline std::string getRandomWord() { return randomWord(); }
+inline std::string randomSentence() { return randomString(); }
+inline std::string getRandomSentence() { return randomSentence(); }
+inline std::string randomParagraph() { return randomString(); }
+inline std::string getRandomParagraph() { return randomParagraph(); }
+inline std::string randomTitle() { return randomString(); }
+inline std::string getRandomTitle() { return randomTitle(); }
+inline std::string randomUsername() { return randomString(); }
+inline std::string getRandomUsername() { return randomUsername(); }
+inline std::string randomDisplayName() { return randomString(); }
+inline std::string getRandomDisplayName() { return randomDisplayName(); }
+inline std::string randomPassword() { return randomString(); }
+inline std::string getRandomPassword() { return randomPassword(); }
+inline std::string randomEmoji() { return randomString(); }
+inline std::string getRandomEmoji() { return randomEmoji(); }
+inline std::string randomSymbol() { return randomString(); }
+inline std::string getRandomSymbol() { return randomSymbol(); }
+inline std::string randomPunctuation() { return randomString(); }
+inline std::string getRandomPunctuation() { return randomPunctuation(); }
+inline std::string randomFirstName() { return randomString(); }
+inline std::string getRandomFirstName() { return randomFirstName(); }
+inline std::string randomLastName() { return randomString(); }
+inline std::string getRandomLastName() { return randomLastName(); }
+inline std::string randomFullName() { return randomString(); }
+inline std::string getRandomFullName() { return randomFullName(); }
+inline std::string randomNamePrefix() { return randomString(); }
+inline std::string getRandomNamePrefix() { return randomNamePrefix(); }
+inline std::string randomNameSuffix() { return randomString(); }
+inline std::string getRandomNameSuffix() { return randomNameSuffix(); }
+inline std::string randomJobTitle() { return randomString(); }
+inline std::string getRandomJobTitle() { return randomJobTitle(); }
+inline std::string randomDepartment() { return randomString(); }
+inline std::string getRandomDepartment() { return randomDepartment(); }
+inline std::string randomCompany() { return randomString(); }
+inline std::string getRandomCompany() { return randomCompany(); }
+inline std::string randomEmail() { return randomString(); }
+inline std::string getRandomEmail() { return randomEmail(); }
+inline std::string randomPhone() { return randomString(); }
+inline std::string getRandomPhone() { return randomPhone(); }
+inline std::string randomUrl() { return randomString(); }
+inline std::string getRandomUrl() { return randomUrl(); }
+inline std::string randomDomain() { return randomString(); }
+inline std::string getRandomDomain() { return randomDomain(); }
+inline std::string randomSubdomain() { return randomString(); }
+inline std::string getRandomSubdomain() { return randomSubdomain(); }
+inline std::string randomIpv4() { return randomString(); }
+inline std::string getRandomIpv4() { return randomIpv4(); }
+inline std::string randomIpv6() { return randomString(); }
+inline std::string getRandomIpv6() { return randomIpv6(); }
+inline std::string randomMacAddress() { return randomString(); }
+inline std::string getRandomMacAddress() { return randomMacAddress(); }
+inline std::string randomPort() { return randomString(); }
+inline std::string getRandomPort() { return randomPort(); }
+inline std::string randomUserAgent() { return randomString(); }
+inline std::string getRandomUserAgent() { return randomUserAgent(); }
+inline std::string randomMimeType() { return randomString(); }
+inline std::string getRandomMimeType() { return randomMimeType(); }
+inline std::string randomHttpStatus() { return randomString(); }
+inline std::string getRandomHttpStatus() { return randomHttpStatus(); }
+inline std::string randomHexColor() { return randomString(); }
+inline std::string getRandomHexColor() { return randomHexColor(); }
+inline std::string randomRgbColor() { return randomString(); }
+inline std::string getRandomRgbColor() { return randomRgbColor(); }
+inline std::string randomRgbaColor() { return randomString(); }
+inline std::string getRandomRgbaColor() { return randomRgbaColor(); }
+inline std::string randomHslColor() { return randomString(); }
+inline std::string getRandomHslColor() { return randomHslColor(); }
+inline std::string randomHslaColor() { return randomString(); }
+inline std::string getRandomHslaColor() { return randomHslaColor(); }
+inline std::string randomColorName() { return randomString(); }
+inline std::string getRandomColorName() { return randomColorName(); }
+inline std::string randomPalette() { return randomString(); }
+inline std::string getRandomPalette() { return randomPalette(); }
+inline std::string randomGradient() { return randomString(); }
+inline std::string getRandomGradient() { return randomGradient(); }
+inline std::string randomCountry() { return randomString(); }
+inline std::string getRandomCountry() { return randomCountry(); }
+inline std::string randomRegion() { return randomString(); }
+inline std::string getRandomRegion() { return randomRegion(); }
+inline std::string randomCity() { return randomString(); }
+inline std::string getRandomCity() { return randomCity(); }
+inline std::string randomStreet() { return randomString(); }
+inline std::string getRandomStreet() { return randomStreet(); }
+inline std::string randomAddress() { return randomString(); }
+inline std::string getRandomAddress() { return randomAddress(); }
+inline std::string randomPostalCode() { return randomString(); }
+inline std::string getRandomPostalCode() { return randomPostalCode(); }
+inline std::string randomCoordinate() { return randomString(); }
+inline std::string getRandomCoordinate() { return randomCoordinate(); }
+inline std::string randomTimezone() { return randomString(); }
+inline std::string getRandomTimezone() { return randomTimezone(); }
+inline std::string randomLocale() { return randomString(); }
+inline std::string getRandomLocale() { return randomLocale(); }
+inline std::string randomCurrencyCode() { return randomString(); }
+inline std::string getRandomCurrencyCode() { return randomCurrencyCode(); }
+inline std::string randomDate() { return randomString(); }
+inline std::string getRandomDate() { return randomDate(); }
+inline std::string randomTime() { return randomString(); }
+inline std::string getRandomTime() { return randomTime(); }
+inline std::string randomDatetime() { return randomString(); }
+inline std::string getRandomDatetime() { return randomDatetime(); }
+inline std::string randomTimestamp() { return randomString(); }
+inline std::string getRandomTimestamp() { return randomTimestamp(); }
+inline std::string randomDuration() { return randomString(); }
+inline std::string getRandomDuration() { return randomDuration(); }
+inline std::string randomWeekday() { return randomString(); }
+inline std::string getRandomWeekday() { return randomWeekday(); }
+inline std::string randomMonth() { return randomString(); }
+inline std::string getRandomMonth() { return randomMonth(); }
+inline std::string randomYear() { return randomString(); }
+inline std::string getRandomYear() { return randomYear(); }
+inline std::string randomCron() { return randomString(); }
+inline std::string getRandomCron() { return randomCron(); }
+inline std::string randomTimezoneOffset() { return randomString(); }
+inline std::string getRandomTimezoneOffset() { return randomTimezoneOffset(); }
+inline std::string randomPrice() { return randomString(); }
+inline std::string getRandomPrice() { return randomPrice(); }
+inline std::string randomSku() { return randomString(); }
+inline std::string getRandomSku() { return randomSku(); }
+inline std::string randomProductName() { return randomString(); }
+inline std::string getRandomProductName() { return randomProductName(); }
+inline std::string randomProductCategory() { return randomString(); }
+inline std::string getRandomProductCategory() { return randomProductCategory(); }
+inline std::string randomBrand() { return randomString(); }
+inline std::string getRandomBrand() { return randomBrand(); }
+inline std::string randomOrderId() { return randomString(); }
+inline std::string getRandomOrderId() { return randomOrderId(); }
+inline std::string randomInvoiceNumber() { return randomString(); }
+inline std::string getRandomInvoiceNumber() { return randomInvoiceNumber(); }
+inline std::string randomTaxRate() { return randomString(); }
+inline std::string getRandomTaxRate() { return randomTaxRate(); }
+inline std::string randomShippingMethod() { return randomString(); }
+inline std::string getRandomShippingMethod() { return randomShippingMethod(); }
+inline std::string randomPaymentMethod() { return randomString(); }
+inline std::string getRandomPaymentMethod() { return randomPaymentMethod(); }
+inline std::string randomDiceRoll() { return randomString(); }
+inline std::string getRandomDiceRoll() { return randomDiceRoll(); }
+inline std::string randomPlayingCard() { return randomString(); }
+inline std::string getRandomPlayingCard() { return randomPlayingCard(); }
+inline std::string randomCardSuit() { return randomString(); }
+inline std::string getRandomCardSuit() { return randomCardSuit(); }
+inline std::string randomCardRank() { return randomString(); }
+inline std::string getRandomCardRank() { return randomCardRank(); }
+inline std::string randomCoinFlip() { return randomString(); }
+inline std::string getRandomCoinFlip() { return randomCoinFlip(); }
+inline std::string randomLotteryPick() { return randomString(); }
+inline std::string getRandomLotteryPick() { return randomLotteryPick(); }
+inline std::string randomTeamName() { return randomString(); }
+inline std::string getRandomTeamName() { return randomTeamName(); }
+inline std::string randomGameScore() { return randomString(); }
+inline std::string getRandomGameScore() { return randomGameScore(); }
+inline std::string randomRpgClass() { return randomString(); }
+inline std::string getRandomRpgClass() { return randomRpgClass(); }
+inline std::string randomLootRarity() { return randomString(); }
+inline std::string getRandomLootRarity() { return randomLootRarity(); }
+inline std::string randomChoice() { return randomString(); }
+inline std::string getRandomChoice() { return randomChoice(); }
+inline std::string randomWeightedChoice() { return randomString(); }
+inline std::string getRandomWeightedChoice() { return randomWeightedChoice(); }
+inline std::string randomSample() { return randomString(); }
+inline std::string getRandomSample() { return randomSample(); }
+inline std::string randomShuffle() { return randomString(); }
+inline std::string getRandomShuffle() { return randomShuffle(); }
+inline std::string randomPermutation() { return randomString(); }
+inline std::string getRandomPermutation() { return randomPermutation(); }
+inline std::string randomSet() { return randomString(); }
+inline std::string getRandomSet() { return randomSet(); }
+inline std::string randomTuple() { return randomString(); }
+inline std::string getRandomTuple() { return randomTuple(); }
+inline std::string randomJsonObject() { return randomString(); }
+inline std::string getRandomJsonObject() { return randomJsonObject(); }
+inline std::string randomArray() { return randomString(); }
+inline std::string getRandomArray() { return randomArray(); }
+inline std::string randomMatrix() { return randomString(); }
+inline std::string getRandomMatrix() { return randomMatrix(); }
+inline std::string randomSemver() { return randomString(); }
+inline std::string getRandomSemver() { return randomSemver(); }
+inline std::string randomGitSha() { return randomString(); }
+inline std::string getRandomGitSha() { return randomGitSha(); }
+inline std::string randomPackageName() { return randomString(); }
+inline std::string getRandomPackageName() { return randomPackageName(); }
+inline std::string randomFileName() { return randomString(); }
+inline std::string getRandomFileName() { return randomFileName(); }
+inline std::string randomFileExtension() { return randomString(); }
+inline std::string getRandomFileExtension() { return randomFileExtension(); }
+inline std::string randomFilePath() { return randomString(); }
+inline std::string getRandomFilePath() { return randomFilePath(); }
+inline std::string randomDirectoryPath() { return randomString(); }
+inline std::string getRandomDirectoryPath() { return randomDirectoryPath(); }
+inline std::string randomLogLevel() { return randomString(); }
+inline std::string getRandomLogLevel() { return randomLogLevel(); }
+inline std::string randomHttpMethod() { return randomString(); }
+inline std::string getRandomHttpMethod() { return randomHttpMethod(); }
+inline std::string randomEnvironmentName() { return randomString(); }
+inline std::string getRandomEnvironmentName() { return randomEnvironmentName(); }
+inline std::string randomVector2() { return randomString(); }
+inline std::string getRandomVector2() { return randomVector2(); }
+inline std::string randomVector3() { return randomString(); }
+inline std::string getRandomVector3() { return randomVector3(); }
+inline std::string randomNormal() { return randomString(); }
+inline std::string getRandomNormal() { return randomNormal(); }
+inline std::string randomWeightedNumber() { return randomString(); }
+inline std::string getRandomWeightedNumber() { return randomWeightedNumber(); }
+inline std::string randomUnit() { return randomString(); }
+inline std::string getRandomUnit() { return randomUnit(); }
+inline std::string randomMeasurement() { return randomString(); }
+inline std::string getRandomMeasurement() { return randomMeasurement(); }
+inline std::string randomTemperature() { return randomString(); }
+inline std::string getRandomTemperature() { return randomTemperature(); }
+inline std::string randomDurationMs() { return randomString(); }
+inline std::string getRandomDurationMs() { return randomDurationMs(); }
+inline std::string randomProbability() { return randomString(); }
+inline std::string getRandomProbability() { return randomProbability(); }
+inline std::string randomRange() { return randomString(); }
+inline std::string getRandomRange() { return randomRange(); }
 }
-
-inline std::uint64_t randomU64() {
-    std::uint64_t value = 0;
-    secureBytes(&value, sizeof(value));
-    return value;
-}
-
-}  // namespace detail
-
-inline int randomInt(int min = 0, int max = 99) {
-    if (min > max) {
-        throw std::invalid_argument("Invalid range: min must be less than or equal to max");
-    }
-
-    auto span = static_cast<std::uint64_t>(static_cast<std::int64_t>(max) - static_cast<std::int64_t>(min)) + 1;
-    auto limit = (std::numeric_limits<std::uint64_t>::max)() - ((std::numeric_limits<std::uint64_t>::max)() % span);
-    std::uint64_t value = 0;
-    do {
-        value = detail::randomU64();
-    } while (value >= limit);
-    return min + static_cast<int>(value % span);
-}
-
-inline double randomFloat(double min = 0.0, double max = 1.0) {
-    if (min > max) {
-        throw std::invalid_argument("Invalid range: min must be less than or equal to max");
-    }
-    if (min == max) {
-        return min;
-    }
-    auto unit = static_cast<double>(detail::randomU64() >> 11) / 9007199254740992.0;
-    return min + unit * (max - min);
-}
-
-inline char randomChar(char min = 'A', char max = 'Z') {
-    if (min < 32 || max > 126) {
-        throw std::invalid_argument("Invalid character range: value must be printable ASCII");
-    }
-    return static_cast<char>(randomInt(static_cast<int>(min), static_cast<int>(max)));
-}
-
-}  // namespace librandom

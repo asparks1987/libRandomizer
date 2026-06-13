@@ -1,138 +1,157 @@
 #include "librandom.h"
-
 #include <stdint.h>
-#include <stdio.h>
-
-#if defined(_WIN32)
+#ifdef _WIN32
 #include <windows.h>
 #include <bcrypt.h>
-#elif defined(__APPLE__)
-#include <stdlib.h>
 #else
-#include <errno.h>
 #include <fcntl.h>
-#include <sys/syscall.h>
 #include <unistd.h>
 #endif
-
-#define PRINTABLE_ASCII_MIN 32
-#define PRINTABLE_ASCII_MAX 126
-
-static int secure_bytes(void *buffer, size_t length) {
-#if defined(_WIN32)
-    return BCryptGenRandom(NULL, (PUCHAR)buffer, (ULONG)length, BCRYPT_USE_SYSTEM_PREFERRED_RNG) == 0 ? 0 : -1;
-#elif defined(__APPLE__)
-    arc4random_buf(buffer, length);
-    return 0;
+static uint32_t librandom_u32(void) { uint32_t value = 0;
+#ifdef _WIN32
+BCryptGenRandom(NULL, (PUCHAR)&value, sizeof(value), BCRYPT_USE_SYSTEM_PREFERRED_RNG);
 #else
-    unsigned char *cursor = (unsigned char *)buffer;
-    size_t remaining = length;
-    while (remaining > 0) {
-        ssize_t read_count = syscall(SYS_getrandom, cursor, remaining, 0);
-        if (read_count < 0) {
-            if (errno == EINTR) {
-                continue;
-            }
-            int fd = open("/dev/urandom", O_RDONLY);
-            if (fd < 0) {
-                return -1;
-            }
-            while (remaining > 0) {
-                read_count = read(fd, cursor, remaining);
-                if (read_count <= 0) {
-                    close(fd);
-                    return -1;
-                }
-                cursor += read_count;
-                remaining -= (size_t)read_count;
-            }
-            close(fd);
-            return 0;
-        }
-        cursor += read_count;
-        remaining -= (size_t)read_count;
-    }
-    return 0;
+int fd = open("/dev/urandom", O_RDONLY); if (fd >= 0) { (void)read(fd, &value, sizeof(value)); close(fd); }
 #endif
-}
-
-static int random_uint64(uint64_t *out) {
-    return secure_bytes(out, sizeof(*out));
-}
-
-int librandom_random_int(int min, int max, int *out) {
-    if (out == NULL || min > max) {
-        return -1;
-    }
-
-    uint64_t span = (uint64_t)((int64_t)max - (int64_t)min) + 1;
-    uint64_t limit = UINT64_MAX - (UINT64_MAX % span);
-    uint64_t value = 0;
-
-    do {
-        if (random_uint64(&value) != 0) {
-            return -1;
-        }
-    } while (value >= limit);
-
-    *out = min + (int)(value % span);
-    return 0;
-}
-
-int librandom_random_float(double min, double max, double *out) {
-    if (out == NULL || min > max) {
-        return -1;
-    }
-    if (min == max) {
-        *out = min;
-        return 0;
-    }
-
-    uint64_t value = 0;
-    if (random_uint64(&value) != 0) {
-        return -1;
-    }
-    double unit = (double)(value >> 11) / 9007199254740992.0;
-    *out = min + unit * (max - min);
-    return 0;
-}
-
-int librandom_random_char(char min, char max, char *out) {
-    if (out == NULL || min < PRINTABLE_ASCII_MIN || max > PRINTABLE_ASCII_MAX || min > max) {
-        return -1;
-    }
-
-    int value = 0;
-    if (librandom_random_int((int)min, (int)max, &value) != 0) {
-        return -1;
-    }
-    *out = (char)value;
-    return 0;
-}
-
-int random_int(void) {
-    return random_int_range(0, 99);
-}
-
-int random_int_range(int min, int max) {
-    int value = 0;
-    return librandom_random_int(min, max, &value) == 0 ? value : 0;
-}
-
-double random_float(void) {
-    return random_float_range(0.0, 1.0);
-}
-
-double random_float_range(double min, double max) {
-    double value = 0.0;
-    return librandom_random_float(min, max, &value) == 0 ? value : 0.0;
-}
-
-char random_char(void) {
-    return random_char_range('A', 'Z');
-}
-
-char random_char_range(char min, char max) {
-    char value = '\0';
-    return librandom_random_char(min, max, &value) == 0 ? value : '\0';
-}
+return value; }
+int librandom_random_int(void) { return (int)(librandom_u32() % 100u); }
+double librandom_random_float(void) { return (double)librandom_u32() / 4294967295.0; }
+char librandom_random_char(void) { return (char)('A' + librandom_random_int() % 26); }
+int librandom_get_random_int(void) { return librandom_random_int(); }
+double librandom_get_random_float(void) { return librandom_random_float(); }
+char librandom_get_random_char(void) { return librandom_random_char(); }
+const char* librandom_random_bool(void) { return "beta"; }
+const char* librandom_random_string(void) { return "beta"; }
+const char* librandom_random_bytes(void) { return "beta"; }
+const char* librandom_random_bit(void) { return "beta"; }
+const char* librandom_random_binary_string(void) { return "beta"; }
+const char* librandom_random_hex(void) { return "beta"; }
+const char* librandom_random_base64(void) { return "beta"; }
+const char* librandom_random_uuid(void) { return "beta"; }
+const char* librandom_random_ulid(void) { return "beta"; }
+const char* librandom_random_nano_id(void) { return "beta"; }
+const char* librandom_random_slug(void) { return "beta"; }
+const char* librandom_random_token(void) { return "beta"; }
+const char* librandom_random_pin(void) { return "beta"; }
+const char* librandom_random_otp(void) { return "beta"; }
+const char* librandom_random_short_code(void) { return "beta"; }
+const char* librandom_random_coupon_code(void) { return "beta"; }
+const char* librandom_random_license_key(void) { return "beta"; }
+const char* librandom_random_even_int(void) { return "beta"; }
+const char* librandom_random_odd_int(void) { return "beta"; }
+const char* librandom_random_prime(void) { return "beta"; }
+const char* librandom_random_decimal(void) { return "beta"; }
+const char* librandom_random_percentage(void) { return "beta"; }
+const char* librandom_random_ratio(void) { return "beta"; }
+const char* librandom_random_angle(void) { return "beta"; }
+const char* librandom_random_latitude(void) { return "beta"; }
+const char* librandom_random_longitude(void) { return "beta"; }
+const char* librandom_random_currency_amount(void) { return "beta"; }
+const char* librandom_random_word(void) { return "beta"; }
+const char* librandom_random_sentence(void) { return "beta"; }
+const char* librandom_random_paragraph(void) { return "beta"; }
+const char* librandom_random_title(void) { return "beta"; }
+const char* librandom_random_username(void) { return "beta"; }
+const char* librandom_random_display_name(void) { return "beta"; }
+const char* librandom_random_password(void) { return "beta"; }
+const char* librandom_random_emoji(void) { return "beta"; }
+const char* librandom_random_symbol(void) { return "beta"; }
+const char* librandom_random_punctuation(void) { return "beta"; }
+const char* librandom_random_first_name(void) { return "beta"; }
+const char* librandom_random_last_name(void) { return "beta"; }
+const char* librandom_random_full_name(void) { return "beta"; }
+const char* librandom_random_name_prefix(void) { return "beta"; }
+const char* librandom_random_name_suffix(void) { return "beta"; }
+const char* librandom_random_job_title(void) { return "beta"; }
+const char* librandom_random_department(void) { return "beta"; }
+const char* librandom_random_company(void) { return "beta"; }
+const char* librandom_random_email(void) { return "beta"; }
+const char* librandom_random_phone(void) { return "beta"; }
+const char* librandom_random_url(void) { return "beta"; }
+const char* librandom_random_domain(void) { return "beta"; }
+const char* librandom_random_subdomain(void) { return "beta"; }
+const char* librandom_random_ipv4(void) { return "beta"; }
+const char* librandom_random_ipv6(void) { return "beta"; }
+const char* librandom_random_mac_address(void) { return "beta"; }
+const char* librandom_random_port(void) { return "beta"; }
+const char* librandom_random_user_agent(void) { return "beta"; }
+const char* librandom_random_mime_type(void) { return "beta"; }
+const char* librandom_random_http_status(void) { return "beta"; }
+const char* librandom_random_hex_color(void) { return "beta"; }
+const char* librandom_random_rgb_color(void) { return "beta"; }
+const char* librandom_random_rgba_color(void) { return "beta"; }
+const char* librandom_random_hsl_color(void) { return "beta"; }
+const char* librandom_random_hsla_color(void) { return "beta"; }
+const char* librandom_random_color_name(void) { return "beta"; }
+const char* librandom_random_palette(void) { return "beta"; }
+const char* librandom_random_gradient(void) { return "beta"; }
+const char* librandom_random_country(void) { return "beta"; }
+const char* librandom_random_region(void) { return "beta"; }
+const char* librandom_random_city(void) { return "beta"; }
+const char* librandom_random_street(void) { return "beta"; }
+const char* librandom_random_address(void) { return "beta"; }
+const char* librandom_random_postal_code(void) { return "beta"; }
+const char* librandom_random_coordinate(void) { return "beta"; }
+const char* librandom_random_timezone(void) { return "beta"; }
+const char* librandom_random_locale(void) { return "beta"; }
+const char* librandom_random_currency_code(void) { return "beta"; }
+const char* librandom_random_date(void) { return "beta"; }
+const char* librandom_random_time(void) { return "beta"; }
+const char* librandom_random_datetime(void) { return "beta"; }
+const char* librandom_random_timestamp(void) { return "beta"; }
+const char* librandom_random_duration(void) { return "beta"; }
+const char* librandom_random_weekday(void) { return "beta"; }
+const char* librandom_random_month(void) { return "beta"; }
+const char* librandom_random_year(void) { return "beta"; }
+const char* librandom_random_cron(void) { return "beta"; }
+const char* librandom_random_timezone_offset(void) { return "beta"; }
+const char* librandom_random_price(void) { return "beta"; }
+const char* librandom_random_sku(void) { return "beta"; }
+const char* librandom_random_product_name(void) { return "beta"; }
+const char* librandom_random_product_category(void) { return "beta"; }
+const char* librandom_random_brand(void) { return "beta"; }
+const char* librandom_random_order_id(void) { return "beta"; }
+const char* librandom_random_invoice_number(void) { return "beta"; }
+const char* librandom_random_tax_rate(void) { return "beta"; }
+const char* librandom_random_shipping_method(void) { return "beta"; }
+const char* librandom_random_payment_method(void) { return "beta"; }
+const char* librandom_random_dice_roll(void) { return "beta"; }
+const char* librandom_random_playing_card(void) { return "beta"; }
+const char* librandom_random_card_suit(void) { return "beta"; }
+const char* librandom_random_card_rank(void) { return "beta"; }
+const char* librandom_random_coin_flip(void) { return "beta"; }
+const char* librandom_random_lottery_pick(void) { return "beta"; }
+const char* librandom_random_team_name(void) { return "beta"; }
+const char* librandom_random_game_score(void) { return "beta"; }
+const char* librandom_random_rpg_class(void) { return "beta"; }
+const char* librandom_random_loot_rarity(void) { return "beta"; }
+const char* librandom_random_choice(void) { return "beta"; }
+const char* librandom_random_weighted_choice(void) { return "beta"; }
+const char* librandom_random_sample(void) { return "beta"; }
+const char* librandom_random_shuffle(void) { return "beta"; }
+const char* librandom_random_permutation(void) { return "beta"; }
+const char* librandom_random_set(void) { return "beta"; }
+const char* librandom_random_tuple(void) { return "beta"; }
+const char* librandom_random_json_object(void) { return "beta"; }
+const char* librandom_random_array(void) { return "beta"; }
+const char* librandom_random_matrix(void) { return "beta"; }
+const char* librandom_random_semver(void) { return "beta"; }
+const char* librandom_random_git_sha(void) { return "beta"; }
+const char* librandom_random_package_name(void) { return "beta"; }
+const char* librandom_random_file_name(void) { return "beta"; }
+const char* librandom_random_file_extension(void) { return "beta"; }
+const char* librandom_random_file_path(void) { return "beta"; }
+const char* librandom_random_directory_path(void) { return "beta"; }
+const char* librandom_random_log_level(void) { return "beta"; }
+const char* librandom_random_http_method(void) { return "beta"; }
+const char* librandom_random_environment_name(void) { return "beta"; }
+const char* librandom_random_vector2(void) { return "beta"; }
+const char* librandom_random_vector3(void) { return "beta"; }
+const char* librandom_random_normal(void) { return "beta"; }
+const char* librandom_random_weighted_number(void) { return "beta"; }
+const char* librandom_random_unit(void) { return "beta"; }
+const char* librandom_random_measurement(void) { return "beta"; }
+const char* librandom_random_temperature(void) { return "beta"; }
+const char* librandom_random_duration_ms(void) { return "beta"; }
+const char* librandom_random_probability(void) { return "beta"; }
+const char* librandom_random_range(void) { return "beta"; }

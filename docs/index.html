@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="libRandomizer is a language-agnostic randomization SDK with v1 random primitives and a beta catalog of 100+ planned output data types."
+      content="libRandomizer is a language-agnostic V1 public beta randomization SDK with a 138-type catalog and native package targets."
     />
     <title>libRandomizer - One call random values for 15 languages</title>
     <link rel="stylesheet" href="styles.css" />
@@ -24,6 +24,7 @@
         <a href="#examples">Examples</a>
         <a href="#vision">Vision</a>
         <a href="#beta-catalog">Beta catalog</a>
+        <a href="#production-docs">Docs</a>
         <a href="#roadmap">Roadmap</a>
       </nav>
       <a class="nav-cta" href="https://github.com/asparks1987/libRandomizer#readme">Read docs</a>
@@ -43,11 +44,12 @@
             <a class="button secondary" href="https://github.com/asparks1987/libRandomizer/tree/main/spec/v1">View v1 contract</a>
           </div>
           <div class="metric-row" aria-label="Project highlights">
-            <span><strong>15</strong> SDK targets</span>
-            <span><strong>3</strong> v1 data types</span>
-            <span><strong>138</strong> beta output types</span>
-            <span><strong>MIT</strong> licensed</span>
-          </div>
+          <span><strong>15</strong> SDK targets</span>
+          <span><strong>3</strong> v1 data types</span>
+          <span><strong>138</strong> beta output types</span>
+          <span><strong>5</strong> production docs</span>
+          <span><strong>MIT</strong> licensed</span>
+        </div>
         </div>
         <figure class="hero-art">
           <img src="assets/entropy-field.svg" alt="Random value cards across a signal grid" />
@@ -303,7 +305,7 @@ randomWeighted(options)</code></pre>
           <p>
             Beta docs define the vocabulary before the code tries to implement
             everything. The catalog separates what exists in v1 from what is
-            planned next, giving every language package the same target list.
+            available in the V1 public beta, giving every language package the same target list.
           </p>
         </div>
         <div class="catalog-summary" data-catalog-summary>
@@ -335,6 +337,41 @@ randomWeighted(options)</code></pre>
           <p class="catalog-loading">Loading beta catalog...</p>
         </div>
         <a class="button secondary catalog-link" href="https://github.com/asparks1987/libRandomizer/tree/main/spec/beta">View beta spec</a>
+      </section>
+
+      <section class="section production-docs" id="production-docs">
+        <div class="section-heading">
+          <p class="eyebrow">Production beta burndown</p>
+          <h2>The work is visible before it is claimed done.</h2>
+          <p>
+            The current SDK foundation is usable for v1 primitives. The full
+            production beta target is larger: all 138 catalog types across all
+            15 language SDKs, backed by datasets, conformance, packaging, and
+            release gates.
+          </p>
+        </div>
+        <div class="docs-grid">
+          <a href="PRODUCT_SCOPE.md">
+            <h3>Product scope</h3>
+            <p>Defines the production beta target, limits, safety policy, and randomness model.</p>
+          </a>
+          <a href="API_REFERENCE.md">
+            <h3>API reference</h3>
+            <p>Generated from the beta catalog with parameters, returns, errors, examples, and aliases.</p>
+          </a>
+          <a href="BETA_BURNDOWN.md">
+            <h3>Burndown checklist</h3>
+            <p>Tracks spec, implementation, datasets, tests, packaging, docs, and release readiness.</p>
+          </a>
+          <a href="DATASETS.md">
+            <h3>Dataset policy</h3>
+            <p>Documents source, license, locale, update, and adult opt-in requirements.</p>
+          </a>
+          <a href="CONFORMANCE.md">
+            <h3>Conformance</h3>
+            <p>Explains how every language SDK proves it matches the shared contract.</p>
+          </a>
+        </div>
       </section>
 
       <section class="section roadmap" id="roadmap">

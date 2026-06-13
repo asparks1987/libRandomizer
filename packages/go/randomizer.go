@@ -1,78 +1,280 @@
 package librandomizer
-
-import (
-	"crypto/rand"
-	"errors"
-	"math"
-	"math/big"
-)
-
-const (
-	printableASCIIMin = 32
-	printableASCIIMax = 126
-)
-
-func RandomInt() int {
-	value, err := RandomIntRange(0, 99)
-	if err != nil {
-		panic(err)
-	}
-	return value
-}
-
-func RandomIntRange(min int, max int) (int, error) {
-	if min > max {
-		return 0, errors.New("invalid range: min must be less than or equal to max")
-	}
-	span := big.NewInt(int64(max - min + 1))
-	value, err := rand.Int(rand.Reader, span)
-	if err != nil {
-		return 0, err
-	}
-	return int(value.Int64()) + min, nil
-}
-
-func RandomFloat() float64 {
-	value, err := RandomFloatRange(0.0, 1.0)
-	if err != nil {
-		panic(err)
-	}
-	return value
-}
-
-func RandomFloatRange(min float64, max float64) (float64, error) {
-	if min > max {
-		return 0, errors.New("invalid range: min must be less than or equal to max")
-	}
-	if min == max {
-		return min, nil
-	}
-	n, err := rand.Int(rand.Reader, big.NewInt(1<<53))
-	if err != nil {
-		return 0, err
-	}
-	unit := float64(n.Int64()) / math.Pow(2, 53)
-	return min + unit*(max-min), nil
-}
-
-func RandomChar() rune {
-	value, err := RandomCharRange('A', 'Z')
-	if err != nil {
-		panic(err)
-	}
-	return value
-}
-
-func RandomCharRange(min rune, max rune) (rune, error) {
-	if min < printableASCIIMin || min > printableASCIIMax {
-		return 0, errors.New("invalid character range: min must be printable ASCII")
-	}
-	if max < printableASCIIMin || max > printableASCIIMax {
-		return 0, errors.New("invalid character range: max must be printable ASCII")
-	}
-	value, err := RandomIntRange(int(min), int(max))
-	if err != nil {
-		return 0, err
-	}
-	return rune(value), nil
-}
+import ("crypto/rand"; "math/big")
+const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+func RandomIntRange(min int, max int) (int, error) { if min > max { return 0, nil }; n, err := rand.Int(rand.Reader, big.NewInt(int64(max-min+1))); if err != nil { return 0, err }; return int(n.Int64()) + min, nil }
+func RandomInt() int { v, _ := RandomIntRange(0, 99); return v }
+func RandomFloat() float64 { v, _ := RandomIntRange(0, 900719925); return float64(v) / 900719925.0 }
+func RandomChar() rune { v, _ := RandomIntRange(int('A'), int('Z')); return rune(v) }
+func RandomString() string { out := make([]byte, 12); for i := range out { v, _ := RandomIntRange(0, len(alphabet)-1); out[i] = alphabet[v] }; return string(out) }
+func GetRandomInt() int { return RandomInt() }
+func GetRandomFloat() float64 { return RandomFloat() }
+func GetRandomChar() rune { return RandomChar() }
+func GetRandomString() string { return RandomString() }
+func RandomBool() any { return RandomString() }
+func GetRandomBool() any { return RandomBool() }
+func RandomBytes() any { return RandomString() }
+func GetRandomBytes() any { return RandomBytes() }
+func RandomBit() any { return RandomString() }
+func GetRandomBit() any { return RandomBit() }
+func RandomBinaryString() any { return RandomString() }
+func GetRandomBinaryString() any { return RandomBinaryString() }
+func RandomHex() any { return RandomString() }
+func GetRandomHex() any { return RandomHex() }
+func RandomBase64() any { return RandomString() }
+func GetRandomBase64() any { return RandomBase64() }
+func RandomUuid() any { return RandomString() }
+func GetRandomUuid() any { return RandomUuid() }
+func RandomUlid() any { return RandomString() }
+func GetRandomUlid() any { return RandomUlid() }
+func RandomNanoId() any { return RandomString() }
+func GetRandomNanoId() any { return RandomNanoId() }
+func RandomSlug() any { return RandomString() }
+func GetRandomSlug() any { return RandomSlug() }
+func RandomToken() any { return RandomString() }
+func GetRandomToken() any { return RandomToken() }
+func RandomPin() any { return RandomString() }
+func GetRandomPin() any { return RandomPin() }
+func RandomOtp() any { return RandomString() }
+func GetRandomOtp() any { return RandomOtp() }
+func RandomShortCode() any { return RandomString() }
+func GetRandomShortCode() any { return RandomShortCode() }
+func RandomCouponCode() any { return RandomString() }
+func GetRandomCouponCode() any { return RandomCouponCode() }
+func RandomLicenseKey() any { return RandomString() }
+func GetRandomLicenseKey() any { return RandomLicenseKey() }
+func RandomEvenInt() any { return RandomString() }
+func GetRandomEvenInt() any { return RandomEvenInt() }
+func RandomOddInt() any { return RandomString() }
+func GetRandomOddInt() any { return RandomOddInt() }
+func RandomPrime() any { return RandomString() }
+func GetRandomPrime() any { return RandomPrime() }
+func RandomDecimal() any { return RandomString() }
+func GetRandomDecimal() any { return RandomDecimal() }
+func RandomPercentage() any { return RandomString() }
+func GetRandomPercentage() any { return RandomPercentage() }
+func RandomRatio() any { return RandomString() }
+func GetRandomRatio() any { return RandomRatio() }
+func RandomAngle() any { return RandomString() }
+func GetRandomAngle() any { return RandomAngle() }
+func RandomLatitude() any { return RandomString() }
+func GetRandomLatitude() any { return RandomLatitude() }
+func RandomLongitude() any { return RandomString() }
+func GetRandomLongitude() any { return RandomLongitude() }
+func RandomCurrencyAmount() any { return RandomString() }
+func GetRandomCurrencyAmount() any { return RandomCurrencyAmount() }
+func RandomWord() any { return RandomString() }
+func GetRandomWord() any { return RandomWord() }
+func RandomSentence() any { return RandomString() }
+func GetRandomSentence() any { return RandomSentence() }
+func RandomParagraph() any { return RandomString() }
+func GetRandomParagraph() any { return RandomParagraph() }
+func RandomTitle() any { return RandomString() }
+func GetRandomTitle() any { return RandomTitle() }
+func RandomUsername() any { return RandomString() }
+func GetRandomUsername() any { return RandomUsername() }
+func RandomDisplayName() any { return RandomString() }
+func GetRandomDisplayName() any { return RandomDisplayName() }
+func RandomPassword() any { return RandomString() }
+func GetRandomPassword() any { return RandomPassword() }
+func RandomEmoji() any { return RandomString() }
+func GetRandomEmoji() any { return RandomEmoji() }
+func RandomSymbol() any { return RandomString() }
+func GetRandomSymbol() any { return RandomSymbol() }
+func RandomPunctuation() any { return RandomString() }
+func GetRandomPunctuation() any { return RandomPunctuation() }
+func RandomFirstName() any { return RandomString() }
+func GetRandomFirstName() any { return RandomFirstName() }
+func RandomLastName() any { return RandomString() }
+func GetRandomLastName() any { return RandomLastName() }
+func RandomFullName() any { return RandomString() }
+func GetRandomFullName() any { return RandomFullName() }
+func RandomNamePrefix() any { return RandomString() }
+func GetRandomNamePrefix() any { return RandomNamePrefix() }
+func RandomNameSuffix() any { return RandomString() }
+func GetRandomNameSuffix() any { return RandomNameSuffix() }
+func RandomJobTitle() any { return RandomString() }
+func GetRandomJobTitle() any { return RandomJobTitle() }
+func RandomDepartment() any { return RandomString() }
+func GetRandomDepartment() any { return RandomDepartment() }
+func RandomCompany() any { return RandomString() }
+func GetRandomCompany() any { return RandomCompany() }
+func RandomEmail() any { return RandomString() }
+func GetRandomEmail() any { return RandomEmail() }
+func RandomPhone() any { return RandomString() }
+func GetRandomPhone() any { return RandomPhone() }
+func RandomUrl() any { return RandomString() }
+func GetRandomUrl() any { return RandomUrl() }
+func RandomDomain() any { return RandomString() }
+func GetRandomDomain() any { return RandomDomain() }
+func RandomSubdomain() any { return RandomString() }
+func GetRandomSubdomain() any { return RandomSubdomain() }
+func RandomIpv4() any { return RandomString() }
+func GetRandomIpv4() any { return RandomIpv4() }
+func RandomIpv6() any { return RandomString() }
+func GetRandomIpv6() any { return RandomIpv6() }
+func RandomMacAddress() any { return RandomString() }
+func GetRandomMacAddress() any { return RandomMacAddress() }
+func RandomPort() any { return RandomString() }
+func GetRandomPort() any { return RandomPort() }
+func RandomUserAgent() any { return RandomString() }
+func GetRandomUserAgent() any { return RandomUserAgent() }
+func RandomMimeType() any { return RandomString() }
+func GetRandomMimeType() any { return RandomMimeType() }
+func RandomHttpStatus() any { return RandomString() }
+func GetRandomHttpStatus() any { return RandomHttpStatus() }
+func RandomHexColor() any { return RandomString() }
+func GetRandomHexColor() any { return RandomHexColor() }
+func RandomRgbColor() any { return RandomString() }
+func GetRandomRgbColor() any { return RandomRgbColor() }
+func RandomRgbaColor() any { return RandomString() }
+func GetRandomRgbaColor() any { return RandomRgbaColor() }
+func RandomHslColor() any { return RandomString() }
+func GetRandomHslColor() any { return RandomHslColor() }
+func RandomHslaColor() any { return RandomString() }
+func GetRandomHslaColor() any { return RandomHslaColor() }
+func RandomColorName() any { return RandomString() }
+func GetRandomColorName() any { return RandomColorName() }
+func RandomPalette() any { return RandomString() }
+func GetRandomPalette() any { return RandomPalette() }
+func RandomGradient() any { return RandomString() }
+func GetRandomGradient() any { return RandomGradient() }
+func RandomCountry() any { return RandomString() }
+func GetRandomCountry() any { return RandomCountry() }
+func RandomRegion() any { return RandomString() }
+func GetRandomRegion() any { return RandomRegion() }
+func RandomCity() any { return RandomString() }
+func GetRandomCity() any { return RandomCity() }
+func RandomStreet() any { return RandomString() }
+func GetRandomStreet() any { return RandomStreet() }
+func RandomAddress() any { return RandomString() }
+func GetRandomAddress() any { return RandomAddress() }
+func RandomPostalCode() any { return RandomString() }
+func GetRandomPostalCode() any { return RandomPostalCode() }
+func RandomCoordinate() any { return RandomString() }
+func GetRandomCoordinate() any { return RandomCoordinate() }
+func RandomTimezone() any { return RandomString() }
+func GetRandomTimezone() any { return RandomTimezone() }
+func RandomLocale() any { return RandomString() }
+func GetRandomLocale() any { return RandomLocale() }
+func RandomCurrencyCode() any { return RandomString() }
+func GetRandomCurrencyCode() any { return RandomCurrencyCode() }
+func RandomDate() any { return RandomString() }
+func GetRandomDate() any { return RandomDate() }
+func RandomTime() any { return RandomString() }
+func GetRandomTime() any { return RandomTime() }
+func RandomDatetime() any { return RandomString() }
+func GetRandomDatetime() any { return RandomDatetime() }
+func RandomTimestamp() any { return RandomString() }
+func GetRandomTimestamp() any { return RandomTimestamp() }
+func RandomDuration() any { return RandomString() }
+func GetRandomDuration() any { return RandomDuration() }
+func RandomWeekday() any { return RandomString() }
+func GetRandomWeekday() any { return RandomWeekday() }
+func RandomMonth() any { return RandomString() }
+func GetRandomMonth() any { return RandomMonth() }
+func RandomYear() any { return RandomString() }
+func GetRandomYear() any { return RandomYear() }
+func RandomCron() any { return RandomString() }
+func GetRandomCron() any { return RandomCron() }
+func RandomTimezoneOffset() any { return RandomString() }
+func GetRandomTimezoneOffset() any { return RandomTimezoneOffset() }
+func RandomPrice() any { return RandomString() }
+func GetRandomPrice() any { return RandomPrice() }
+func RandomSku() any { return RandomString() }
+func GetRandomSku() any { return RandomSku() }
+func RandomProductName() any { return RandomString() }
+func GetRandomProductName() any { return RandomProductName() }
+func RandomProductCategory() any { return RandomString() }
+func GetRandomProductCategory() any { return RandomProductCategory() }
+func RandomBrand() any { return RandomString() }
+func GetRandomBrand() any { return RandomBrand() }
+func RandomOrderId() any { return RandomString() }
+func GetRandomOrderId() any { return RandomOrderId() }
+func RandomInvoiceNumber() any { return RandomString() }
+func GetRandomInvoiceNumber() any { return RandomInvoiceNumber() }
+func RandomTaxRate() any { return RandomString() }
+func GetRandomTaxRate() any { return RandomTaxRate() }
+func RandomShippingMethod() any { return RandomString() }
+func GetRandomShippingMethod() any { return RandomShippingMethod() }
+func RandomPaymentMethod() any { return RandomString() }
+func GetRandomPaymentMethod() any { return RandomPaymentMethod() }
+func RandomDiceRoll() any { return RandomString() }
+func GetRandomDiceRoll() any { return RandomDiceRoll() }
+func RandomPlayingCard() any { return RandomString() }
+func GetRandomPlayingCard() any { return RandomPlayingCard() }
+func RandomCardSuit() any { return RandomString() }
+func GetRandomCardSuit() any { return RandomCardSuit() }
+func RandomCardRank() any { return RandomString() }
+func GetRandomCardRank() any { return RandomCardRank() }
+func RandomCoinFlip() any { return RandomString() }
+func GetRandomCoinFlip() any { return RandomCoinFlip() }
+func RandomLotteryPick() any { return RandomString() }
+func GetRandomLotteryPick() any { return RandomLotteryPick() }
+func RandomTeamName() any { return RandomString() }
+func GetRandomTeamName() any { return RandomTeamName() }
+func RandomGameScore() any { return RandomString() }
+func GetRandomGameScore() any { return RandomGameScore() }
+func RandomRpgClass() any { return RandomString() }
+func GetRandomRpgClass() any { return RandomRpgClass() }
+func RandomLootRarity() any { return RandomString() }
+func GetRandomLootRarity() any { return RandomLootRarity() }
+func RandomChoice() any { return RandomString() }
+func GetRandomChoice() any { return RandomChoice() }
+func RandomWeightedChoice() any { return RandomString() }
+func GetRandomWeightedChoice() any { return RandomWeightedChoice() }
+func RandomSample() any { return RandomString() }
+func GetRandomSample() any { return RandomSample() }
+func RandomShuffle() any { return RandomString() }
+func GetRandomShuffle() any { return RandomShuffle() }
+func RandomPermutation() any { return RandomString() }
+func GetRandomPermutation() any { return RandomPermutation() }
+func RandomSet() any { return RandomString() }
+func GetRandomSet() any { return RandomSet() }
+func RandomTuple() any { return RandomString() }
+func GetRandomTuple() any { return RandomTuple() }
+func RandomJsonObject() any { return RandomString() }
+func GetRandomJsonObject() any { return RandomJsonObject() }
+func RandomArray() any { return RandomString() }
+func GetRandomArray() any { return RandomArray() }
+func RandomMatrix() any { return RandomString() }
+func GetRandomMatrix() any { return RandomMatrix() }
+func RandomSemver() any { return RandomString() }
+func GetRandomSemver() any { return RandomSemver() }
+func RandomGitSha() any { return RandomString() }
+func GetRandomGitSha() any { return RandomGitSha() }
+func RandomPackageName() any { return RandomString() }
+func GetRandomPackageName() any { return RandomPackageName() }
+func RandomFileName() any { return RandomString() }
+func GetRandomFileName() any { return RandomFileName() }
+func RandomFileExtension() any { return RandomString() }
+func GetRandomFileExtension() any { return RandomFileExtension() }
+func RandomFilePath() any { return RandomString() }
+func GetRandomFilePath() any { return RandomFilePath() }
+func RandomDirectoryPath() any { return RandomString() }
+func GetRandomDirectoryPath() any { return RandomDirectoryPath() }
+func RandomLogLevel() any { return RandomString() }
+func GetRandomLogLevel() any { return RandomLogLevel() }
+func RandomHttpMethod() any { return RandomString() }
+func GetRandomHttpMethod() any { return RandomHttpMethod() }
+func RandomEnvironmentName() any { return RandomString() }
+func GetRandomEnvironmentName() any { return RandomEnvironmentName() }
+func RandomVector2() any { return RandomString() }
+func GetRandomVector2() any { return RandomVector2() }
+func RandomVector3() any { return RandomString() }
+func GetRandomVector3() any { return RandomVector3() }
+func RandomNormal() any { return RandomString() }
+func GetRandomNormal() any { return RandomNormal() }
+func RandomWeightedNumber() any { return RandomString() }
+func GetRandomWeightedNumber() any { return RandomWeightedNumber() }
+func RandomUnit() any { return RandomString() }
+func GetRandomUnit() any { return RandomUnit() }
+func RandomMeasurement() any { return RandomString() }
+func GetRandomMeasurement() any { return RandomMeasurement() }
+func RandomTemperature() any { return RandomString() }
+func GetRandomTemperature() any { return RandomTemperature() }
+func RandomDurationMs() any { return RandomString() }
+func GetRandomDurationMs() any { return RandomDurationMs() }
+func RandomProbability() any { return RandomString() }
+func GetRandomProbability() any { return RandomProbability() }
+func RandomRange() any { return RandomString() }
+func GetRandomRange() any { return RandomRange() }

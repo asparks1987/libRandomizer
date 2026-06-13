@@ -1,23 +1,148 @@
-#ifndef LIBRANDOMIZER_H
-#define LIBRANDOMIZER_H
-
+#pragma once
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-int librandom_random_int(int min, int max, int *out);
-int librandom_random_float(double min, double max, double *out);
-int librandom_random_char(char min, char max, char *out);
-
-int random_int(void);
-int random_int_range(int min, int max);
-double random_float(void);
-double random_float_range(double min, double max);
-char random_char(void);
-char random_char_range(char min, char max);
-
+int librandom_random_int(void);
+double librandom_random_float(void);
+char librandom_random_char(void);
+int librandom_get_random_int(void);
+double librandom_get_random_float(void);
+char librandom_get_random_char(void);
+const char* librandom_random_bool(void);
+const char* librandom_random_string(void);
+const char* librandom_random_bytes(void);
+const char* librandom_random_bit(void);
+const char* librandom_random_binary_string(void);
+const char* librandom_random_hex(void);
+const char* librandom_random_base64(void);
+const char* librandom_random_uuid(void);
+const char* librandom_random_ulid(void);
+const char* librandom_random_nano_id(void);
+const char* librandom_random_slug(void);
+const char* librandom_random_token(void);
+const char* librandom_random_pin(void);
+const char* librandom_random_otp(void);
+const char* librandom_random_short_code(void);
+const char* librandom_random_coupon_code(void);
+const char* librandom_random_license_key(void);
+const char* librandom_random_even_int(void);
+const char* librandom_random_odd_int(void);
+const char* librandom_random_prime(void);
+const char* librandom_random_decimal(void);
+const char* librandom_random_percentage(void);
+const char* librandom_random_ratio(void);
+const char* librandom_random_angle(void);
+const char* librandom_random_latitude(void);
+const char* librandom_random_longitude(void);
+const char* librandom_random_currency_amount(void);
+const char* librandom_random_word(void);
+const char* librandom_random_sentence(void);
+const char* librandom_random_paragraph(void);
+const char* librandom_random_title(void);
+const char* librandom_random_username(void);
+const char* librandom_random_display_name(void);
+const char* librandom_random_password(void);
+const char* librandom_random_emoji(void);
+const char* librandom_random_symbol(void);
+const char* librandom_random_punctuation(void);
+const char* librandom_random_first_name(void);
+const char* librandom_random_last_name(void);
+const char* librandom_random_full_name(void);
+const char* librandom_random_name_prefix(void);
+const char* librandom_random_name_suffix(void);
+const char* librandom_random_job_title(void);
+const char* librandom_random_department(void);
+const char* librandom_random_company(void);
+const char* librandom_random_email(void);
+const char* librandom_random_phone(void);
+const char* librandom_random_url(void);
+const char* librandom_random_domain(void);
+const char* librandom_random_subdomain(void);
+const char* librandom_random_ipv4(void);
+const char* librandom_random_ipv6(void);
+const char* librandom_random_mac_address(void);
+const char* librandom_random_port(void);
+const char* librandom_random_user_agent(void);
+const char* librandom_random_mime_type(void);
+const char* librandom_random_http_status(void);
+const char* librandom_random_hex_color(void);
+const char* librandom_random_rgb_color(void);
+const char* librandom_random_rgba_color(void);
+const char* librandom_random_hsl_color(void);
+const char* librandom_random_hsla_color(void);
+const char* librandom_random_color_name(void);
+const char* librandom_random_palette(void);
+const char* librandom_random_gradient(void);
+const char* librandom_random_country(void);
+const char* librandom_random_region(void);
+const char* librandom_random_city(void);
+const char* librandom_random_street(void);
+const char* librandom_random_address(void);
+const char* librandom_random_postal_code(void);
+const char* librandom_random_coordinate(void);
+const char* librandom_random_timezone(void);
+const char* librandom_random_locale(void);
+const char* librandom_random_currency_code(void);
+const char* librandom_random_date(void);
+const char* librandom_random_time(void);
+const char* librandom_random_datetime(void);
+const char* librandom_random_timestamp(void);
+const char* librandom_random_duration(void);
+const char* librandom_random_weekday(void);
+const char* librandom_random_month(void);
+const char* librandom_random_year(void);
+const char* librandom_random_cron(void);
+const char* librandom_random_timezone_offset(void);
+const char* librandom_random_price(void);
+const char* librandom_random_sku(void);
+const char* librandom_random_product_name(void);
+const char* librandom_random_product_category(void);
+const char* librandom_random_brand(void);
+const char* librandom_random_order_id(void);
+const char* librandom_random_invoice_number(void);
+const char* librandom_random_tax_rate(void);
+const char* librandom_random_shipping_method(void);
+const char* librandom_random_payment_method(void);
+const char* librandom_random_dice_roll(void);
+const char* librandom_random_playing_card(void);
+const char* librandom_random_card_suit(void);
+const char* librandom_random_card_rank(void);
+const char* librandom_random_coin_flip(void);
+const char* librandom_random_lottery_pick(void);
+const char* librandom_random_team_name(void);
+const char* librandom_random_game_score(void);
+const char* librandom_random_rpg_class(void);
+const char* librandom_random_loot_rarity(void);
+const char* librandom_random_choice(void);
+const char* librandom_random_weighted_choice(void);
+const char* librandom_random_sample(void);
+const char* librandom_random_shuffle(void);
+const char* librandom_random_permutation(void);
+const char* librandom_random_set(void);
+const char* librandom_random_tuple(void);
+const char* librandom_random_json_object(void);
+const char* librandom_random_array(void);
+const char* librandom_random_matrix(void);
+const char* librandom_random_semver(void);
+const char* librandom_random_git_sha(void);
+const char* librandom_random_package_name(void);
+const char* librandom_random_file_name(void);
+const char* librandom_random_file_extension(void);
+const char* librandom_random_file_path(void);
+const char* librandom_random_directory_path(void);
+const char* librandom_random_log_level(void);
+const char* librandom_random_http_method(void);
+const char* librandom_random_environment_name(void);
+const char* librandom_random_vector2(void);
+const char* librandom_random_vector3(void);
+const char* librandom_random_normal(void);
+const char* librandom_random_weighted_number(void);
+const char* librandom_random_unit(void);
+const char* librandom_random_measurement(void);
+const char* librandom_random_temperature(void);
+const char* librandom_random_duration_ms(void);
+const char* librandom_random_probability(void);
+const char* librandom_random_range(void);
 #ifdef __cplusplus
 }
-#endif
-
 #endif

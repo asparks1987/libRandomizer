@@ -1,9 +1,11 @@
-# libRandomizer Python
+# libRandomizer Python SDK
 
-The Python SDK lives at the repository root for PyPI packaging.
+V1 public beta exposes all catalog `randomX()` functions from `librandomizer`.
 
 ```python
-from librandomizer import random_int
+from librandomizer import randomInt, randomString, randomColorName
 
-value = random_int()
+print(randomInt())
+print(randomString(5))
+print(randomColorName())
 ```

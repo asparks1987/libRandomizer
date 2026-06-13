@@ -1,6 +1,6 @@
 {
   "name": "@librandomizer/javascript",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-beta.1",
   "description": "Native JavaScript SDK for libRandomizer v1.",
   "license": "MIT",
   "main": "src/index.js",

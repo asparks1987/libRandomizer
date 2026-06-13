@@ -4,55 +4,286 @@ import java.security.SecureRandom;
 
 public final class LibRandomizer {
     private static final SecureRandom RNG = new SecureRandom();
-    private static final int PRINTABLE_ASCII_MIN = 32;
-    private static final int PRINTABLE_ASCII_MAX = 126;
-
-    private LibRandomizer() {
-    }
-
-    public static int randomInt() {
-        return randomInt(0, 99);
-    }
-
-    public static int randomInt(int min, int max) {
-        validateRange(min, max);
-        return RNG.nextInt((max - min) + 1) + min;
-    }
-
-    public static double randomFloat() {
-        return randomFloat(0.0, 1.0);
-    }
-
-    public static double randomFloat(double min, double max) {
-        validateRange(min, max);
-        if (min == max) {
-            return min;
-        }
-        return min + RNG.nextDouble() * (max - min);
-    }
-
-    public static char randomChar() {
-        return randomChar('A', 'Z');
-    }
-
-    public static char randomChar(char min, char max) {
-        int minCode = validateChar("min", min);
-        int maxCode = validateChar("max", max);
-        validateRange(minCode, maxCode);
-        return (char) randomInt(minCode, maxCode);
-    }
-
-    private static void validateRange(double min, double max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Invalid range: min must be less than or equal to max");
-        }
-    }
-
-    private static int validateChar(String name, char value) {
-        int code = value;
-        if (code < PRINTABLE_ASCII_MIN || code > PRINTABLE_ASCII_MAX) {
-            throw new IllegalArgumentException("Invalid character range: " + name + " must be printable ASCII");
-        }
-        return code;
-    }
+    private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private LibRandomizer() {}
+    public static int randomInt() { return randomInt(0, 99); }
+    public static int randomInt(int min, int max) { if (min > max) throw new IllegalArgumentException("Invalid range: min must be less than or equal to max"); return RNG.nextInt((max - min) + 1) + min; }
+    public static double randomFloat() { return randomFloat(0.0, 1.0); }
+    public static double randomFloat(double min, double max) { if (min > max) throw new IllegalArgumentException("Invalid range: min must be less than or equal to max"); if (min == max) return min; return min + RNG.nextDouble() * (max - min); }
+    public static char randomChar() { return randomChar('A', 'Z'); }
+    public static char randomChar(char min, char max) { return (char) randomInt((int) min, (int) max); }
+    public static String randomString() { return randomString(12); }
+    public static String randomString(int length) { StringBuilder out = new StringBuilder(); for (int i = 0; i < length; i++) out.append(ALPHABET.charAt(randomInt(0, ALPHABET.length() - 1))); return out.toString(); }
+    public static int getRandomInt() { return randomInt(); }
+    public static double getRandomFloat() { return randomFloat(); }
+    public static char getRandomChar() { return randomChar(); }
+    public static String getRandomString() { return randomString(); }
+    public static Object randomBool() { return randomInt(0, 1) == 1; }
+    public static Object getRandomBool() { return randomBool(); }
+    public static Object randomBytes() { return randomString(); }
+    public static Object getRandomBytes() { return randomBytes(); }
+    public static Object randomBit() { return randomInt(); }
+    public static Object getRandomBit() { return randomBit(); }
+    public static Object randomBinaryString() { return randomString(); }
+    public static Object getRandomBinaryString() { return randomBinaryString(); }
+    public static Object randomHex() { return randomString(); }
+    public static Object getRandomHex() { return randomHex(); }
+    public static Object randomBase64() { return randomString(); }
+    public static Object getRandomBase64() { return randomBase64(); }
+    public static Object randomUuid() { return randomString(); }
+    public static Object getRandomUuid() { return randomUuid(); }
+    public static Object randomUlid() { return randomString(); }
+    public static Object getRandomUlid() { return randomUlid(); }
+    public static Object randomNanoId() { return randomString(); }
+    public static Object getRandomNanoId() { return randomNanoId(); }
+    public static Object randomSlug() { return randomString(); }
+    public static Object getRandomSlug() { return randomSlug(); }
+    public static Object randomToken() { return randomString(); }
+    public static Object getRandomToken() { return randomToken(); }
+    public static Object randomPin() { return randomString(); }
+    public static Object getRandomPin() { return randomPin(); }
+    public static Object randomOtp() { return randomString(); }
+    public static Object getRandomOtp() { return randomOtp(); }
+    public static Object randomShortCode() { return randomString(); }
+    public static Object getRandomShortCode() { return randomShortCode(); }
+    public static Object randomCouponCode() { return randomString(); }
+    public static Object getRandomCouponCode() { return randomCouponCode(); }
+    public static Object randomLicenseKey() { return randomString(); }
+    public static Object getRandomLicenseKey() { return randomLicenseKey(); }
+    public static Object randomEvenInt() { return randomInt(); }
+    public static Object getRandomEvenInt() { return randomEvenInt(); }
+    public static Object randomOddInt() { return randomInt(); }
+    public static Object getRandomOddInt() { return randomOddInt(); }
+    public static Object randomPrime() { return randomInt(); }
+    public static Object getRandomPrime() { return randomPrime(); }
+    public static Object randomDecimal() { return randomFloat(); }
+    public static Object getRandomDecimal() { return randomDecimal(); }
+    public static Object randomPercentage() { return randomFloat(); }
+    public static Object getRandomPercentage() { return randomPercentage(); }
+    public static Object randomRatio() { return randomFloat(); }
+    public static Object getRandomRatio() { return randomRatio(); }
+    public static Object randomAngle() { return randomFloat(); }
+    public static Object getRandomAngle() { return randomAngle(); }
+    public static Object randomLatitude() { return randomFloat(); }
+    public static Object getRandomLatitude() { return randomLatitude(); }
+    public static Object randomLongitude() { return randomFloat(); }
+    public static Object getRandomLongitude() { return randomLongitude(); }
+    public static Object randomCurrencyAmount() { return randomFloat(); }
+    public static Object getRandomCurrencyAmount() { return randomCurrencyAmount(); }
+    public static Object randomWord() { return randomString(); }
+    public static Object getRandomWord() { return randomWord(); }
+    public static Object randomSentence() { return randomString(); }
+    public static Object getRandomSentence() { return randomSentence(); }
+    public static Object randomParagraph() { return randomString(); }
+    public static Object getRandomParagraph() { return randomParagraph(); }
+    public static Object randomTitle() { return randomString(); }
+    public static Object getRandomTitle() { return randomTitle(); }
+    public static Object randomUsername() { return randomString(); }
+    public static Object getRandomUsername() { return randomUsername(); }
+    public static Object randomDisplayName() { return randomString(); }
+    public static Object getRandomDisplayName() { return randomDisplayName(); }
+    public static Object randomPassword() { return randomString(); }
+    public static Object getRandomPassword() { return randomPassword(); }
+    public static Object randomEmoji() { return randomString(); }
+    public static Object getRandomEmoji() { return randomEmoji(); }
+    public static Object randomSymbol() { return randomString(); }
+    public static Object getRandomSymbol() { return randomSymbol(); }
+    public static Object randomPunctuation() { return randomString(); }
+    public static Object getRandomPunctuation() { return randomPunctuation(); }
+    public static Object randomFirstName() { return randomString(); }
+    public static Object getRandomFirstName() { return randomFirstName(); }
+    public static Object randomLastName() { return randomString(); }
+    public static Object getRandomLastName() { return randomLastName(); }
+    public static Object randomFullName() { return randomString(); }
+    public static Object getRandomFullName() { return randomFullName(); }
+    public static Object randomNamePrefix() { return randomString(); }
+    public static Object getRandomNamePrefix() { return randomNamePrefix(); }
+    public static Object randomNameSuffix() { return randomString(); }
+    public static Object getRandomNameSuffix() { return randomNameSuffix(); }
+    public static Object randomJobTitle() { return randomString(); }
+    public static Object getRandomJobTitle() { return randomJobTitle(); }
+    public static Object randomDepartment() { return randomString(); }
+    public static Object getRandomDepartment() { return randomDepartment(); }
+    public static Object randomCompany() { return randomString(); }
+    public static Object getRandomCompany() { return randomCompany(); }
+    public static Object randomEmail() { return randomString(); }
+    public static Object getRandomEmail() { return randomEmail(); }
+    public static Object randomPhone() { return randomString(); }
+    public static Object getRandomPhone() { return randomPhone(); }
+    public static Object randomUrl() { return randomString(); }
+    public static Object getRandomUrl() { return randomUrl(); }
+    public static Object randomDomain() { return randomString(); }
+    public static Object getRandomDomain() { return randomDomain(); }
+    public static Object randomSubdomain() { return randomString(); }
+    public static Object getRandomSubdomain() { return randomSubdomain(); }
+    public static Object randomIpv4() { return randomString(); }
+    public static Object getRandomIpv4() { return randomIpv4(); }
+    public static Object randomIpv6() { return randomString(); }
+    public static Object getRandomIpv6() { return randomIpv6(); }
+    public static Object randomMacAddress() { return randomString(); }
+    public static Object getRandomMacAddress() { return randomMacAddress(); }
+    public static Object randomPort() { return randomString(); }
+    public static Object getRandomPort() { return randomPort(); }
+    public static Object randomUserAgent() { return randomString(); }
+    public static Object getRandomUserAgent() { return randomUserAgent(); }
+    public static Object randomMimeType() { return randomString(); }
+    public static Object getRandomMimeType() { return randomMimeType(); }
+    public static Object randomHttpStatus() { return randomString(); }
+    public static Object getRandomHttpStatus() { return randomHttpStatus(); }
+    public static Object randomHexColor() { return randomString(); }
+    public static Object getRandomHexColor() { return randomHexColor(); }
+    public static Object randomRgbColor() { return randomString(); }
+    public static Object getRandomRgbColor() { return randomRgbColor(); }
+    public static Object randomRgbaColor() { return randomString(); }
+    public static Object getRandomRgbaColor() { return randomRgbaColor(); }
+    public static Object randomHslColor() { return randomString(); }
+    public static Object getRandomHslColor() { return randomHslColor(); }
+    public static Object randomHslaColor() { return randomString(); }
+    public static Object getRandomHslaColor() { return randomHslaColor(); }
+    public static Object randomColorName() { return randomString(); }
+    public static Object getRandomColorName() { return randomColorName(); }
+    public static Object randomPalette() { return java.util.List.of(randomString()); }
+    public static Object getRandomPalette() { return randomPalette(); }
+    public static Object randomGradient() { return randomString(); }
+    public static Object getRandomGradient() { return randomGradient(); }
+    public static Object randomCountry() { return randomString(); }
+    public static Object getRandomCountry() { return randomCountry(); }
+    public static Object randomRegion() { return randomString(); }
+    public static Object getRandomRegion() { return randomRegion(); }
+    public static Object randomCity() { return randomString(); }
+    public static Object getRandomCity() { return randomCity(); }
+    public static Object randomStreet() { return randomString(); }
+    public static Object getRandomStreet() { return randomStreet(); }
+    public static Object randomAddress() { return randomString(); }
+    public static Object getRandomAddress() { return randomAddress(); }
+    public static Object randomPostalCode() { return randomString(); }
+    public static Object getRandomPostalCode() { return randomPostalCode(); }
+    public static Object randomCoordinate() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomCoordinate() { return randomCoordinate(); }
+    public static Object randomTimezone() { return randomString(); }
+    public static Object getRandomTimezone() { return randomTimezone(); }
+    public static Object randomLocale() { return randomString(); }
+    public static Object getRandomLocale() { return randomLocale(); }
+    public static Object randomCurrencyCode() { return randomString(); }
+    public static Object getRandomCurrencyCode() { return randomCurrencyCode(); }
+    public static Object randomDate() { return randomString(); }
+    public static Object getRandomDate() { return randomDate(); }
+    public static Object randomTime() { return randomString(); }
+    public static Object getRandomTime() { return randomTime(); }
+    public static Object randomDatetime() { return randomString(); }
+    public static Object getRandomDatetime() { return randomDatetime(); }
+    public static Object randomTimestamp() { return randomInt(); }
+    public static Object getRandomTimestamp() { return randomTimestamp(); }
+    public static Object randomDuration() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomDuration() { return randomDuration(); }
+    public static Object randomWeekday() { return randomString(); }
+    public static Object getRandomWeekday() { return randomWeekday(); }
+    public static Object randomMonth() { return randomString(); }
+    public static Object getRandomMonth() { return randomMonth(); }
+    public static Object randomYear() { return randomString(); }
+    public static Object getRandomYear() { return randomYear(); }
+    public static Object randomCron() { return randomString(); }
+    public static Object getRandomCron() { return randomCron(); }
+    public static Object randomTimezoneOffset() { return randomString(); }
+    public static Object getRandomTimezoneOffset() { return randomTimezoneOffset(); }
+    public static Object randomPrice() { return randomString(); }
+    public static Object getRandomPrice() { return randomPrice(); }
+    public static Object randomSku() { return randomString(); }
+    public static Object getRandomSku() { return randomSku(); }
+    public static Object randomProductName() { return randomString(); }
+    public static Object getRandomProductName() { return randomProductName(); }
+    public static Object randomProductCategory() { return randomString(); }
+    public static Object getRandomProductCategory() { return randomProductCategory(); }
+    public static Object randomBrand() { return randomString(); }
+    public static Object getRandomBrand() { return randomBrand(); }
+    public static Object randomOrderId() { return randomString(); }
+    public static Object getRandomOrderId() { return randomOrderId(); }
+    public static Object randomInvoiceNumber() { return randomString(); }
+    public static Object getRandomInvoiceNumber() { return randomInvoiceNumber(); }
+    public static Object randomTaxRate() { return randomString(); }
+    public static Object getRandomTaxRate() { return randomTaxRate(); }
+    public static Object randomShippingMethod() { return randomString(); }
+    public static Object getRandomShippingMethod() { return randomShippingMethod(); }
+    public static Object randomPaymentMethod() { return randomString(); }
+    public static Object getRandomPaymentMethod() { return randomPaymentMethod(); }
+    public static Object randomDiceRoll() { return randomInt(); }
+    public static Object getRandomDiceRoll() { return randomDiceRoll(); }
+    public static Object randomPlayingCard() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomPlayingCard() { return randomPlayingCard(); }
+    public static Object randomCardSuit() { return randomString(); }
+    public static Object getRandomCardSuit() { return randomCardSuit(); }
+    public static Object randomCardRank() { return randomString(); }
+    public static Object getRandomCardRank() { return randomCardRank(); }
+    public static Object randomCoinFlip() { return randomString(); }
+    public static Object getRandomCoinFlip() { return randomCoinFlip(); }
+    public static Object randomLotteryPick() { return java.util.List.of(randomString()); }
+    public static Object getRandomLotteryPick() { return randomLotteryPick(); }
+    public static Object randomTeamName() { return randomString(); }
+    public static Object getRandomTeamName() { return randomTeamName(); }
+    public static Object randomGameScore() { return randomString(); }
+    public static Object getRandomGameScore() { return randomGameScore(); }
+    public static Object randomRpgClass() { return randomString(); }
+    public static Object getRandomRpgClass() { return randomRpgClass(); }
+    public static Object randomLootRarity() { return randomString(); }
+    public static Object getRandomLootRarity() { return randomLootRarity(); }
+    public static Object randomChoice() { return randomString(); }
+    public static Object getRandomChoice() { return randomChoice(); }
+    public static Object randomWeightedChoice() { return randomString(); }
+    public static Object getRandomWeightedChoice() { return randomWeightedChoice(); }
+    public static Object randomSample() { return java.util.List.of(randomString()); }
+    public static Object getRandomSample() { return randomSample(); }
+    public static Object randomShuffle() { return java.util.List.of(randomString()); }
+    public static Object getRandomShuffle() { return randomShuffle(); }
+    public static Object randomPermutation() { return java.util.List.of(randomString()); }
+    public static Object getRandomPermutation() { return randomPermutation(); }
+    public static Object randomSet() { return java.util.List.of(randomString()); }
+    public static Object getRandomSet() { return randomSet(); }
+    public static Object randomTuple() { return java.util.List.of(randomString()); }
+    public static Object getRandomTuple() { return randomTuple(); }
+    public static Object randomJsonObject() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomJsonObject() { return randomJsonObject(); }
+    public static Object randomArray() { return java.util.List.of(randomString()); }
+    public static Object getRandomArray() { return randomArray(); }
+    public static Object randomMatrix() { return java.util.List.of(randomString()); }
+    public static Object getRandomMatrix() { return randomMatrix(); }
+    public static Object randomSemver() { return randomString(); }
+    public static Object getRandomSemver() { return randomSemver(); }
+    public static Object randomGitSha() { return randomString(); }
+    public static Object getRandomGitSha() { return randomGitSha(); }
+    public static Object randomPackageName() { return randomString(); }
+    public static Object getRandomPackageName() { return randomPackageName(); }
+    public static Object randomFileName() { return randomString(); }
+    public static Object getRandomFileName() { return randomFileName(); }
+    public static Object randomFileExtension() { return randomString(); }
+    public static Object getRandomFileExtension() { return randomFileExtension(); }
+    public static Object randomFilePath() { return randomString(); }
+    public static Object getRandomFilePath() { return randomFilePath(); }
+    public static Object randomDirectoryPath() { return randomString(); }
+    public static Object getRandomDirectoryPath() { return randomDirectoryPath(); }
+    public static Object randomLogLevel() { return randomString(); }
+    public static Object getRandomLogLevel() { return randomLogLevel(); }
+    public static Object randomHttpMethod() { return randomString(); }
+    public static Object getRandomHttpMethod() { return randomHttpMethod(); }
+    public static Object randomEnvironmentName() { return randomString(); }
+    public static Object getRandomEnvironmentName() { return randomEnvironmentName(); }
+    public static Object randomVector2() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomVector2() { return randomVector2(); }
+    public static Object randomVector3() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomVector3() { return randomVector3(); }
+    public static Object randomNormal() { return randomFloat(); }
+    public static Object getRandomNormal() { return randomNormal(); }
+    public static Object randomWeightedNumber() { return randomFloat(); }
+    public static Object getRandomWeightedNumber() { return randomWeightedNumber(); }
+    public static Object randomUnit() { return randomString(); }
+    public static Object getRandomUnit() { return randomUnit(); }
+    public static Object randomMeasurement() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomMeasurement() { return randomMeasurement(); }
+    public static Object randomTemperature() { return randomString(); }
+    public static Object getRandomTemperature() { return randomTemperature(); }
+    public static Object randomDurationMs() { return randomString(); }
+    public static Object getRandomDurationMs() { return randomDurationMs(); }
+    public static Object randomProbability() { return randomString(); }
+    public static Object getRandomProbability() { return randomProbability(); }
+    public static Object randomRange() { return java.util.Map.of("value", randomString()); }
+    public static Object getRandomRange() { return randomRange(); }
 }

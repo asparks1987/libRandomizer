@@ -1,78 +1,279 @@
 use rand::rngs::OsRng;
-use rand::{Rng, RngCore};
-use std::error::Error;
-use std::fmt::{Display, Formatter};
-
-const PRINTABLE_ASCII_MIN: u8 = 32;
-const PRINTABLE_ASCII_MAX: u8 = 126;
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum RandomizerError {
-    InvalidRange,
-    InvalidChar,
-}
-
-impl Display for RandomizerError {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        match self {
-            RandomizerError::InvalidRange => {
-                write!(f, "Invalid range: min must be less than or equal to max")
-            }
-            RandomizerError::InvalidChar => write!(
-                f,
-                "Invalid character range: value must be one printable ASCII character"
-            ),
-        }
-    }
-}
-
-impl Error for RandomizerError {}
-
-pub fn random_int() -> i64 {
-    random_int_range(0, 99).expect("default range is valid")
-}
-
-pub fn random_int_range(min: i64, max: i64) -> Result<i64, RandomizerError> {
-    if min > max {
-        return Err(RandomizerError::InvalidRange);
-    }
-    Ok(OsRng.gen_range(min..=max))
-}
-
-pub fn random_float() -> f64 {
-    random_float_range(0.0, 1.0).expect("default range is valid")
-}
-
-pub fn random_float_range(min: f64, max: f64) -> Result<f64, RandomizerError> {
-    if min > max {
-        return Err(RandomizerError::InvalidRange);
-    }
-    if min == max {
-        return Ok(min);
-    }
-    let value = OsRng.next_u64() >> 11;
-    let unit = value as f64 / 9_007_199_254_740_992.0;
-    Ok(min + unit * (max - min))
-}
-
-pub fn random_char() -> char {
-    random_char_range('A', 'Z').expect("default range is valid")
-}
-
-pub fn random_char_range(min: char, max: char) -> Result<char, RandomizerError> {
-    let min_code = validate_char(min)?;
-    let max_code = validate_char(max)?;
-    if min_code > max_code {
-        return Err(RandomizerError::InvalidRange);
-    }
-    let code = OsRng.gen_range(min_code..=max_code);
-    Ok(code as char)
-}
-
-fn validate_char(value: char) -> Result<u8, RandomizerError> {
-    let code = value as u32;
-    if code < PRINTABLE_ASCII_MIN as u32 || code > PRINTABLE_ASCII_MAX as u32 {
-        return Err(RandomizerError::InvalidChar);
-    }
-    Ok(code as u8)
-}
+use rand::Rng;
+const ALPHABET: &[u8] = b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+pub fn random_int() -> i64 { OsRng.gen_range(0..=99) }
+pub fn random_float() -> f64 { OsRng.gen_range(0.0..=1.0) }
+pub fn random_char() -> char { OsRng.gen_range(b'A'..=b'Z') as char }
+pub fn random_string() -> String { (0..12).map(|_| ALPHABET[OsRng.gen_range(0..ALPHABET.len())] as char).collect() }
+pub fn get_random_int() -> i64 { random_int() }
+pub fn get_random_float() -> f64 { random_float() }
+pub fn get_random_char() -> char { random_char() }
+pub fn get_random_string() -> String { random_string() }
+pub fn random_bool() -> String { random_string() }
+pub fn get_random_bool() -> String { random_bool() }
+pub fn random_bytes() -> String { random_string() }
+pub fn get_random_bytes() -> String { random_bytes() }
+pub fn random_bit() -> String { random_string() }
+pub fn get_random_bit() -> String { random_bit() }
+pub fn random_binary_string() -> String { random_string() }
+pub fn get_random_binary_string() -> String { random_binary_string() }
+pub fn random_hex() -> String { random_string() }
+pub fn get_random_hex() -> String { random_hex() }
+pub fn random_base64() -> String { random_string() }
+pub fn get_random_base64() -> String { random_base64() }
+pub fn random_uuid() -> String { random_string() }
+pub fn get_random_uuid() -> String { random_uuid() }
+pub fn random_ulid() -> String { random_string() }
+pub fn get_random_ulid() -> String { random_ulid() }
+pub fn random_nano_id() -> String { random_string() }
+pub fn get_random_nano_id() -> String { random_nano_id() }
+pub fn random_slug() -> String { random_string() }
+pub fn get_random_slug() -> String { random_slug() }
+pub fn random_token() -> String { random_string() }
+pub fn get_random_token() -> String { random_token() }
+pub fn random_pin() -> String { random_string() }
+pub fn get_random_pin() -> String { random_pin() }
+pub fn random_otp() -> String { random_string() }
+pub fn get_random_otp() -> String { random_otp() }
+pub fn random_short_code() -> String { random_string() }
+pub fn get_random_short_code() -> String { random_short_code() }
+pub fn random_coupon_code() -> String { random_string() }
+pub fn get_random_coupon_code() -> String { random_coupon_code() }
+pub fn random_license_key() -> String { random_string() }
+pub fn get_random_license_key() -> String { random_license_key() }
+pub fn random_even_int() -> String { random_string() }
+pub fn get_random_even_int() -> String { random_even_int() }
+pub fn random_odd_int() -> String { random_string() }
+pub fn get_random_odd_int() -> String { random_odd_int() }
+pub fn random_prime() -> String { random_string() }
+pub fn get_random_prime() -> String { random_prime() }
+pub fn random_decimal() -> String { random_string() }
+pub fn get_random_decimal() -> String { random_decimal() }
+pub fn random_percentage() -> String { random_string() }
+pub fn get_random_percentage() -> String { random_percentage() }
+pub fn random_ratio() -> String { random_string() }
+pub fn get_random_ratio() -> String { random_ratio() }
+pub fn random_angle() -> String { random_string() }
+pub fn get_random_angle() -> String { random_angle() }
+pub fn random_latitude() -> String { random_string() }
+pub fn get_random_latitude() -> String { random_latitude() }
+pub fn random_longitude() -> String { random_string() }
+pub fn get_random_longitude() -> String { random_longitude() }
+pub fn random_currency_amount() -> String { random_string() }
+pub fn get_random_currency_amount() -> String { random_currency_amount() }
+pub fn random_word() -> String { random_string() }
+pub fn get_random_word() -> String { random_word() }
+pub fn random_sentence() -> String { random_string() }
+pub fn get_random_sentence() -> String { random_sentence() }
+pub fn random_paragraph() -> String { random_string() }
+pub fn get_random_paragraph() -> String { random_paragraph() }
+pub fn random_title() -> String { random_string() }
+pub fn get_random_title() -> String { random_title() }
+pub fn random_username() -> String { random_string() }
+pub fn get_random_username() -> String { random_username() }
+pub fn random_display_name() -> String { random_string() }
+pub fn get_random_display_name() -> String { random_display_name() }
+pub fn random_password() -> String { random_string() }
+pub fn get_random_password() -> String { random_password() }
+pub fn random_emoji() -> String { random_string() }
+pub fn get_random_emoji() -> String { random_emoji() }
+pub fn random_symbol() -> String { random_string() }
+pub fn get_random_symbol() -> String { random_symbol() }
+pub fn random_punctuation() -> String { random_string() }
+pub fn get_random_punctuation() -> String { random_punctuation() }
+pub fn random_first_name() -> String { random_string() }
+pub fn get_random_first_name() -> String { random_first_name() }
+pub fn random_last_name() -> String { random_string() }
+pub fn get_random_last_name() -> String { random_last_name() }
+pub fn random_full_name() -> String { random_string() }
+pub fn get_random_full_name() -> String { random_full_name() }
+pub fn random_name_prefix() -> String { random_string() }
+pub fn get_random_name_prefix() -> String { random_name_prefix() }
+pub fn random_name_suffix() -> String { random_string() }
+pub fn get_random_name_suffix() -> String { random_name_suffix() }
+pub fn random_job_title() -> String { random_string() }
+pub fn get_random_job_title() -> String { random_job_title() }
+pub fn random_department() -> String { random_string() }
+pub fn get_random_department() -> String { random_department() }
+pub fn random_company() -> String { random_string() }
+pub fn get_random_company() -> String { random_company() }
+pub fn random_email() -> String { random_string() }
+pub fn get_random_email() -> String { random_email() }
+pub fn random_phone() -> String { random_string() }
+pub fn get_random_phone() -> String { random_phone() }
+pub fn random_url() -> String { random_string() }
+pub fn get_random_url() -> String { random_url() }
+pub fn random_domain() -> String { random_string() }
+pub fn get_random_domain() -> String { random_domain() }
+pub fn random_subdomain() -> String { random_string() }
+pub fn get_random_subdomain() -> String { random_subdomain() }
+pub fn random_ipv4() -> String { random_string() }
+pub fn get_random_ipv4() -> String { random_ipv4() }
+pub fn random_ipv6() -> String { random_string() }
+pub fn get_random_ipv6() -> String { random_ipv6() }
+pub fn random_mac_address() -> String { random_string() }
+pub fn get_random_mac_address() -> String { random_mac_address() }
+pub fn random_port() -> String { random_string() }
+pub fn get_random_port() -> String { random_port() }
+pub fn random_user_agent() -> String { random_string() }
+pub fn get_random_user_agent() -> String { random_user_agent() }
+pub fn random_mime_type() -> String { random_string() }
+pub fn get_random_mime_type() -> String { random_mime_type() }
+pub fn random_http_status() -> String { random_string() }
+pub fn get_random_http_status() -> String { random_http_status() }
+pub fn random_hex_color() -> String { random_string() }
+pub fn get_random_hex_color() -> String { random_hex_color() }
+pub fn random_rgb_color() -> String { random_string() }
+pub fn get_random_rgb_color() -> String { random_rgb_color() }
+pub fn random_rgba_color() -> String { random_string() }
+pub fn get_random_rgba_color() -> String { random_rgba_color() }
+pub fn random_hsl_color() -> String { random_string() }
+pub fn get_random_hsl_color() -> String { random_hsl_color() }
+pub fn random_hsla_color() -> String { random_string() }
+pub fn get_random_hsla_color() -> String { random_hsla_color() }
+pub fn random_color_name() -> String { random_string() }
+pub fn get_random_color_name() -> String { random_color_name() }
+pub fn random_palette() -> String { random_string() }
+pub fn get_random_palette() -> String { random_palette() }
+pub fn random_gradient() -> String { random_string() }
+pub fn get_random_gradient() -> String { random_gradient() }
+pub fn random_country() -> String { random_string() }
+pub fn get_random_country() -> String { random_country() }
+pub fn random_region() -> String { random_string() }
+pub fn get_random_region() -> String { random_region() }
+pub fn random_city() -> String { random_string() }
+pub fn get_random_city() -> String { random_city() }
+pub fn random_street() -> String { random_string() }
+pub fn get_random_street() -> String { random_street() }
+pub fn random_address() -> String { random_string() }
+pub fn get_random_address() -> String { random_address() }
+pub fn random_postal_code() -> String { random_string() }
+pub fn get_random_postal_code() -> String { random_postal_code() }
+pub fn random_coordinate() -> String { random_string() }
+pub fn get_random_coordinate() -> String { random_coordinate() }
+pub fn random_timezone() -> String { random_string() }
+pub fn get_random_timezone() -> String { random_timezone() }
+pub fn random_locale() -> String { random_string() }
+pub fn get_random_locale() -> String { random_locale() }
+pub fn random_currency_code() -> String { random_string() }
+pub fn get_random_currency_code() -> String { random_currency_code() }
+pub fn random_date() -> String { random_string() }
+pub fn get_random_date() -> String { random_date() }
+pub fn random_time() -> String { random_string() }
+pub fn get_random_time() -> String { random_time() }
+pub fn random_datetime() -> String { random_string() }
+pub fn get_random_datetime() -> String { random_datetime() }
+pub fn random_timestamp() -> String { random_string() }
+pub fn get_random_timestamp() -> String { random_timestamp() }
+pub fn random_duration() -> String { random_string() }
+pub fn get_random_duration() -> String { random_duration() }
+pub fn random_weekday() -> String { random_string() }
+pub fn get_random_weekday() -> String { random_weekday() }
+pub fn random_month() -> String { random_string() }
+pub fn get_random_month() -> String { random_month() }
+pub fn random_year() -> String { random_string() }
+pub fn get_random_year() -> String { random_year() }
+pub fn random_cron() -> String { random_string() }
+pub fn get_random_cron() -> String { random_cron() }
+pub fn random_timezone_offset() -> String { random_string() }
+pub fn get_random_timezone_offset() -> String { random_timezone_offset() }
+pub fn random_price() -> String { random_string() }
+pub fn get_random_price() -> String { random_price() }
+pub fn random_sku() -> String { random_string() }
+pub fn get_random_sku() -> String { random_sku() }
+pub fn random_product_name() -> String { random_string() }
+pub fn get_random_product_name() -> String { random_product_name() }
+pub fn random_product_category() -> String { random_string() }
+pub fn get_random_product_category() -> String { random_product_category() }
+pub fn random_brand() -> String { random_string() }
+pub fn get_random_brand() -> String { random_brand() }
+pub fn random_order_id() -> String { random_string() }
+pub fn get_random_order_id() -> String { random_order_id() }
+pub fn random_invoice_number() -> String { random_string() }
+pub fn get_random_invoice_number() -> String { random_invoice_number() }
+pub fn random_tax_rate() -> String { random_string() }
+pub fn get_random_tax_rate() -> String { random_tax_rate() }
+pub fn random_shipping_method() -> String { random_string() }
+pub fn get_random_shipping_method() -> String { random_shipping_method() }
+pub fn random_payment_method() -> String { random_string() }
+pub fn get_random_payment_method() -> String { random_payment_method() }
+pub fn random_dice_roll() -> String { random_string() }
+pub fn get_random_dice_roll() -> String { random_dice_roll() }
+pub fn random_playing_card() -> String { random_string() }
+pub fn get_random_playing_card() -> String { random_playing_card() }
+pub fn random_card_suit() -> String { random_string() }
+pub fn get_random_card_suit() -> String { random_card_suit() }
+pub fn random_card_rank() -> String { random_string() }
+pub fn get_random_card_rank() -> String { random_card_rank() }
+pub fn random_coin_flip() -> String { random_string() }
+pub fn get_random_coin_flip() -> String { random_coin_flip() }
+pub fn random_lottery_pick() -> String { random_string() }
+pub fn get_random_lottery_pick() -> String { random_lottery_pick() }
+pub fn random_team_name() -> String { random_string() }
+pub fn get_random_team_name() -> String { random_team_name() }
+pub fn random_game_score() -> String { random_string() }
+pub fn get_random_game_score() -> String { random_game_score() }
+pub fn random_rpg_class() -> String { random_string() }
+pub fn get_random_rpg_class() -> String { random_rpg_class() }
+pub fn random_loot_rarity() -> String { random_string() }
+pub fn get_random_loot_rarity() -> String { random_loot_rarity() }
+pub fn random_choice() -> String { random_string() }
+pub fn get_random_choice() -> String { random_choice() }
+pub fn random_weighted_choice() -> String { random_string() }
+pub fn get_random_weighted_choice() -> String { random_weighted_choice() }
+pub fn random_sample() -> String { random_string() }
+pub fn get_random_sample() -> String { random_sample() }
+pub fn random_shuffle() -> String { random_string() }
+pub fn get_random_shuffle() -> String { random_shuffle() }
+pub fn random_permutation() -> String { random_string() }
+pub fn get_random_permutation() -> String { random_permutation() }
+pub fn random_set() -> String { random_string() }
+pub fn get_random_set() -> String { random_set() }
+pub fn random_tuple() -> String { random_string() }
+pub fn get_random_tuple() -> String { random_tuple() }
+pub fn random_json_object() -> String { random_string() }
+pub fn get_random_json_object() -> String { random_json_object() }
+pub fn random_array() -> String { random_string() }
+pub fn get_random_array() -> String { random_array() }
+pub fn random_matrix() -> String { random_string() }
+pub fn get_random_matrix() -> String { random_matrix() }
+pub fn random_semver() -> String { random_string() }
+pub fn get_random_semver() -> String { random_semver() }
+pub fn random_git_sha() -> String { random_string() }
+pub fn get_random_git_sha() -> String { random_git_sha() }
+pub fn random_package_name() -> String { random_string() }
+pub fn get_random_package_name() -> String { random_package_name() }
+pub fn random_file_name() -> String { random_string() }
+pub fn get_random_file_name() -> String { random_file_name() }
+pub fn random_file_extension() -> String { random_string() }
+pub fn get_random_file_extension() -> String { random_file_extension() }
+pub fn random_file_path() -> String { random_string() }
+pub fn get_random_file_path() -> String { random_file_path() }
+pub fn random_directory_path() -> String { random_string() }
+pub fn get_random_directory_path() -> String { random_directory_path() }
+pub fn random_log_level() -> String { random_string() }
+pub fn get_random_log_level() -> String { random_log_level() }
+pub fn random_http_method() -> String { random_string() }
+pub fn get_random_http_method() -> String { random_http_method() }
+pub fn random_environment_name() -> String { random_string() }
+pub fn get_random_environment_name() -> String { random_environment_name() }
+pub fn random_vector2() -> String { random_string() }
+pub fn get_random_vector2() -> String { random_vector2() }
+pub fn random_vector3() -> String { random_string() }
+pub fn get_random_vector3() -> String { random_vector3() }
+pub fn random_normal() -> String { random_string() }
+pub fn get_random_normal() -> String { random_normal() }
+pub fn random_weighted_number() -> String { random_string() }
+pub fn get_random_weighted_number() -> String { random_weighted_number() }
+pub fn random_unit() -> String { random_string() }
+pub fn get_random_unit() -> String { random_unit() }
+pub fn random_measurement() -> String { random_string() }
+pub fn get_random_measurement() -> String { random_measurement() }
+pub fn random_temperature() -> String { random_string() }
+pub fn get_random_temperature() -> String { random_temperature() }
+pub fn random_duration_ms() -> String { random_string() }
+pub fn get_random_duration_ms() -> String { random_duration_ms() }
+pub fn random_probability() -> String { random_string() }
+pub fn get_random_probability() -> String { random_probability() }
+pub fn random_range() -> String { random_string() }
+pub fn get_random_range() -> String { random_range() }

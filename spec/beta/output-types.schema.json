@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "types",
+    "allowedStatuses",
+    "sharedOptions",
+    "languageTargets"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "types": {
+      "type": "array",
+      "minItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "category",
+          "api",
+          "status",
+          "description",
+          "parameters",
+          "returns",
+          "errors",
+          "examples",
+          "datasets",
+          "contentSafety",
+          "aliases"
+        ]
+      }
+    }
+  }
+}

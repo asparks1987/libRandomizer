@@ -46,10 +46,22 @@ def test_beta_output_catalog_cements_at_least_100_unique_types():
     types = catalog["types"]
     ids = [entry["id"] for entry in types]
     statuses = {entry["status"] for entry in types}
+    allowed_statuses = set(catalog["allowedStatuses"])
 
     assert len(types) >= catalog["minimumCatalogSize"] >= 100
     assert len(ids) == len(set(ids))
-    assert {"available-v1", "planned-beta"} >= statuses
+    assert allowed_statuses >= statuses
+    assert {
+        "min",
+        "max",
+        "length",
+        "count",
+        "locale",
+        "allowAdult",
+        "format",
+        "items",
+        "weights",
+    } <= set(catalog["sharedOptions"])
 
     for entry in types:
         assert entry["id"]
@@ -57,6 +69,17 @@ def test_beta_output_catalog_cements_at_least_100_unique_types():
         assert entry["category"]
         assert entry["api"].startswith("random")
         assert entry["description"]
+        assert isinstance(entry["parameters"], list)
+        assert entry["returns"]["type"]
+        assert entry["errors"]
+        assert entry["examples"]
+        assert "required" in entry["datasets"]
+        assert entry["contentSafety"] in {
+            "not-applicable",
+            "safe-default",
+            "safe-default-adult-opt-in",
+        }
+        assert all(alias.startswith("getRandom") for alias in entry["aliases"])
 
 
 def test_docs_beta_catalog_snapshot_matches_the_source_spec():
@@ -64,3 +87,25 @@ def test_docs_beta_catalog_snapshot_matches_the_source_spec():
     published = json.loads((ROOT / "docs" / "assets" / "beta-output-types.json").read_text())
 
     assert published == source
+
+
+def test_production_beta_docs_exist_and_reference_catalog_contract():
+    required_docs = {
+        "PRODUCT_SCOPE.md",
+        "API_REFERENCE.md",
+        "BETA_BURNDOWN.md",
+        "DATASETS.md",
+        "CONFORMANCE.md",
+    }
+
+    for filename in required_docs:
+        text = (ROOT / "docs" / filename).read_text()
+        assert "libRandomizer" in text
+
+    api_reference = (ROOT / "docs" / "API_REFERENCE.md").read_text()
+    catalog = json.loads((ROOT / "spec" / "beta" / "output-types.json").read_text())
+
+    assert "safe corpora are the default" in api_reference
+    for entry in catalog["types"]:
+        assert f"### {entry['name']}" in api_reference
+        assert f"`{entry['api']}`" in api_reference

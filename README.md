@@ -8,25 +8,37 @@ small function, and get an OS-backed random value.
 int thisINT = randomInt();
 ```
 
-The current v1 implementation focuses on three primitive output types:
-integers, floats, and printable ASCII characters. The beta documentation expands
-the product roadmap with 138 planned output types so the SDK can grow toward
-random data of almost any kind while keeping the same direct API style.
+The V1 public beta exposes the full 138-type beta catalog from the Python
+reference SDK and CLI, with generated native SDK surfaces for the 15 target
+language packages. Python is the deepest reference implementation; the native
+packages provide the beta `randomX()`/`getRandomX()` call surface and package
+metadata for local build validation.
 
 ## Current Status
 
-This repository is beta-ready for the v1 foundation:
+This repository is repo-ready for the V1 public beta:
 
-- Python reference SDK with top-level functions, class compatibility, and CLI
+- Python reference SDK with all 138 catalog functions, aliases, class
+  compatibility, and CLI fallback
 - Native package targets for 15 languages under `packages/`
-- Shared v1 behavior contract in `spec/v1`
-- Beta output-type catalog in `spec/beta`
+- Shared beta behavior contract, schema, and generated conformance fixtures in
+  `spec/beta`
+- Portable in-house MIT seed datasets under `datasets/`
 - GitHub-dark documentation site in `docs/`
-- Unit tests, CLI tests, package layout checks, and beta catalog checks
+- Unit tests, CLI tests, catalog checks, and beta release smoke coverage
 
-Important distinction: v1 functions are implemented for the current primitive
-scope. The beta catalog is documentation-first and marks the larger API surface
-the SDK should implement over time.
+Important distinction: Python and the CLI are the reference implementation for
+the full catalog. The other native SDKs have the full public beta surface and
+secure-random primitives, but deeper option parity and per-language conformance
+expansion should continue after this repo-ready beta.
+
+For the full production beta burndown, see:
+
+- `docs/PRODUCT_SCOPE.md`
+- `docs/API_REFERENCE.md`
+- `docs/BETA_BURNDOWN.md`
+- `docs/DATASETS.md`
+- `docs/CONFORMANCE.md`
 
 ## What Works Today
 
@@ -35,6 +47,11 @@ the SDK should implement over time.
 | Integer | `randomInt()` | `0..99` | `randomInt(min, max)` |
 | Float | `randomFloat()` | `0.0..1.0` | `randomFloat(min, max)` |
 | Character | `randomChar()` | `"A".."Z"` | `randomChar(min, max)` |
+
+The full Python/CLI beta catalog also includes strings, bytes, UUIDs, colors,
+words, names, places, internet values, dates, commerce values, games,
+collections, developer data, and science/math helpers. See
+`docs/API_REFERENCE.md` for the complete generated list.
 
 Language-specific casing is supported where it is idiomatic. For example,
 Python exposes `random_int()`, Go exposes `RandomInt()`, and C exposes
@@ -70,22 +87,25 @@ python -m pip install -e ".[dev]"
 Use top-level functions for the simplest API:
 
 ```python
-from librandomizer import random_int, random_float, random_char
+from librandomizer import random_int, random_float, random_char, randomWords
 
 value = random_int()
 score = random_int(10, 20)
 ratio = random_float()
 letter = random_char("A", "F")
+phrase = randomWords(5)
 ```
 
 Camel-case aliases are available when you want the cross-language shape:
 
 ```python
-from librandomizer import randomInt, randomFloat, randomChar
+from librandomizer import randomInt, randomFloat, randomChar, randomString, randomColorName
 
 value = randomInt()
 ratio = randomFloat(0.25, 0.75)
 letter = randomChar("A", "Z")
+token = randomString(5)
+color = randomColorName()
 ```
 
 The older class-first API still works for compatibility:
@@ -112,6 +132,9 @@ have a packaged SDK installed.
 librandom int --min 0 --max 99
 librandom float --min 0.0 --max 1.0
 librandom char --min A --max Z
+librandom string --length 5
+librandom color-name
+librandom weighted-choice --items '["a","b"]' --weights '[1,3]'
 ```
 
 Successful output is compact JSON:
@@ -305,23 +328,26 @@ types across 14 categories:
 - Developer data
 - Science and math
 
-Each catalog item includes a stable id, display name, category, proposed API,
-status, and behavior description. The docs site publishes a synchronized copy at
-`docs/assets/beta-output-types.json` so the website can render the catalog as a
-static site.
+Each catalog item includes a stable id, display name, category, public API,
+status, behavior description, parameters, return shape, errors, examples,
+dataset dependency, content-safety mode, and aliases. The docs site publishes a
+synchronized copy at `docs/assets/beta-output-types.json` so the website can
+render the catalog as a static site.
 
-Implemented v1 catalog items are marked `available-v1`. Future targets are
-marked `planned-beta`.
+Repo-ready V1 public beta catalog items are marked `implemented-all`.
+`available-v1` remains documented only as an early compatibility status.
 
 ## Repository Map
 
 ```text
 src/                 Python reference SDK and CLI
 packages/            Native SDK targets for 15 languages
-spec/v1/             Shared v1 behavior contract
-spec/beta/           Beta random-output catalog
-docs/                Static documentation/marketing site
-tests/               Python, CLI, layout, and catalog tests
+spec/v1/             Original primitive behavior contract
+spec/beta/           Beta random-output catalog, schema, and conformance fixtures
+docs/                Static site plus product, API, dataset, conformance, and burndown docs
+datasets/            Portable MIT seed datasets and metadata
+tests/               Python, CLI, layout, catalog, and beta release tests
+scripts/             Catalog, docs, conformance, and SDK generation helpers
 ```
 
 ## Development
@@ -336,6 +362,14 @@ Build the Python package:
 
 ```bash
 python -m build
+```
+
+Regenerate beta release artifacts after changing `spec/beta/output-types.json`:
+
+```bash
+python scripts/generate_beta_release.py
+python scripts/generate_native_sdk_surfaces.py
+python scripts/sync_beta_docs.py
 ```
 
 Serve the documentation site from the repository root so the static assets load
@@ -353,14 +387,14 @@ http://localhost:8001/docs/index.html
 
 ## Release Direction
 
-The current release line is `0.1.x` for the v1 primitive foundation. The path to
-`1.0.0` is:
+The current release line is `0.1.0b1` for the repo-ready V1 public beta. The
+path to `1.0.0` is:
 
-- keep the v1 contract stable for ints, floats, and chars
-- complete packaging and conformance checks for each language target
-- promote beta catalog items from `planned-beta` to implemented status as they
-  land
-- keep all SDKs aligned to one semantic version once publishing begins
+- deepen per-language option parity beyond the generated beta surfaces
+- expand native conformance runners for every package manager and toolchain
+- replace beta seed datasets with larger documented corpora where useful
+- publish packages from tagged releases once registry credentials and dry-runs
+  are complete
 
 ## License
 

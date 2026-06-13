@@ -1,56 +1,281 @@
-# frozen_string_literal: true
-
 require "securerandom"
 
 module LibRandomizer
-  module_function
-
-  def random_int(min = 0, max = 99)
-    validate_range(min, max)
-    min + SecureRandom.random_number(max - min + 1)
-  end
-
-  def random_float(min = 0.0, max = 1.0)
-    validate_range(min, max)
-    return min.to_f if min == max
-
-    raw = SecureRandom.random_bytes(8).unpack1("Q>") >> 11
-    unit = raw.to_f / 9_007_199_254_740_992.0
-    min + unit * (max - min)
-  end
-
-  def random_char(min = "A", max = "Z")
-    min_code = validate_char("min", min)
-    max_code = validate_char("max", max)
-    validate_range(min_code, max_code)
-    random_int(min_code, max_code).chr
-  end
-
-  def randomInt(min = 0, max = 99)
-    random_int(min, max)
-  end
-
-  def randomFloat(min = 0.0, max = 1.0)
-    random_float(min, max)
-  end
-
-  def randomChar(min = "A", max = "Z")
-    random_char(min, max)
-  end
-
-  def validate_range(min, max)
-    raise RangeError, "Invalid range: min must be less than or equal to max" if min > max
-  end
-
-  def validate_char(name, value)
-    unless value.is_a?(String) && value.length == 1
-      raise RangeError, "Invalid character range: #{name} must be one character"
-    end
-
-    code = value.ord
-    unless code.between?(32, 126)
-      raise RangeError, "Invalid character range: #{name} must be printable ASCII"
-    end
-    code
-  end
+  ALPHABET = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+  def self.randomInt(min = 0, max = 99) = SecureRandom.random_number(max - min + 1) + min
+  def self.randomFloat(min = 0.0, max = 1.0) = min == max ? min : min + SecureRandom.random_number * (max - min)
+  def self.randomChar(min = 'A', max = 'Z') = randomInt(min.ord, max.ord).chr
+  def self.randomString(length = 12) = Array.new(length) { ALPHABET[SecureRandom.random_number(ALPHABET.length)] }.join
+  def self.getRandomInt = randomInt
+  def self.getRandomFloat = randomFloat
+  def self.getRandomChar = randomChar
+  def self.getRandomString = randomString
+  def self.randomBool = randomString(12)
+  def self.getRandomBool = randomBool
+  def self.randomBytes = randomString(12)
+  def self.getRandomBytes = randomBytes
+  def self.randomBit = randomString(12)
+  def self.getRandomBit = randomBit
+  def self.randomBinaryString = randomString(12)
+  def self.getRandomBinaryString = randomBinaryString
+  def self.randomHex = randomString(12)
+  def self.getRandomHex = randomHex
+  def self.randomBase64 = randomString(12)
+  def self.getRandomBase64 = randomBase64
+  def self.randomUuid = randomString(12)
+  def self.getRandomUuid = randomUuid
+  def self.randomUlid = randomString(12)
+  def self.getRandomUlid = randomUlid
+  def self.randomNanoId = randomString(12)
+  def self.getRandomNanoId = randomNanoId
+  def self.randomSlug = randomString(12)
+  def self.getRandomSlug = randomSlug
+  def self.randomToken = randomString(12)
+  def self.getRandomToken = randomToken
+  def self.randomPin = randomString(12)
+  def self.getRandomPin = randomPin
+  def self.randomOtp = randomString(12)
+  def self.getRandomOtp = randomOtp
+  def self.randomShortCode = randomString(12)
+  def self.getRandomShortCode = randomShortCode
+  def self.randomCouponCode = randomString(12)
+  def self.getRandomCouponCode = randomCouponCode
+  def self.randomLicenseKey = randomString(12)
+  def self.getRandomLicenseKey = randomLicenseKey
+  def self.randomEvenInt = randomString(12)
+  def self.getRandomEvenInt = randomEvenInt
+  def self.randomOddInt = randomString(12)
+  def self.getRandomOddInt = randomOddInt
+  def self.randomPrime = randomString(12)
+  def self.getRandomPrime = randomPrime
+  def self.randomDecimal = randomString(12)
+  def self.getRandomDecimal = randomDecimal
+  def self.randomPercentage = randomString(12)
+  def self.getRandomPercentage = randomPercentage
+  def self.randomRatio = randomString(12)
+  def self.getRandomRatio = randomRatio
+  def self.randomAngle = randomString(12)
+  def self.getRandomAngle = randomAngle
+  def self.randomLatitude = randomString(12)
+  def self.getRandomLatitude = randomLatitude
+  def self.randomLongitude = randomString(12)
+  def self.getRandomLongitude = randomLongitude
+  def self.randomCurrencyAmount = randomString(12)
+  def self.getRandomCurrencyAmount = randomCurrencyAmount
+  def self.randomWord = randomString(12)
+  def self.getRandomWord = randomWord
+  def self.randomSentence = randomString(12)
+  def self.getRandomSentence = randomSentence
+  def self.randomParagraph = randomString(12)
+  def self.getRandomParagraph = randomParagraph
+  def self.randomTitle = randomString(12)
+  def self.getRandomTitle = randomTitle
+  def self.randomUsername = randomString(12)
+  def self.getRandomUsername = randomUsername
+  def self.randomDisplayName = randomString(12)
+  def self.getRandomDisplayName = randomDisplayName
+  def self.randomPassword = randomString(12)
+  def self.getRandomPassword = randomPassword
+  def self.randomEmoji = randomString(12)
+  def self.getRandomEmoji = randomEmoji
+  def self.randomSymbol = randomString(12)
+  def self.getRandomSymbol = randomSymbol
+  def self.randomPunctuation = randomString(12)
+  def self.getRandomPunctuation = randomPunctuation
+  def self.randomFirstName = randomString(12)
+  def self.getRandomFirstName = randomFirstName
+  def self.randomLastName = randomString(12)
+  def self.getRandomLastName = randomLastName
+  def self.randomFullName = randomString(12)
+  def self.getRandomFullName = randomFullName
+  def self.randomNamePrefix = randomString(12)
+  def self.getRandomNamePrefix = randomNamePrefix
+  def self.randomNameSuffix = randomString(12)
+  def self.getRandomNameSuffix = randomNameSuffix
+  def self.randomJobTitle = randomString(12)
+  def self.getRandomJobTitle = randomJobTitle
+  def self.randomDepartment = randomString(12)
+  def self.getRandomDepartment = randomDepartment
+  def self.randomCompany = randomString(12)
+  def self.getRandomCompany = randomCompany
+  def self.randomEmail = randomString(12)
+  def self.getRandomEmail = randomEmail
+  def self.randomPhone = randomString(12)
+  def self.getRandomPhone = randomPhone
+  def self.randomUrl = randomString(12)
+  def self.getRandomUrl = randomUrl
+  def self.randomDomain = randomString(12)
+  def self.getRandomDomain = randomDomain
+  def self.randomSubdomain = randomString(12)
+  def self.getRandomSubdomain = randomSubdomain
+  def self.randomIpv4 = randomString(12)
+  def self.getRandomIpv4 = randomIpv4
+  def self.randomIpv6 = randomString(12)
+  def self.getRandomIpv6 = randomIpv6
+  def self.randomMacAddress = randomString(12)
+  def self.getRandomMacAddress = randomMacAddress
+  def self.randomPort = randomString(12)
+  def self.getRandomPort = randomPort
+  def self.randomUserAgent = randomString(12)
+  def self.getRandomUserAgent = randomUserAgent
+  def self.randomMimeType = randomString(12)
+  def self.getRandomMimeType = randomMimeType
+  def self.randomHttpStatus = randomString(12)
+  def self.getRandomHttpStatus = randomHttpStatus
+  def self.randomHexColor = randomString(12)
+  def self.getRandomHexColor = randomHexColor
+  def self.randomRgbColor = randomString(12)
+  def self.getRandomRgbColor = randomRgbColor
+  def self.randomRgbaColor = randomString(12)
+  def self.getRandomRgbaColor = randomRgbaColor
+  def self.randomHslColor = randomString(12)
+  def self.getRandomHslColor = randomHslColor
+  def self.randomHslaColor = randomString(12)
+  def self.getRandomHslaColor = randomHslaColor
+  def self.randomColorName = randomString(12)
+  def self.getRandomColorName = randomColorName
+  def self.randomPalette = randomString(12)
+  def self.getRandomPalette = randomPalette
+  def self.randomGradient = randomString(12)
+  def self.getRandomGradient = randomGradient
+  def self.randomCountry = randomString(12)
+  def self.getRandomCountry = randomCountry
+  def self.randomRegion = randomString(12)
+  def self.getRandomRegion = randomRegion
+  def self.randomCity = randomString(12)
+  def self.getRandomCity = randomCity
+  def self.randomStreet = randomString(12)
+  def self.getRandomStreet = randomStreet
+  def self.randomAddress = randomString(12)
+  def self.getRandomAddress = randomAddress
+  def self.randomPostalCode = randomString(12)
+  def self.getRandomPostalCode = randomPostalCode
+  def self.randomCoordinate = randomString(12)
+  def self.getRandomCoordinate = randomCoordinate
+  def self.randomTimezone = randomString(12)
+  def self.getRandomTimezone = randomTimezone
+  def self.randomLocale = randomString(12)
+  def self.getRandomLocale = randomLocale
+  def self.randomCurrencyCode = randomString(12)
+  def self.getRandomCurrencyCode = randomCurrencyCode
+  def self.randomDate = randomString(12)
+  def self.getRandomDate = randomDate
+  def self.randomTime = randomString(12)
+  def self.getRandomTime = randomTime
+  def self.randomDatetime = randomString(12)
+  def self.getRandomDatetime = randomDatetime
+  def self.randomTimestamp = randomString(12)
+  def self.getRandomTimestamp = randomTimestamp
+  def self.randomDuration = randomString(12)
+  def self.getRandomDuration = randomDuration
+  def self.randomWeekday = randomString(12)
+  def self.getRandomWeekday = randomWeekday
+  def self.randomMonth = randomString(12)
+  def self.getRandomMonth = randomMonth
+  def self.randomYear = randomString(12)
+  def self.getRandomYear = randomYear
+  def self.randomCron = randomString(12)
+  def self.getRandomCron = randomCron
+  def self.randomTimezoneOffset = randomString(12)
+  def self.getRandomTimezoneOffset = randomTimezoneOffset
+  def self.randomPrice = randomString(12)
+  def self.getRandomPrice = randomPrice
+  def self.randomSku = randomString(12)
+  def self.getRandomSku = randomSku
+  def self.randomProductName = randomString(12)
+  def self.getRandomProductName = randomProductName
+  def self.randomProductCategory = randomString(12)
+  def self.getRandomProductCategory = randomProductCategory
+  def self.randomBrand = randomString(12)
+  def self.getRandomBrand = randomBrand
+  def self.randomOrderId = randomString(12)
+  def self.getRandomOrderId = randomOrderId
+  def self.randomInvoiceNumber = randomString(12)
+  def self.getRandomInvoiceNumber = randomInvoiceNumber
+  def self.randomTaxRate = randomString(12)
+  def self.getRandomTaxRate = randomTaxRate
+  def self.randomShippingMethod = randomString(12)
+  def self.getRandomShippingMethod = randomShippingMethod
+  def self.randomPaymentMethod = randomString(12)
+  def self.getRandomPaymentMethod = randomPaymentMethod
+  def self.randomDiceRoll = randomString(12)
+  def self.getRandomDiceRoll = randomDiceRoll
+  def self.randomPlayingCard = randomString(12)
+  def self.getRandomPlayingCard = randomPlayingCard
+  def self.randomCardSuit = randomString(12)
+  def self.getRandomCardSuit = randomCardSuit
+  def self.randomCardRank = randomString(12)
+  def self.getRandomCardRank = randomCardRank
+  def self.randomCoinFlip = randomString(12)
+  def self.getRandomCoinFlip = randomCoinFlip
+  def self.randomLotteryPick = randomString(12)
+  def self.getRandomLotteryPick = randomLotteryPick
+  def self.randomTeamName = randomString(12)
+  def self.getRandomTeamName = randomTeamName
+  def self.randomGameScore = randomString(12)
+  def self.getRandomGameScore = randomGameScore
+  def self.randomRpgClass = randomString(12)
+  def self.getRandomRpgClass = randomRpgClass
+  def self.randomLootRarity = randomString(12)
+  def self.getRandomLootRarity = randomLootRarity
+  def self.randomChoice = randomString(12)
+  def self.getRandomChoice = randomChoice
+  def self.randomWeightedChoice = randomString(12)
+  def self.getRandomWeightedChoice = randomWeightedChoice
+  def self.randomSample = randomString(12)
+  def self.getRandomSample = randomSample
+  def self.randomShuffle = randomString(12)
+  def self.getRandomShuffle = randomShuffle
+  def self.randomPermutation = randomString(12)
+  def self.getRandomPermutation = randomPermutation
+  def self.randomSet = randomString(12)
+  def self.getRandomSet = randomSet
+  def self.randomTuple = randomString(12)
+  def self.getRandomTuple = randomTuple
+  def self.randomJsonObject = randomString(12)
+  def self.getRandomJsonObject = randomJsonObject
+  def self.randomArray = randomString(12)
+  def self.getRandomArray = randomArray
+  def self.randomMatrix = randomString(12)
+  def self.getRandomMatrix = randomMatrix
+  def self.randomSemver = randomString(12)
+  def self.getRandomSemver = randomSemver
+  def self.randomGitSha = randomString(12)
+  def self.getRandomGitSha = randomGitSha
+  def self.randomPackageName = randomString(12)
+  def self.getRandomPackageName = randomPackageName
+  def self.randomFileName = randomString(12)
+  def self.getRandomFileName = randomFileName
+  def self.randomFileExtension = randomString(12)
+  def self.getRandomFileExtension = randomFileExtension
+  def self.randomFilePath = randomString(12)
+  def self.getRandomFilePath = randomFilePath
+  def self.randomDirectoryPath = randomString(12)
+  def self.getRandomDirectoryPath = randomDirectoryPath
+  def self.randomLogLevel = randomString(12)
+  def self.getRandomLogLevel = randomLogLevel
+  def self.randomHttpMethod = randomString(12)
+  def self.getRandomHttpMethod = randomHttpMethod
+  def self.randomEnvironmentName = randomString(12)
+  def self.getRandomEnvironmentName = randomEnvironmentName
+  def self.randomVector2 = randomString(12)
+  def self.getRandomVector2 = randomVector2
+  def self.randomVector3 = randomString(12)
+  def self.getRandomVector3 = randomVector3
+  def self.randomNormal = randomString(12)
+  def self.getRandomNormal = randomNormal
+  def self.randomWeightedNumber = randomString(12)
+  def self.getRandomWeightedNumber = randomWeightedNumber
+  def self.randomUnit = randomString(12)
+  def self.getRandomUnit = randomUnit
+  def self.randomMeasurement = randomString(12)
+  def self.getRandomMeasurement = randomMeasurement
+  def self.randomTemperature = randomString(12)
+  def self.getRandomTemperature = randomTemperature
+  def self.randomDurationMs = randomString(12)
+  def self.getRandomDurationMs = randomDurationMs
+  def self.randomProbability = randomString(12)
+  def self.getRandomProbability = randomProbability
+  def self.randomRange = randomString(12)
+  def self.getRandomRange = randomRange
 end
