@@ -1,6 +1,12 @@
 # libRandomizer API Reference
 
-This file is generated from `spec/beta/output-types.json`. Update the source catalog, then run:
+> Legacy compatibility note: this reference documents the older random primitive
+> catalog. The primary SDK path is now `TrainingDataGenerator`, portable schemas,
+> fixed counts, and deterministic input/output training pairs. Start with
+> `../README.md`, `index.html`, and `../spec/training/README.md` for the current
+> training-data API.
+
+This legacy file is generated from `spec/beta/output-types.json`. Update the source catalog, then run:
 
 ```bash
 python scripts/sync_beta_docs.py

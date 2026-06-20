@@ -1,8 +1,26 @@
 """Public SDK entrypoint for libRandomizer."""
 
 from .core import *
+from .training import *
 
 __all__ = [
+    "TrainingDataError",
+    "TrainingPair",
+    "TrainingDataGenerator",
+    "TransformSpec",
+    "SchemaNode",
+    "ensure_schema",
+    "integer",
+    "number",
+    "boolean",
+    "string",
+    "choice",
+    "array_schema",
+    "object_schema",
+    "null",
+    "literal",
+    "one_of",
+    "transform_spec",
     "LibRandom",
     "randomInt",
     "getRandomInt",

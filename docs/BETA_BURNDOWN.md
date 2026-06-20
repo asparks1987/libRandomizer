@@ -1,5 +1,9 @@
 # Full Catalog v1 Beta Production Burndown
 
+> Legacy planning note: this burndown tracks the older random primitive catalog.
+> The current primary product is the portable training-data generator described
+> in `PRODUCT_SCOPE.md`, `../README.md`, and `../spec/training/README.md`.
+
 This is the master task list for taking libRandomizer to fully functional v1
 beta production.
 

@@ -1,64 +1,79 @@
 # libRandomizer Product Scope
 
-This document defines what "fully functional v1 beta production" means for
-libRandomizer.
+This document defines the current product direction for `libRandomizer`.
 
 ## Product Goal
 
-libRandomizer should let developers import a native package in their language
-of choice and call one small function to get an OS-backed random value.
+`libRandomizer` should let developers generate deterministic input/output
+training pairs for simple prediction networks:
 
 ```text
-randomInt()
-randomString(5)
-randomWords(5)
-randomColor()
-randomWeightedChoice(items, weights)
+input schema + output schema + count + seed => reproducible training pairs
 ```
 
-The beta production goal is to implement the 138 output types currently listed
-in `spec/beta/output-types.json` across all 15 SDK targets.
+The SDK is designed for demos, tests, tutorials, smoke training runs, and small
+synthetic datasets where repeatability matters more than realism.
 
-## Current Production Beta Target
+## Primary Workflow
 
-Production beta requires:
+Developers should be able to:
 
-- all 138 catalog entries have implementation contracts
-- all 138 catalog entries are implemented in Python first
-- all 138 catalog entries are implemented across all 15 language packages
-- every implementation uses OS-backed cryptographic randomness
-- every package has native install/import/call smoke tests
-- every type has shared conformance cases
-- datasets have documented source, license, safety, and locale policy
-- docs clearly separate implemented features from planned work
-- package metadata is ready for registry publishing dry runs
+- define the datatype or schema for each generated input;
+- define the datatype or schema for each generated output;
+- choose an exact dataset size with `count`;
+- choose a deterministic `seed`;
+- optionally derive outputs from inputs with a transform callback;
+- export the same dataset as JSON, JSONL, or CSV.
 
-## Out Of Scope
+## V1 Reference Implementation
 
-The beta does not promise:
+The Python package is the reference implementation for:
 
-- an infinite catalog of every possible random data type
-- hardware true random number generator requirements
-- hosted network randomness
-- cryptographic token suitability beyond documented secure-random primitives
-- full locale coverage for every dataset-backed type
-- deterministic seeding or reproducible random streams
+- schema validation;
+- seeded record generation;
+- input/output pair generation;
+- transform result validation;
+- deterministic JSON, JSONL, and CSV serialization;
+- portable generator specs.
 
-## Randomness Meaning
+## Supported Portable Types
 
-"True random" means practical OS-backed cryptographic randomness. Each SDK must
-use its platform's secure random source and must not seed from time.
+V1 focuses on JSON-native values that can map cleanly into many programming
+languages:
 
-## Text And Dataset Safety
+- integers;
+- numbers;
+- booleans;
+- strings;
+- arrays;
+- objects;
+- nulls;
+- literal values;
+- finite choices;
+- one-of schema unions.
 
-Safe datasets are the default. Adult or profane text is allowed only through an
-explicit opt-in option such as `allowAdult: true` or the closest idiom in the
-target language.
+## Cross-Language Direction
 
-`randomString(5)` means five characters. `randomWords(5)` means five words.
+"Portable" means the shared contract is data-first. Schemas and generator specs
+must be serializable, while each language target can expose idiomatic helpers
+and native callback syntax.
 
-## Beta Limitations
+The repo may keep generated surfaces for existing language targets, but the
+Python implementation is the source of truth until parity work is complete.
 
-Production beta is still prerelease software. It can change before `1.0.0`, but
-it must be installable, tested, documented, honest about unfinished work, and
-safe by default.
+## Out Of Scope For V1
+
+V1 does not promise:
+
+- arbitrary opaque host-language objects;
+- realistic domain datasets for every industry;
+- every possible programming language ecosystem;
+- cryptographic randomness as the primary behavior;
+- nondeterministic wall-clock or OS-random training runs by default;
+- a full neural network training framework.
+
+## Legacy Compatibility
+
+The older random primitive catalog remains compatibility surface area. It should
+not be the main documentation path for new users. New examples and product copy
+should lead with `TrainingDataGenerator` and portable schemas.

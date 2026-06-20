@@ -1,69 +1,65 @@
-# libRandomizer Dataset Policy
+# libRandomizer Dataset And Type Policy
 
-Dataset-backed random types include words, names, places, user agents, MIME
-types, commerce values, game terms, locale labels, time zones, and similar
-human-readable outputs.
+`libRandomizer` is currently centered on generated JSON-native input/output
+training pairs, not large bundled real-world datasets. This policy describes how
+types and optional dataset-backed values should behave.
 
-## Requirements
+## Default Type Generation
 
-Every bundled dataset must document:
+The primary schema helpers generate values from deterministic seeded algorithms:
 
-- source name and URL or local origin
-- license and compatibility with MIT distribution
-- update policy
-- locale coverage
-- whether it is safe by default
-- whether adult/profane entries exist
-- fields and return shape used by SDKs
+- bounded integers;
+- bounded numbers;
+- booleans;
+- fixed-length strings;
+- arrays;
+- objects;
+- nulls;
+- literals;
+- finite choices;
+- one-of unions.
+
+These values are portable because they serialize naturally as JSON and can be
+flattened into CSV when needed.
+
+## Dataset-Backed Values
+
+Future dataset-backed helpers, such as names, places, domain terms, or sample
+text, must document:
+
+- source name and URL or local origin;
+- license and compatibility with MIT distribution;
+- update policy;
+- locale coverage;
+- safety policy;
+- fields and return shape used by SDKs;
+- deterministic sampling behavior under a seed.
 
 ## Safe Defaults
 
-Safe corpora are loaded by default. Adult/profane values must never appear from
-default calls such as `randomWord()` or `randomWords(5)`.
+Any human-readable corpus must be safe by default. Adult or profane values may
+only appear through explicit opt-in options and must never be returned from
+default training-data generation.
 
-Adult/profane values require explicit opt-in:
+## Storage Format
 
-```text
-randomWord(allowAdult=true)
-randomWords(5, allowAdult=true)
-```
+Portable JSON is preferred for shared datasets so every SDK can consume the same
+source data or generate equivalent native bundles.
 
-Language packages may use idiomatic option syntax, but the behavior must match
-the shared catalog contract.
-
-## Dataset Storage
-
-Datasets should use portable JSON so every SDK can consume the same source data
-or generate equivalent native bundles.
-
-Recommended layout:
+Recommended layout for future datasets:
 
 ```text
 datasets/
   text/
-    words.safe.en-US.json
-    words.adult.en-US.json
   people/
   location/
   internet/
   commerce/
-  games/
+  developer/
 ```
-
-## Minimum Beta Dataset Set
-
-Production beta needs documented datasets for:
-
-- safe words and adult/profane opt-in words
-- first names, last names, prefixes, suffixes, job titles, departments
-- countries, regions, cities, streets, locales, time zones, currency codes
-- user agents, MIME types, HTTP statuses, HTTP methods
-- color names and palette seed data
-- commerce brands, product categories, shipping methods, payment methods
-- games: suits, ranks, RPG classes, loot rarities, team-name terms
-- developer data: file extensions, log levels, environment names
 
 ## Acceptance Gate
 
-No dataset-backed type can be marked `implemented-all` until its source,
-license, safety mode, and locale policy are documented.
+No dataset-backed helper should be documented as production-ready until its
+source, license, safety mode, locale policy, and seeded selection behavior are
+documented and tested.

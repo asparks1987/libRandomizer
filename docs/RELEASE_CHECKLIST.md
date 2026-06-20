@@ -1,5 +1,10 @@
 # V1 Public Beta Release Checklist
 
+> Legacy planning note: this checklist was written for the older random
+> primitive catalog. The current release gates should prioritize
+> `TrainingDataGenerator`, portable schemas, deterministic exports, and the
+> documentation in `PRODUCT_SCOPE.md`.
+
 Use this checklist before tagging a repo-ready public beta.
 
 ## Required Gates

@@ -5,405 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="libRandomizer is a language-agnostic V1 public beta randomization SDK with a 138-type catalog and native package targets."
+      content="libRandomizer generates reproducible input/output training pairs from portable JSON-native schemas."
     />
-    <title>libRandomizer - One call random values for 15 languages</title>
+    <title>libRandomizer | Portable training-data generator</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="libRandomizer home">
-        <span class="brand-mark">lr</span>
+        <span class="brand-mark">LR</span>
         <span>libRandomizer</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#languages">Languages</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#usage">Usage</a>
-        <a href="#contract">Contract</a>
+        <a href="#quickstart">Quickstart</a>
+        <a href="#schema">Schema</a>
         <a href="#examples">Examples</a>
-        <a href="#vision">Vision</a>
-        <a href="#beta-catalog">Beta catalog</a>
-        <a href="#production-docs">Docs</a>
-        <a href="#roadmap">Roadmap</a>
+        <a href="#exports">Exports</a>
+        <a href="#legacy">Legacy</a>
       </nav>
-      <a class="nav-cta" href="https://github.com/asparks1987/libRandomizer#readme">Read docs</a>
+      <a class="nav-cta" href="https://github.com/asparks1987/libRandomizer">GitHub</a>
     </header>
 
     <main id="top">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Beta-ready v1 SDK foundation</p>
-          <h1>Random values should be one function call.</h1>
+          <p class="eyebrow">Portable training-data SDK</p>
+          <h1>Reproducible training pairs for prediction networks.</h1>
           <p class="hero-lede">
-            libRandomizer gives developers native, OS-backed random integers,
-            floats, and characters across 15 popular languages.
+            libRandomizer generates reproducible training pairs for prediction
+            networks. Choose the input datatype, choose the output datatype,
+            set the dataset size, and export deterministic datasets as JSON,
+            JSONL, or CSV.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#examples">Try the API</a>
-            <a class="button secondary" href="https://github.com/asparks1987/libRandomizer/tree/main/spec/v1">View v1 contract</a>
+            <a class="button primary" href="#quickstart">Get started</a>
+            <a class="button secondary" href="#examples">See examples</a>
           </div>
-          <div class="metric-row" aria-label="Project highlights">
-          <span><strong>15</strong> SDK targets</span>
-          <span><strong>3</strong> v1 data types</span>
-          <span><strong>138</strong> beta output types</span>
-          <span><strong>5</strong> production docs</span>
-          <span><strong>MIT</strong> licensed</span>
+          <div class="metric-row" aria-label="Key product facts">
+            <span><strong>JSON-native</strong> schemas</span>
+            <span><strong>Seeded</strong> generation</span>
+            <span><strong>JSON / JSONL / CSV</strong> exports</span>
+            <span><strong>Python</strong> reference SDK</span>
+          </div>
         </div>
-        </div>
-        <figure class="hero-art">
-          <img src="assets/entropy-field.svg" alt="Random value cards across a signal grid" />
-        </figure>
-      </section>
 
-      <section class="code-strip" aria-label="Quick API preview">
-        <p>From idea to value:</p>
-        <code>int thisINT = randomInt();</code>
-      </section>
+        <div class="hero-panel">
+          <img src="assets/schema-flow.svg" alt="Input schema, output schema, seed, count, and training pair flow diagram" />
+          <pre><code>from librandomizer import (
+    TrainingDataGenerator,
+    integer,
+    choice,
+)
 
-      <section class="section capability-deck" id="capabilities">
-        <div class="section-heading">
-          <p class="eyebrow">Current capabilities</p>
-          <h2>What the v1 SDK can return today.</h2>
-          <p>
-            The first release is intentionally focused: it proves the shared
-            SDK contract, native package model, validation behavior, and
-            OS-backed randomness before expanding into richer random data.
-          </p>
-        </div>
-        <div class="capability-grid">
-          <article>
-            <span class="type-badge">int</span>
-            <h3>Random integers</h3>
-            <p>
-              Generate whole numbers with a default range of <code>0..99</code> or pass
-              explicit inclusive bounds such as <code>randomInt(10, 20)</code>.
-            </p>
-          </article>
-          <article>
-            <span class="type-badge">float</span>
-            <h3>Random floats</h3>
-            <p>
-              Generate floating-point values with a default range of <code>0.0..1.0</code>
-              or provide your own lower and upper bounds.
-            </p>
-          </article>
-          <article>
-            <span class="type-badge">char</span>
-            <h3>Random characters</h3>
-            <p>
-              Generate printable ASCII characters with a default range of
-              <code>"A".."Z"</code> or choose a bounded character range.
-            </p>
-          </article>
+generator = TrainingDataGenerator(
+    input_schema=integer(0, 99),
+    output_schema=choice(["low", "medium", "high"]),
+    count=100,
+    seed=42,
+)
+
+pairs = generator.generate()</code></pre>
         </div>
       </section>
 
-      <section class="section usage" id="usage">
-        <div class="section-heading">
-          <p class="eyebrow">How to use it</p>
-          <h2>Install, import, call.</h2>
-          <p>
-            The Python package is the reference implementation today. The CLI is
-            available for scripts and bridge scenarios, and the package folders
-            show the native call shape for each language target.
-          </p>
-        </div>
-        <div class="usage-grid">
-          <article>
-            <h3>Install Python</h3>
-            <pre><code>python -m pip install .</code></pre>
-          </article>
-          <article>
-            <h3>Call the SDK</h3>
-            <pre><code>from librandomizer import random_int
-
-value = random_int()
-bounded = random_int(10, 20)</code></pre>
-          </article>
-          <article>
-            <h3>Use the CLI</h3>
-            <pre><code>librandom int --min 0 --max 99
-librandom float --min 0.0 --max 1.0
-librandom char --min A --max Z</code></pre>
-          </article>
-          <article>
-            <h3>Expect JSON</h3>
-            <pre><code>{"type":"int","value":42}
-{"error":"Invalid range: min must be less than or equal to max"}</code></pre>
-          </article>
-        </div>
-      </section>
-
-      <section class="section split" id="contract">
+      <section class="band">
         <div>
-          <p class="eyebrow">Why developers use it</p>
-          <h2>One contract, native packages.</h2>
-          <p>
-            The SDKs follow a shared v1 contract, but each package uses the
-            language's own secure random facilities. Your users get an API that
-            feels local, without a service call or CLI bridge in the happy path.
-          </p>
+          <strong>Portable</strong>
+          <span>Serializable schema contract</span>
+        </div>
+        <div>
+          <strong>Deterministic</strong>
+          <span>Same seed, same dataset</span>
+        </div>
+        <div>
+          <strong>Callback-driven</strong>
+          <span>Optional derived outputs</span>
+        </div>
+        <div>
+          <strong>Flat exports</strong>
+          <span>Easy to scan in ML tooling</span>
+        </div>
+      </section>
+
+      <section class="section" id="quickstart">
+        <div class="section-heading">
+          <p class="eyebrow">Quickstart</p>
+          <h2>A training set in a few lines.</h2>
+        </div>
+        <div class="split">
+          <article class="code-card">
+            <h3>Python reference SDK</h3>
+            <pre><code>from librandomizer import TrainingDataGenerator, choice, integer
+
+generator = TrainingDataGenerator(
+    input_schema=integer(0, 99),
+    output_schema=choice(["low", "medium", "high"]),
+    count=100,
+    seed=42,
+)
+
+pairs = generator.generate()
+generator.write_jsonl("train.jsonl")
+generator.write_csv("train.csv")</code></pre>
+          </article>
+
+          <article class="side-note">
+            <h3>What ships in v1</h3>
+            <p>
+              The first implementation supports portable JSON-native input and
+              output types:
+              integers, numbers, booleans, strings, arrays, objects, nulls,
+              literal values, and unions. The schema lives in data, not in an
+              opaque runtime object.
+            </p>
+            <p>
+              Add a transform only when the output should be calculated from
+              the input. Otherwise the SDK fills both sides from the selected
+              data types.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Workflow</p>
+          <h2>Tell it the pair shape, then freeze the run.</h2>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span>01</span>
+            <h3>Define the input</h3>
+            <p>Pick a primitive datatype or compose a nested schema for the values your model will observe.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Define the output</h3>
+            <p>Choose the label, class, score, sequence, object, or other serializable target type.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Set count and seed</h3>
+            <p>Fix the dataset size and seed so examples, tests, and experiments can be regenerated exactly.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Export pairs</h3>
+            <p>Write JSON, JSONL, or flat CSV for the training pipeline, notebook, or smoke test you already use.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="schema">
+        <div class="section-heading">
+          <p class="eyebrow">Schema layer</p>
+          <h2>Build nested input shapes from simple primitives.</h2>
         </div>
         <div class="feature-grid">
           <article>
-            <span class="feature-icon">01</span>
-            <h3>Simple surface</h3>
-            <p>Call <code>randomInt()</code>, <code>randomFloat()</code>, or <code>randomChar()</code> and move on.</p>
+            <h3>Numbers</h3>
+            <p><code>integer(0, 99)</code> and <code>number(0.0, 1.0)</code> cover common numeric inputs.</p>
           </article>
           <article>
-            <span class="feature-icon">02</span>
-            <h3>OS-backed entropy</h3>
-            <p>Implementations use platform cryptographic random sources.</p>
+            <h3>Text</h3>
+            <p><code>string(length=12)</code> and <code>choice([...])</code> handle tokens, labels, and categories.</p>
           </article>
           <article>
-            <span class="feature-icon">03</span>
-            <h3>Consistent behavior</h3>
-            <p>Defaults, bounds, printable characters, and errors are defined once.</p>
+            <h3>Structure</h3>
+            <p><code>array_schema(...)</code> and <code>object_schema(...)</code> compose nested records.</p>
           </article>
           <article>
-            <span class="feature-icon">04</span>
-            <h3>Ready to grow</h3>
-            <p>Future versions can add strings, colors, names, places, and more.</p>
+            <h3>Null and literal</h3>
+            <p><code>null()</code> and <code>literal(value)</code> keep edge cases explicit and serializable.</p>
           </article>
         </div>
       </section>
 
-      <section class="section architecture">
+      <section class="section">
         <div class="section-heading">
-          <p class="eyebrow">Language agnostic by design</p>
-          <h2>The API should feel native everywhere.</h2>
-          <p>
-            libRandomizer is not trying to make every language call a Python
-            script. The repo defines one shared behavior contract, then gives
-            each language its own package and idiomatic import path.
-          </p>
+          <p class="eyebrow">Two generation modes</p>
+          <h2>Generate independent targets or derive them from inputs.</h2>
         </div>
-        <div class="architecture-grid">
-          <article>
-            <h3>Shared contract</h3>
-            <p>
-              Defaults, inclusive ranges, printable ASCII rules, equal-boundary
-              behavior, and clear failures are documented once in <code>spec/v1</code>.
-            </p>
+        <div class="split">
+          <article class="code-card">
+            <h3>Schema-only pairs</h3>
+            <pre><code>generator = TrainingDataGenerator(
+    input_schema=integer(0, 99),
+    output_schema=choice(["low", "medium", "high"]),
+    count=100,
+    seed=42,
+)</code></pre>
+            <p>Use this when you need valid synthetic examples with controlled input and output datatypes.</p>
           </article>
-          <article>
-            <h3>Native implementations</h3>
-            <p>
-              Each SDK uses that platform's secure random facilities instead of
-              depending on a hosted service or language bridge for normal use.
-            </p>
-          </article>
-          <article>
-            <h3>Consistent developer experience</h3>
-            <p>
-              The goal is a tiny call surface: import the package, call
-              <code>randomInt()</code>, <code>randomFloat()</code>, or <code>randomChar()</code>, and keep moving.
-            </p>
+          <article class="code-card">
+            <h3>Derived targets</h3>
+            <pre><code>generator = TrainingDataGenerator(
+    input_schema=integer(0, 10),
+    output_schema=number(0, 20),
+    count=100,
+    seed=42,
+    transform=lambda value: value * 2,
+)</code></pre>
+            <p>Use this when labels, scores, or decisions should be reproducible functions of each input.</p>
           </article>
         </div>
       </section>
 
-      <section class="section" id="languages">
+      <section class="section" id="examples">
         <div class="section-heading">
-          <p class="eyebrow">Language coverage</p>
-          <h2>Built where developers already work.</h2>
+          <p class="eyebrow">Example workflows</p>
+          <h2>Classification, regression, sequence, and tabular data.</h2>
         </div>
-        <div class="language-grid" aria-label="Supported SDK language targets">
-          <span>Python</span>
-          <span>JavaScript</span>
-          <span>TypeScript</span>
-          <span>Java</span>
-          <span>C#</span>
-          <span>C</span>
-          <span>C++</span>
-          <span>PHP</span>
-          <span>Go</span>
-          <span>Rust</span>
-          <span>Kotlin</span>
-          <span>Swift</span>
-          <span>Ruby</span>
-          <span>Dart</span>
-          <span>R</span>
-        </div>
-      </section>
-
-      <section class="section examples" id="examples">
-        <div class="section-heading">
-          <p class="eyebrow">Copy-paste shape</p>
-          <h2>The API stays small on purpose.</h2>
-        </div>
-
         <div class="example-shell">
-          <div class="tabs" role="tablist" aria-label="Code examples">
-            <button class="tab active" type="button" data-language="python">Python</button>
-            <button class="tab" type="button" data-language="javascript">JavaScript</button>
-            <button class="tab" type="button" data-language="go">Go</button>
-            <button class="tab" type="button" data-language="rust">Rust</button>
-            <button class="tab" type="button" data-language="swift">Swift</button>
+          <div class="tabs" role="tablist" aria-label="Training data examples">
+            <button class="tab active" type="button" data-example="classification">Classification</button>
+            <button class="tab" type="button" data-example="regression">Regression</button>
+            <button class="tab" type="button" data-example="sequence">Sequence</button>
+            <button class="tab" type="button" data-example="tabular">Tabular</button>
           </div>
           <div class="code-card">
-            <button class="copy-button" type="button">Copy</button>
-            <pre><code id="example-code">from librandomizer import random_int
-
-value = random_int()</code></pre>
+            <div class="code-topline">
+              <span data-example-title>Classification</span>
+              <button class="copy-button" type="button">Copy</button>
+            </div>
+            <pre><code id="example-code"></code></pre>
           </div>
         </div>
       </section>
 
-      <section class="section proof">
+      <section class="section" id="exports">
+        <div class="section-heading">
+          <p class="eyebrow">Exports</p>
+          <h2>Use the format your pipeline expects.</h2>
+        </div>
+        <div class="export-grid">
+          <article>
+            <h3>JSON</h3>
+            <p>Best for structured record interchange and preserving nested output shapes.</p>
+            <pre><code>[
+  {"input": {...}, "output": {...}}
+]</code></pre>
+          </article>
+          <article>
+            <h3>JSONL</h3>
+            <p>Best for streaming, line-oriented tooling, and large file processing.</p>
+            <pre><code>{"input": {...}, "output": {...}}
+{"input": {...}, "output": {...}}</code></pre>
+          </article>
+          <article>
+            <h3>CSV</h3>
+            <p>Best for flat tabular pipelines and spreadsheet-friendly inspection.</p>
+            <pre><code>input.profile.age,input.features[0],output.approved,output.score</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Portability</p>
+          <h2>A contract language SDKs can share.</h2>
+        </div>
+        <div class="split">
+          <article class="side-note">
+            <h3>Why JSON-native schemas</h3>
+            <p>
+              Integers, floats, booleans, strings, arrays, objects, nulls, and
+              finite choices map cleanly into the languages most developers use
+              for data pipelines and neural network experiments.
+            </p>
+            <p>
+              That keeps the cross-language promise practical: the spec travels
+              as data, while each SDK exposes native helpers and callbacks.
+            </p>
+          </article>
+          <article class="code-card">
+            <h3>Generated record</h3>
+            <pre><code>{
+  "input": {
+    "age": 42,
+    "visits": 17,
+    "active": true
+  },
+  "output": {
+    "approved": true,
+    "score": 0.82
+  }
+}</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="section legacy-band" id="legacy">
         <div>
-          <p class="eyebrow">What v1 includes</p>
-          <h2>Small enough to trust, useful enough to ship.</h2>
+          <p class="eyebrow">Legacy compatibility</p>
+          <h2>The old random-value primitives are still here.</h2>
           <p>
-            v1 is the foundation for a much larger randomization SDK. It
-            already covers native packages, the Python reference API, a JSON CLI
-            fallback, shared validation rules, and the MIT license.
+            The original OS-backed random helper APIs remain available as
+            compatibility shims while the training-data generator becomes the
+            primary product. Existing imports keep working, but new work should
+            build on the portable schema layer.
           </p>
         </div>
-        <ul class="proof-list">
-          <li>Default integer range: <code>0..99</code></li>
-          <li>Default float range: <code>0.0..1.0</code></li>
-          <li>Default character range: <code>"A".."Z"</code></li>
-          <li>Bounded calls for all v1 types</li>
-          <li>Printable ASCII validation for characters</li>
-          <li>JSON CLI fallback for bridge scenarios</li>
-        </ul>
-      </section>
-
-      <section class="section vision" id="vision">
-        <div>
-          <p class="eyebrow">Long-term goal</p>
-          <h2>A language-agnostic SDK for random data of almost any kind.</h2>
-          <p>
-            The north star is simple but ambitious: no matter what language a
-            developer is using, they should be able to ask libRandomizer for a
-            random value that matches the type they need.
-          </p>
-          <p>
-            Today that means ints, floats, and chars. Future versions should add
-            common random domains like strings, symbols, colors, words, names,
-            places, dates, choices, weighted values, and structured random
-            objects while preserving the same low-friction API style.
-          </p>
-        </div>
-        <div class="vision-panel">
-          <h3>Future call shape</h3>
-          <pre><code>randomColor()
-randomName()
-randomPlace()
-randomDate()
-randomFrom(list)
-randomWeighted(options)</code></pre>
-        </div>
-      </section>
-
-      <section class="section beta-catalog" id="beta-catalog">
-        <div class="section-heading">
-          <p class="eyebrow">Beta documentation</p>
-          <h2>138 cemented output types for the random-anything roadmap.</h2>
-          <p>
-            Beta docs define the vocabulary before the code tries to implement
-            everything. The catalog separates what exists in v1 from what is
-            available in the V1 public beta, giving every language package the same target list.
-          </p>
-        </div>
-        <div class="catalog-summary" data-catalog-summary>
-          <span><strong data-catalog-visible>138</strong> visible output types</span>
-          <span><strong data-catalog-visible-categories>14</strong> categories shown</span>
-          <span><strong data-catalog-total>138</strong> total output types</span>
-          <span><strong data-catalog-total-categories>14</strong> categories defined</span>
-        </div>
-        <div class="catalog-controls">
-          <label class="catalog-search" for="catalog-search">
-            <span>Filter the catalog</span>
-            <input
-              id="catalog-search"
-              name="catalog-search"
-              type="search"
-              placeholder="Search names, APIs, categories, or descriptions"
-              autocomplete="off"
-              spellcheck="false"
-              data-catalog-search
-            />
-          </label>
-          <p class="catalog-note">
-            The live list is rendered from a published catalog snapshot in
-            <code>docs/assets/beta-output-types.json</code>, which stays in sync
-            with the source spec.
-          </p>
-        </div>
-        <div class="catalog-list" data-beta-catalog aria-live="polite">
-          <p class="catalog-loading">Loading beta catalog...</p>
-        </div>
-        <a class="button secondary catalog-link" href="https://github.com/asparks1987/libRandomizer/tree/main/spec/beta">View beta spec</a>
-      </section>
-
-      <section class="section production-docs" id="production-docs">
-        <div class="section-heading">
-          <p class="eyebrow">Production beta burndown</p>
-          <h2>The work is visible before it is claimed done.</h2>
-          <p>
-            The current SDK foundation is usable for v1 primitives. The full
-            production beta target is larger: all 138 catalog types across all
-            15 language SDKs, backed by datasets, conformance, packaging, and
-            release gates.
-          </p>
-        </div>
-        <div class="docs-grid">
-          <a href="PRODUCT_SCOPE.md">
-            <h3>Product scope</h3>
-            <p>Defines the production beta target, limits, safety policy, and randomness model.</p>
-          </a>
-          <a href="API_REFERENCE.md">
-            <h3>API reference</h3>
-            <p>Generated from the beta catalog with parameters, returns, errors, examples, and aliases.</p>
-          </a>
-          <a href="BETA_BURNDOWN.md">
-            <h3>Burndown checklist</h3>
-            <p>Tracks spec, implementation, datasets, tests, packaging, docs, and release readiness.</p>
-          </a>
-          <a href="DATASETS.md">
-            <h3>Dataset policy</h3>
-            <p>Documents source, license, locale, update, and adult opt-in requirements.</p>
-          </a>
-          <a href="CONFORMANCE.md">
-            <h3>Conformance</h3>
-            <p>Explains how every language SDK proves it matches the shared contract.</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="section roadmap" id="roadmap">
-        <div class="section-heading">
-          <p class="eyebrow">Where it goes next</p>
-          <h2>Random anything, one type at a time.</h2>
-          <p>
-            The roadmap expands the type catalog without changing the core
-            promise: one predictable contract and native packages that feel
-            natural in each language.
-          </p>
-        </div>
-        <div class="roadmap-track">
-          <article>
-            <h3>v1 foundation</h3>
-            <p>Integers, floats, and characters across native SDK packages.</p>
-          </article>
-          <article>
-            <h3>Next data types</h3>
-            <p>Strings, symbols, colors, words, names, and places.</p>
-          </article>
-          <article>
-            <h3>Structured randoms</h3>
-            <p>Lists, weighted choices, dates, and reusable random object profiles.</p>
-          </article>
-        </div>
+        <a class="button secondary" href="API_REFERENCE.md">Legacy API reference</a>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>libRandomizer is MIT licensed and built for developers who want less ceremony around randomness.</p>
-      <a href="https://github.com/asparks1987/libRandomizer/blob/main/LICENSE">License</a>
+      <span>libRandomizer</span>
+      <a href="https://github.com/asparks1987/libRandomizer">View source</a>
     </footer>
 
     <script src="site.js"></script>
