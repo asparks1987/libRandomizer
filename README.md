@@ -165,6 +165,15 @@ The original OS-backed random primitive APIs remain available as compatibility
 shims while the training-data generator becomes the primary product. New code
 should use `TrainingDataGenerator` and the portable schema helpers.
 
+## V1 Beta parity note
+
+Python/CLI is the full behavior-complete reference implementation.
+Other language SDKs are currently generated API surfaces and are advancing through
+parity hardening in this order:
+JavaScript, TypeScript, Go, C#, Java, Rust, C/C++, PHP, Ruby, Kotlin, Swift, Dart, R.
+
+Current language status is tracked in `docs/SDK_PARITY_STATUS.md`.
+
 ## Documentation
 
 The GitHub Pages site lives in `docs/`. Start with `docs/index.html` for the

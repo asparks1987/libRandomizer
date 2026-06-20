@@ -21,6 +21,10 @@ Status values:
 - `deprecated`: Retained only for compatibility and not recommended.
 - `available-v1`: Compatibility status from early v1 docs; new entries should use implemented-python or implemented-all.
 
+Note: `implemented-all` in this generated reference file is the target state. In this beta release window, the actual deployment policy is that
+all non-Python SDKs are treated as generated surfaces until parity is confirmed in
+the language conformance matrix.
+
 Shared option names:
 
 - `min`: Inclusive lower bound where the output type supports ranges.

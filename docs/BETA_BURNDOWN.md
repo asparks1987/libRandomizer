@@ -55,6 +55,13 @@ beta production.
 - [x] Implement the 138-function surface in Dart.
 - [x] Implement the 138-function surface in R.
 
+Current parity policy decision:
+
+- [x] Keep generated SDK surfaces in place for V1 beta.
+- [x] Treat all non-Python/CLI SDKs as surface-complete until conformance proves behavior.
+- [ ] Promote any SDK to parity-complete (`implemented-all`) only after its
+  conformance run is green in CI.
+
 ## 5. Conformance And Tests
 
 - [x] Keep Python unit, CLI, layout, and catalog tests green.

@@ -36,6 +36,27 @@ The Python package is the reference implementation for:
 - deterministic JSON, JSONL, and CSV serialization;
 - portable generator specs.
 
+### Parity Policy (V1 Beta)
+
+For this release, we are using a two-tier parity model:
+
+- `Python + CLI`: behavior-complete reference implementation.
+- all other SDKs: generated API surfaces, with behavior still in hardening and
+  conformance status tracking.
+
+Until a language passes shared conformance cases, it must not be presented as
+behavior-parity complete, even if the full function surface is present.
+
+Status terms in this repo mean:
+
+- `implemented-python`: function is implemented with behavior parity in Python/CLI.
+- `implemented-all`: all non-Python language SDKs have passing shared conformance
+  for that behavior and are safe to treat as parity-complete.
+- `planned-beta`: function remains on path but not yet fully covered yet.
+
+The web and API docs must make this distinction visible so users know exactly what
+is production-safe behavior for the chosen target language.
+
 ## Supported Portable Types
 
 V1 focuses on JSON-native values that can map cleanly into many programming

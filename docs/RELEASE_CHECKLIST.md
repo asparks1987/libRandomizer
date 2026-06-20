@@ -12,6 +12,7 @@ Use this checklist before tagging a repo-ready public beta.
 - [ ] `python -m pytest`
 - [ ] `python -m build`
 - [ ] `node --check docs/site.js`
+- [x] Decide parity policy: reference-complete (Python/CLI) vs surface-complete (native SDKs)
 - [ ] `python scripts/generate_beta_release.py`
 - [ ] `python scripts/generate_native_sdk_surfaces.py`
 - [ ] `python scripts/sync_beta_docs.py`
@@ -20,6 +21,8 @@ Use this checklist before tagging a repo-ready public beta.
 - [ ] Confirm all package manifests use MIT licensing.
 - [ ] Confirm `datasets/metadata.json` lists source, license, locale, update policy, and safety status.
 - [ ] Confirm docs site shows current capability status and does not claim registry publishing.
+- [ ] Confirm language parity matrix in `docs/SDK_PARITY_STATUS.md` is current and only marks
+  `implemented-all` when shared conformance is proven.
 
 ## Local Package Smoke
 
@@ -32,6 +35,7 @@ Use this checklist before tagging a repo-ready public beta.
 - [ ] Rust crate builds where Cargo is available.
 - [ ] C/C++ packages configure with CMake where available.
 - [ ] PHP, Ruby, Dart, Swift, Kotlin, and R package metadata parses with native tools where available.
+- [ ] Conformance smoke for each language marks parity status (reference/ surface / blocked).
 
 ## Release Boundary
 
